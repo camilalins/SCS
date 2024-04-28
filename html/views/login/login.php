@@ -10,8 +10,9 @@
 <h1>Login</h1>
 <?=$data["erro"]?>
 
+<!-- TODO: CRIAR ELEMENTOS HTML DE LOGIN, SEM CSS -->
 <form action="/login/efetuar-login.php" method="post">
-    <button>POSTAR</button>
+    <button>Entrar</button>
 </form>
 
 </body>

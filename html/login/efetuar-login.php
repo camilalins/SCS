@@ -2,8 +2,9 @@
 
 include_once "../core/BaseController.php";
 include_once "../http/helpers.php";
+//TODO: ADICIONAR IMPORTACAO REPO
 
-class LoginController extends BaseController {
+class EfetuarLoginController extends BaseController {
 
     public function get(){
 
@@ -12,10 +13,8 @@ class LoginController extends BaseController {
 
     public function post() {
 
-        //TODO:
         try {
-
-            $loginCorreto = true; // VOU BUSCAR NO BANCO
+            $loginCorreto = true; //TODO: USAR REPO E BUSCAR NO BANCO
 
             if(!$loginCorreto)
                 throw new Exception("Login e senha inválidos");
@@ -28,4 +27,4 @@ class LoginController extends BaseController {
         }
     }
 
-} new LoginController();
+} new EfetuarLoginController();
