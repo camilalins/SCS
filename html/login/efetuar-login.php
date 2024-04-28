@@ -18,11 +18,14 @@ class EfetuarLoginController extends \controllers\core\BaseController {
             $email = body("email");
             $senha = body("senha");
 
+            if(!$email || !$senha)
+                throw new Exception("Preencha os campos obrigatórios");
+
             $repo = new \repositorios\UsuarioRepositorio();
             $usuario = $repo->buscarPorEmailESenha($email, $senha);
 
             if(!$usuario)
-                throw new Exception("Login e/ou senha inválidos");
+                throw new Exception("Usuário e/ou senha inválidos");
 
             session(USUARIO, $usuario);
 
