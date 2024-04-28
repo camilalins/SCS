@@ -2,4 +2,4 @@
 
 include_once "http/helpers.php";
 
-redirect("/login/efetuar-login.php");
+redirect("login/efetuar-login.php");
