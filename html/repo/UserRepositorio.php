@@ -23,6 +23,18 @@ class UserRepositorio {
         }
         return false;
     }
+    public function encontrarEmail($email) {
+        // Consulta para verificar se o e-mail existe no banco de dados
+        $query = "SELECT COUNT(*) FROM usuario WHERE email = ?";
+        $stmt = $this->mysqli->prepare($query);
+        $stmt->bind_param('s', $email); // 's' indica que $email é uma string
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
+
+        // Retorna true se o e-mail existir, false caso contrário
+        return $count > 0;
+    }
 
 
     // Outras funções do modelo aqui...
