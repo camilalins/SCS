@@ -4,7 +4,7 @@ include_once "../core/BaseController.php";
 include_once "../http/helpers.php";
 require_once "../repo/SolicitacaoRepositorio.php";
 
-class ApresentarController extends BaseController
+class ApresentarController extends \controllers\core\BaseController
 {
 
     public function get() {
@@ -12,12 +12,12 @@ class ApresentarController extends BaseController
         $repo = new SolicitacaoRepositorio();
         $solicitacoes = $repo->obterTodos();
 
-        view("/home/home.php", [ "solicitacoes" => $solicitacoes ]);
+        view("home/home.php", [ "solicitacoes" => $solicitacoes ]);
     }
 
     public function post() {
 
-        redirect("/login/recuperar-senha.php");
+        redirect("login/recuperar-senha.php");
     }
 
 }

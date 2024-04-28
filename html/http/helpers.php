@@ -1,11 +1,11 @@
 <?php
 
 function redirect($url) {
-    header("Location: $url");
+    header("Location: /$url");
     exit();
 }
 
 function view($path, $data=null){
-
-    include "../views$path";
+    extract($data ?: []);
+    include "../views/$path";
 }

@@ -1,4 +1,4 @@
-<?php /** @var TYPE_NAME $data */?>
+<?php /** @var TYPE_NAME $erro */?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Login</h1>
-<?=$data["erro"]?>
+<?=$erro?>
 
 <!-- TODO: CRIAR ELEMENTOS HTML DE LOGIN, SEM CSS -->
 <form action="/login/efetuar-login.php" method="post">
