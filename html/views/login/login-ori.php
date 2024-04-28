@@ -1,5 +1,5 @@
 
-<?php include "../includes/top.php" ?>
+<?php include "../_includes/top.php" ?>
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -40,4 +40,4 @@
                 </div>
             </div>
         </div>
-<?php include "../includes/bottom.php" ?>
+<?php include "../_includes/bottom.php" ?>

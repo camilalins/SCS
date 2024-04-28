@@ -1,47 +1,42 @@
-<?php error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+<?php
+namespace controllers\login;
 
-    include_once "../repo/SolicitacaoRepositorio.php";
+use Exception;
 
-    function index(){
-        //obter dados - não precisa
-        //tomar decisões /executar algo específico - não precisa
-        //devolver dados para view
-        include "../views/solicitacoes/cadastro.php";
+include_once "../core/BaseController.php";
+include_once "../repo/SolicitacaoRepositorio.php";
 
+class CadastrarSolicitacaoController extends \controllers\core\BaseController {
+
+    function get(){
+
+        view("/solicitacoes/cadastro.php");
     }
+
     function post(){
+
         try {
-            // OBTER DADOS
-            $email = $_POST["email"];
-            $password = $_POST["password"];
 
-            // VALIDAÇÃO
-            if (empty($email) || empty($password)) {
-                // Se o e-mail ou a senha estiverem vazios, lance uma exceção
-                throw new Exception("Os campos não podem estar vazios");
-            } else {
-                $userRepo = new UsuarioRepositorio();
+            $cliente = body("cliente");
+            $placa = body("placa");
 
-                // Verificação das credenciais
-                $user = $userRepo->verifyLogin($email, $password);
+            if (!$cliente || !$placa)
+                throw new Exception("Preencha os campos obrigatórios");
 
-                if ($user) {
-                    // Login bem-sucedido, redireciona para a página principal
-                    header("Location: ../solicitacoes/obter-todos.php");
-                    exit();
-                } else {
-                    // Credenciais inválidas, defina a mensagem de erro
-                    $erro = "Usuário e/ou senha inválidos";
-                }
-            }
+            $solicitacaoDto = (object)[
+                "data" => now(),
+                "cliente" => $cliente,
+                "placa" => $placa
+            ];
+            $repo = new \repositorios\SolicitacaoRepositorio();
+            $solicitacao = $repo->criar($solicitacaoDto);
+
+            view("solicitacoes/cadastro.php", [ "mensagem" => "Solicitação cadastrada com sucesso!", "solicitacao" => $solicitacao ]);
         }
         catch (Exception $e) {
-            // Em caso de exceção, defina a mensagem de erro com a mensagem da exceção
-            $erro = $e->getMessage();
+
+            view("solicitacoes/cadastro.php", [ "erro" => $e->getMessage() ]);
         }
     }
 
-    if ($_SERVER["REQUEST_METHOD"] == "GET") index();
-    if ($_SERVER["REQUEST_METHOD"] == "POST") post();
-
-
+} new CadastrarSolicitacaoController();

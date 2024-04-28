@@ -1,8 +1,10 @@
 <?php
+namespace repositorios;
 
 require_once "../config/const.php";
 
 use mysqli;
+use Exception;
 
 class SolicitacaoRepositorio {
 
@@ -28,23 +30,43 @@ class SolicitacaoRepositorio {
 
         return $solicitacoes;
     }
+
+    public function obterPorId($id) {
+
+        $id = $this->mysqli->real_escape_string($id);
+
+        $stmt = $this->mysqli->prepare("SELECT * FROM solicitacao WHERE id = ?");
+        $stmt->bind_param("d", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($solicitacao = $result->fetch_object())
+            return $solicitacao;
+
+        return null;
+    }
+
     /**
-     * Criar solicitacao
+     * Criar nova solicitacao
+     *
      * @throws Exception caso cliente ou placa vazios
      */
-    public function criar($solicitacao) {
+    public function criar($dto) {
 
-        if (!$solicitacao->data || !$solicitacao->cliente || !$solicitacao->placa)
+        if (!$dto->data || !$dto->cliente || !$dto->placa)
             throw new Exception('Informe os dados obrigatórios');
 
         $sql = "INSERT INTO solicitacao (data, cliente, placa) VALUES (?, ?, ?)";
         $stmt = $this->mysqli->prepare($sql);
-        $stmt->bind_param('sss', $solicitacao->data, $solicitacao->cliente, $solicitacao->placa);
+        $stmt->bind_param('sss', $dto->data, $dto->cliente, $dto->placa);
         $stmt->execute();
+
+        if($this->mysqli->insert_id > 0)
+            return $this->obterPorId($this->mysqli->insert_id);
 
         $stmt->close();
         $this->mysqli->close();
 
-        return true;
+        return null;
     }
 }

@@ -1,22 +1,17 @@
 <?php
+namespace controllers;
 
-include_once "../core/BaseController.php";
-include_once "../http/helpers.php";
+include_once "../core/AuthorizedController.php";
 require_once "../repo/SolicitacaoRepositorio.php";
 
-class ApresentarController extends \controllers\core\BaseController {
-
-    public function __construct() {
-        if (!session(USUARIO)) redirect(LOGIN);
-        parent::__construct();
-    }
+class ApresentarController extends \controllers\core\AuthorizedController {
 
     public function get() {
 
-        $repo = new SolicitacaoRepositorio();
+        $repo = new \repositorios\SolicitacaoRepositorio();
         $solicitacoes = $repo->obterTodos();
 
-        view("home/home.php", [ "solicitacoes" => $solicitacoes ]);
+        view("solicitacoes/pagina-inicial.php", [ "solicitacoes" => $solicitacoes ]);
     }
 
     public function post() {
@@ -24,6 +19,4 @@ class ApresentarController extends \controllers\core\BaseController {
         redirect("login/recuperar-senha.php");
     }
 
-}
-
-new ApresentarController();
+} new ApresentarController();

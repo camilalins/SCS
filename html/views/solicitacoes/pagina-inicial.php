@@ -1,24 +1,11 @@
 <?php /** @var TYPE_NAME $solicitacoes */?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
-<body>
 
-<h1>Welcome</h1>
+<h1>Solicitações</h1>
 
+<button onclick="window.open('/solicitacoes/cadastrar.php', '_self')">Criar</button> <br>
 
+<br>
 
-<form action="/solicitacoes/obter-todos.php" method="post">
-    <button>Carregar</button>
-</form>
-<br />
-<a href="/solicitacoes/cadastrar.php">Criar</a>
-<br />
-<br />
 <div id="result">
     <?php foreach ($solicitacoes as $s):?>
         <div style="border: 1px solid #ccc; width: 300px; padding: 10px; display: flex">
@@ -29,6 +16,4 @@
     <?php endforeach;?>
 </div>
 
-</body>
-</html>
 <script src="/public/index.js" type="module"></script>

@@ -8,7 +8,7 @@ class EncerrarSessaoController extends \controllers\core\BaseController {
     public function get(){
 
         session_destroy();
-        redirect(LOGIN);
+        redirect(LOGIN_PAGE);
     }
 
 } new EncerrarSessaoController();

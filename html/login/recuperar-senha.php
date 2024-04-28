@@ -1,7 +1,6 @@
 <?php
 
 include_once "../core/BaseController.php";
-include_once "../http/helpers.php";
 require_once "../repo/UserRepositorio.php";
 
 class RecuperarSenhaController extends BaseController

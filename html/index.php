@@ -3,4 +3,4 @@
 include_once "config/const.php";
 include_once "http/helpers.php";
 
-redirect(LOGIN);
+redirect(LOGIN_PAGE);

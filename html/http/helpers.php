@@ -1,5 +1,7 @@
 <?php
 
+include_once "../config/const.php";
+
 session_start();
 
 function session($name, $value=null){
@@ -14,7 +16,16 @@ function redirect($url) {
 
 function view($path, $data=null){
     extract($data ?: []);
-    include "../views/$path";
+    if(MAIN_PAGE) {
+        $page = "../views/$path";
+        include "../views/main.php";
+    }
+    else include "../views/$path";
+}
+
+function includes($path, $data=null){
+    extract($data ?: []);
+    include "../views/_includes/$path";
 }
 
 function body($name=null){
