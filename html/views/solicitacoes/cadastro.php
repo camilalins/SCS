@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>Cadastro de Solicitação</h1>
-        <form action="/solicitacoes/cadastro.php" method="POST">
+        <form action="/solicitacoes/cadastrar.php" method="POST">
             <div class="error"><?=$erro?></div><br/>
             <div class="mensagem"><?=$mensagem?></div><br/>
 

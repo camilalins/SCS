@@ -9,7 +9,7 @@
         <!-- Inclua o Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <!-- Inclua o arquivo de estilo personalizado -->
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="../../public/login/login.css">
     </head>
     <body>
 
@@ -50,6 +50,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!-- Inclua o arquivo de script personalizado -->
-        <script src="login.js"></script>
+        <script src="../../public/login/login.js"></script>
     </body>
 </html>

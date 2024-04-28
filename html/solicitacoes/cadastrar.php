@@ -1,5 +1,7 @@
 <?php error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+
     include_once "../repo/SolicitacaoRepositorio.php";
+
     function index(){
         //obter dados - não precisa
         //tomar decisões /executar algo específico - não precisa

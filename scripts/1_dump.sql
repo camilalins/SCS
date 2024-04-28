@@ -1,6 +1,6 @@
 -- MariaDB dump 10.18  Distrib 10.4.17-MariaDB, for Win64 (AMD64)
 --
--- Host: 127.0.0.1    Database: main
+-- Host: 127.0.0.1    Database: scs
 -- ------------------------------------------------------
 -- Server version	10.3.38-MariaDB-1:10.3.38+maria~ubu2004
 

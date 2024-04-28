@@ -1,14 +1,16 @@
-version: "1"
+version: "3"
 services:
   db:
-    container_name: php-db
+    container_name: scs-db
     platform: linux/x86_64 # se estiver usando windows, comente essa linha com #
     image: mariadb:10.3.38
     restart: unless-stopped
     environment:
       - TZ=America/Sao_Paulo
       - MYSQL_ROOT_PASSWORD=P@$$$$w0rd
-      - MYSQL_DATABASE=main
+      - MYSQL_DATABASE=scs
+      - MYSQL_USER=scs
+      - MYSQL_PASSWORD=Siop@2024
     ports:
       - 3336:3306
     expose:
@@ -17,7 +19,7 @@ services:
       - data:/var/lib/mysql
       - ./scripts:/docker-entrypoint-initdb.d
   nginx:
-    container_name: php-nginx
+    container_name: scs-nginx
     image: nginx:latest
     ports:
       - 8080:80
@@ -28,7 +30,7 @@ services:
       - ./html/:/var/www/html/
       - ./logs/nginx:/var/log/nginx/
   php:
-    container_name: php-php
+    container_name: scs-php
     build: ./php
     networks:
       - internal
