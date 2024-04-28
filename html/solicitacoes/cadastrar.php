@@ -20,7 +20,7 @@
                 // Se o e-mail ou a senha estiverem vazios, lance uma exceção
                 throw new Exception("Os campos não podem estar vazios");
             } else {
-                $userRepo = new UserRepositorio();
+                $userRepo = new UsuarioRepositorio();
 
                 // Verificação das credenciais
                 $user = $userRepo->verifyLogin($email, $password);

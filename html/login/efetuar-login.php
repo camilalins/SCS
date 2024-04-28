@@ -1,10 +1,10 @@
 <?php
-
 namespace controllers\login;
 
+use Exception;
+
 include_once "../core/BaseController.php";
-include_once "../http/helpers.php";
-//TODO: ADICIONAR IMPORTACAO REPO
+include_once "../repo/UsuarioRepositorio.php";
 
 class EfetuarLoginController extends \controllers\core\BaseController {
 
@@ -16,10 +16,16 @@ class EfetuarLoginController extends \controllers\core\BaseController {
     public function post() {
 
         try {
-            $loginCorreto = true; //TODO: USAR REPO E BUSCAR NO BANCO
+            $email = body("email");
+            $senha = body("senha");
 
-            if(!$loginCorreto)
-                throw new Exception("Login e senha inválidos");
+            $repo = new \repositorios\UsuarioRepositorio();
+            $usuario = $repo->buscarPorEmailESenha($email, $senha);
+
+            if(!$usuario)
+                throw new Exception("Login e/ou senha inválidos");
+
+            session(USUARIO, $usuario);
 
             redirect("solicitacoes/apresentar.php");
         }

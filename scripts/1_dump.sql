@@ -79,9 +79,9 @@ CREATE TABLE `usuario` (
                            `id` int(11) NOT NULL AUTO_INCREMENT,
                            `nome` varchar(100) NOT NULL,
                            `email` varchar(100) NOT NULL,
-                           `cpf` char(11) NOT NULL,
+                           `cpf` char(14) NOT NULL,
                            `papel` enum('administrador','operador','financeiro','comercial','gerente') NOT NULL,
-                           `senha` varchar(255) NOT NULL,
+                           `senha` varchar(100) NOT NULL,
                            PRIMARY KEY (`id`),
                            UNIQUE KEY `email` (`email`),
                            UNIQUE KEY `cpf` (`cpf`)
@@ -94,7 +94,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Camila','gmlins06@gmail.com','13181333786','administrador','123456'),(2,'Max','maxmmartini@gmail.com','2','administrador','123456');
+INSERT INTO `usuario` VALUES (1,'Camila','gmlins06@gmail.com','131.813.337-86','administrador','$2y$10$7kTKPc3KH.lfWECAH.uoyuCV/apjHYX/lL0In5RIhBzqPAV2NO.ne'),(2,'Max','maxmmartini@gmail.com','116.774.470-77','administrador','$2y$10$2MNUb7rJ4Lm8C26vx8KIk.3sKns/Mf8JKgzKZwovDIJdxysMEDqC6');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

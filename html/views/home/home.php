@@ -1,4 +1,4 @@
-<?php /** @var TYPE_NAME $data */?>
+<?php /** @var TYPE_NAME $solicitacoes */?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +13,9 @@
 <a href="/solicitacoes/cadastrar.php">Criar</a>
 <br />
 <br />
+<?=session(USUARIO)->nome?>
 <div id="result">
-    <?php foreach ($data["solicitacoes"] as $s):?>
+    <?php foreach ($solicitacoes as $s):?>
         <div style="border: 1px solid #ccc; width: 300px; padding: 10px; display: flex">
             <div style="width: 50px"><?=$s->id?></div>
             <div style="width: 150px"><?=$s->cliente?></div>

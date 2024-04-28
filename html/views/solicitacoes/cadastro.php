@@ -1,25 +1,42 @@
+<?php /** @var TYPE_NAME $erro */?>
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro de Solicitações</title>
-        <style>.error {color: red;}.mensagem{color: green;}</style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        fieldset { width: 300px; display: flex; flex-direction: column; gap: 20px; padding: 20px; }
+        fieldset div { display: flex; gap: 20px; }
+        fieldset div input { width: 200px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
 
-    </head>
-    <body>
-        <h1>Cadastro de Solicitação</h1>
-        <form action="/solicitacoes/cadastrar.php" method="POST">
-            <div class="error"><?=$erro?></div><br/>
-            <div class="mensagem"><?=$mensagem?></div><br/>
+<div class="cadastro">
 
-            <label for="cliente">Cliente:</label>
-            <input type="text" id="cliente" name="cliente" value="<?=$solicitacao->cliente?>" required> <br>
-            <label for="placa">Placa:</label><br>
-            <input type="text" id="placa" name="placa" value="<?=$solicitacao->placa?>" required><br>
-            <button type="submit">Salvar</button>
+    <h1>Cadastro</h1>
 
-            <a href="/solicitacoes/obter-todos.php">Ir para solicitações</a>
-        </form>
-    </body>
+    <form action="/solicitaacoes/cadastrar.php" method="post">
+        <fieldset>
+
+            <div class="error"><?=$erro?></div>
+            <div>
+                <label for="cliente">Cliente</label>
+                <input type="text" name="cliente">
+            </div>
+            <div>
+                <label for="placa">Placa&nbsp;</label>
+                <input type="text" name="placa">
+            </div>
+            <div>
+                <button>Salvar</button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+</body>
 </html>
