@@ -1,7 +1,6 @@
 <?php
-namespace controllers\login;
 
-use Exception;
+namespace controllers\login;
 
 include_once "../core/BaseController.php";
 include_once "../repo/UsuarioRepositorio.php";
