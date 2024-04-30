@@ -2,6 +2,8 @@
 
 namespace controllers\login;
 
+use Excecption;
+
 include_once "../core/BaseController.php";
 include_once "../repo/UsuarioRepositorio.php";
 
