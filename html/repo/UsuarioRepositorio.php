@@ -3,7 +3,6 @@
 namespace repositorios;
 
 use mysqli;
-use Exception;
 
 include_once "../config/const.php";
 
@@ -19,7 +18,7 @@ class UsuarioRepositorio {
             MYSQL_PASS,
             MYSQL_DATABASE,
             MYSQL_PORT
-        ) or throw new Exception("Não foi possível conectar"); //$this->mysqli->connect_error
+        ) or throw new \Exception("Não foi possível conectar"); //$this->mysqli->connect_error
 
     }
 

@@ -1,8 +1,6 @@
 <?php
 namespace controllers\login;
 
-use Exception;
-
 include_once "../core/BaseController.php";
 include_once "../repo/SolicitacaoRepositorio.php";
 
@@ -21,7 +19,7 @@ class CadastrarSolicitacaoController extends \controllers\core\BaseController {
             $placa = body("placa");
 
             if (!$cliente || !$placa)
-                throw new Exception("Preencha os campos obrigatórios");
+                throw new \Exception("Preencha os campos obrigatórios");
 
             $solicitacaoDto = (object)[
                 "data" => now(),
@@ -33,7 +31,7 @@ class CadastrarSolicitacaoController extends \controllers\core\BaseController {
 
             view("solicitacoes/cadastro.php", [ "mensagem" => "Solicitação cadastrada com sucesso!", "solicitacao" => $solicitacao ]);
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
 
             view("solicitacoes/cadastro.php", [ "erro" => $e->getMessage() ]);
         }

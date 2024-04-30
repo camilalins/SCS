@@ -4,7 +4,6 @@ namespace repositorios;
 require_once "../config/const.php";
 
 use mysqli;
-use Exception;
 
 class SolicitacaoRepositorio {
 
@@ -17,7 +16,7 @@ class SolicitacaoRepositorio {
             MYSQL_PASS,
             MYSQL_DATABASE,
             MYSQL_PORT
-        ) or throw new Exception("Não foi possível conectar"); //$this->mysqli->connect_error
+        ) or throw new \Exception("Não foi possível conectar"); //$this->mysqli->connect_error
     }
 
     public function obterTodos() {
@@ -54,7 +53,7 @@ class SolicitacaoRepositorio {
     public function criar($dto) {
 
         if (!$dto->data || !$dto->cliente || !$dto->placa)
-            throw new Exception('Informe os dados obrigatórios');
+            throw new \Exception('Informe os dados obrigatórios');
 
         $sql = "INSERT INTO solicitacao (data, cliente, placa) VALUES (?, ?, ?)";
         $stmt = $this->mysqli->prepare($sql);
