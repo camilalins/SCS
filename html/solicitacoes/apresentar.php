@@ -12,7 +12,9 @@ class ApresentarController extends \controllers\core\AuthorizedController {
         $solicitacoes = $repo->obterTodos();
 
         view("solicitacoes/pagina-inicial.php", [ "solicitacoes" => $solicitacoes ]);
+
     }
+
 
     public function post() {
 

@@ -1,7 +1,9 @@
 <?php
 
+namespace controllers\recuperar-senha;
+
 include_once "../core/BaseController.php";
-require_once "../repo/UserRepositorio.php";
+require_once "../repo/UsuarioRepositorio.php";
 
 class RecuperarSenhaController extends BaseController
 {
@@ -21,7 +23,7 @@ class RecuperarSenhaController extends BaseController
                 // Se o e-mail estiver vazio, lance uma exceção
                 throw new Exception("O campo não pode estar vazio");
             } else {
-                $userRepo = new UserRepositorio();
+                $userRepo = new \repositorios\UsuarioRepositorio();
                 // Verificação da existência do e-mail
                 if ($userRepo->encontrarEmail($email)) {
                     // E-mail encontrado

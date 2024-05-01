@@ -34,7 +34,10 @@
         <div class="content">
             <?php include $page;?>
         </div>
+        <div class="footer">
+        </div>
     </div>
+
 
 </body>
 </html>
