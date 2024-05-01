@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Index</title>
+  <!-- Inclua o Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="caminho_para_o_logo.png" alt="Logo" width="50" height="50">
+    </a>
+    <span class="navbar-text">
+      Bem-vindo, Nome do Usuário
+    </span>
+  </div>
+</nav>
+
+<!-- Menu -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Criar Solicitação</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Relatório</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchButton"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Pop-up de Filtro -->
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="filterModalLabel">Filtrar Solicitações</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Adicione seus filtros aqui -->
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Filtrar por Cliente</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Cliente">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput2">Filtrar por Data</label>
+          <input type="date" class="form-control" id="exampleFormControlInput2">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Filtrar por Status</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Aguardando</option>
+            <option>Finalizada</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Pesquisar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Conteúdo -->
+<div class="container mt-3">
+  <h2 class="text-center mb-4">Solicitações Registradas</h2>
+
+  <!-- Tabela de Solicitações -->
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome do Cliente</th>
+      <th>Data de Início</th>
+      <th>Status</th>
+      <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td>Cliente A</td>
+      <td>01/04/2024</td>
+      <td><span class="bg-yellow">Aguardando</span></td>
+      <td>
+        <button class="btn btn-primary btn-sm">Editar</button>
+        <button class="btn btn-danger btn-sm">Excluir</button>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Cliente B</td>
+      <td>05/04/2024</td>
+      <td><span class="bg-green">Finalizada</span></td>
+      <td>
+        <button class="btn btn-primary btn-sm">Editar</button>
+        <button class="btn btn-danger btn-sm">Excluir</button>
+      </td>
+    </tr>
+    <!-- Adicione mais linhas conforme necessário -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-5">
+  <p>Powered by OnOff Criativos - 2024</p>
+</footer>
+
+<!-- Inclua o Bootstrap JS (opcional, mas necessário para alguns componentes interativos) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $('#searchButton').click(function(){
+      $('#filterModal').modal('show');
+    });
+  });
+</script>
+
+</body>
+</html>

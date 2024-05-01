@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema de Controle de Solicitações ">
+  <!-- fav icon -->
+  <link rel="icon" href="../img/icon.ico">
+  <script src="https://kit.fontawesome.com/eaf468bfde.js" crossorigin="anonymous"></script>
+
+  <!-- bootstarp css file -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- aos.css file -->
+  <link rel="stylesheet" href="../css/aos.css">
+
+  <!-- bootstrap icons -->
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons(1).css">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+  <!-- main css file -->
+  <link rel="stylesheet" href="../css/style.css">
+  <title> SCS - Página Inicial </title>
+</head>
+
+<body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
+
+
+  <!-- ======= start Header ======= -->
+  <header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand " href="#"><img style="width: 200px;" src="../img/logo-branca.png" alt="SCS"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list" id="menu"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+
+          <div class="d-flex ms-auto">
+            <a class="btn" href="#">Dashboard</a>
+            <button id="mode-toggle" class="btn-light-mode switch-button"><i class="fa-solid fa-circle-half-stroke"></i></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- ======= end Header ======= -->
+  <!-- ============== Start Why us section ========== -->
+  <section class="container why-choose-us py-5">
+    <div class="heading">
+      <h4 class="pretitle aos-init" data-aos="fade-up">
+        Relação de Clientes
+      </h4>
+      <p class="col-lg-7 col-12 aos-init" data-aos="fade-up" data-aos-delay="150">
+        Verifique as informações dos clientes, caso não encontre realize o cadastro.
+      </p>
+      <div class="row  gy-4 gx-4" data-aos="fade-up" data-aos-delay="150">
+<br><br>
+      </div>
+
+      <!-- Menu -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <button class="btn my-2 my-sm-0" type="button" id="searchButton"> Lista de Clientes</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Pop-up de Filtro -->
+      <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="filterModalLabel">Filtrar Solicitações</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Adicione seus filtros aqui -->
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Filtrar por Cliente</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Cliente">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput2">Filtrar por Data</label>
+                <input type="date" class="form-control" id="exampleFormControlInput2">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Filtrar por Status</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>Aguardando</option>
+                  <option>Finalizada</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light-mode">Buscar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conteúdo -->
+      <div class="container mt-3">
+
+
+
+        <div class="container">
+          <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+
+              <form>
+                <div class="form-group">
+                  <label for="inputCliente">Cliente</label>
+                  <input type="text" class="form-control" id="inputCliente" placeholder="Nome do cliente">
+                </div>
+                <div class="form-group">
+                  <label for="inputCNPJ">CNPJ</label>
+                  <input type="text" class="form-control" id="inputCNPJ" placeholder="Número do CNPJ">
+                </div>
+                <div class="form-group">
+                  <label for="inputStatus">Status</label>
+                  <select class="form-control" id="inputStatus">
+                    <option value="Aguardando">Aguardando</option>
+                    <option value="Finalizado">Finalizado</option>
+                    <option value="Em Andamento">Em Andamento</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-light-mode">Cadastrar</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </section>
+  <!-- ============== End Why us section ========== -->
+
+
+  <!-- ============== end Footer section ========== -->
+
+  <!--  JQuery file     -->
+  <script src="../js/jquery-3.6.1.min.js.download"></script>
+
+  <!-- bootstrap min js -->
+  <script src="../js/bootstrap.min.js.download"></script>
+
+  <!--  owl carousel    -->
+  <script src="../js/owl.carousel.min.js.download"></script>
+
+  <!-- aos file    -->
+  <script src="../js/aos.js.download"></script>
+
+  <!-- gsap file    -->
+  <script src="../js/gsap.min.js.download"></script>
+
+  <!--  main js file  -->
+  <script src="../js/main.js.download"></script>
+  <!-- Inclua o Bootstrap JS (opcional, mas necessário para alguns componentes interativos) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('#searchButton').click(function(){
+        $('#filterModal').modal('show');
+      });
+    });
+  </script>
+
+</body>
