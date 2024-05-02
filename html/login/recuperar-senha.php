@@ -2,6 +2,8 @@
 
 namespace controllers;
 
+use PHPMailer\PHPMailer\Exception;
+
 include_once "../core/BaseController.php";
 require_once "../repo/UsuarioRepositorio.php";
 
@@ -28,8 +30,8 @@ class RecuperarSenhaController extends BaseController
                 throw new Exception("E-mail encontrado");
 
             //TODO: ENVIAR E-MAIL DE RECUPREÇÃO DE SENHA
-            if(!send_mail("maxmmartini@gmail.com", "TESTE", "TESTE"))
-                echo send_mail_error();
+            if(!send_mail($email, "Recuperação de senha", "<p>Sua nova senha é: XXXXXXXX</p>"))
+                throw new Exception(send_mail_error());
 
         } catch (Exception $e) {
             view("/login/recuperar-senha.php", [ "erro" => $e->getMessage() ]);
