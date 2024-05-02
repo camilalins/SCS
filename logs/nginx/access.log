@@ -1655,3 +1655,6 @@
 192.168.65.1 - - [02/May/2024:15:14:20 +0000] "GET /login/efetuar-login.php HTTP/1.1" 200 25 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" "-"
 192.168.65.1 - - [02/May/2024:15:14:28 +0000] "GET /login/efetuar-login.php HTTP/1.1" 200 1188 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" "-"
 192.168.65.1 - - [02/May/2024:15:19:49 +0000] "GET /login/efetuar-login.php HTTP/1.1" 200 1192 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" "-"
+192.168.65.1 - - [02/May/2024:17:14:41 +0000] "GET / HTTP/1.1" 302 5 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" "-"
+192.168.65.1 - - [02/May/2024:17:14:41 +0000] "GET /login/efetuar-login.php HTTP/1.1" 200 1192 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" "-"
+192.168.65.1 - - [02/May/2024:17:15:10 +0000] "GET /login/recuperar-senha.php HTTP/1.1" 200 262 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" "-"
