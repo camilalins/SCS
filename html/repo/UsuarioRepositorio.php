@@ -58,7 +58,7 @@ class UsuarioRepositorio {
         $email = $this->mysqli->real_escape_string($email);
         $senha = $this->mysqli->real_escape_string($senha);
 
-        $usuario = buscarPorEmail($email);
+        $usuario = $this->buscarPorEmail($email);
 
         if ($usuario && password_verify($senha, $usuario->senha))
             return $usuario;

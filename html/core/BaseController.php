@@ -5,6 +5,7 @@ namespace controllers\core;
 include_once "../config/const.php";
 include_once "../http/helpers.php";
 include_once "../utils/date-time.php";
+include_once "../mail/helpers.php";
 
 class BaseController {
 

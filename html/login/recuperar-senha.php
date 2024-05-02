@@ -11,7 +11,7 @@ class RecuperarSenhaController extends \controllers\core\BaseController {
 
     public function get() {
 
-        view("/login/recuperar-senha.php");
+        view("login/recuperar-senha.php");
     }
 
     public function post() {
@@ -35,7 +35,7 @@ class RecuperarSenhaController extends \controllers\core\BaseController {
 
         }
         catch (Exception $e) {
-            view("/login/recuperar-senha.php", [ "erro" => $e->getMessage() ]);
+            view("login/recuperar-senha.php", [ "erro" => $e->getMessage() ]);
         }
     }
 

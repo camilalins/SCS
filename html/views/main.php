@@ -26,8 +26,6 @@
             <div class="user-opt">
                 <?php if(session(USUARIO)):?>
                     <button onclick="window.open('/login/encerrar-sessao.php', '_self')">Sair</button>
-                <?php else:?>
-                    <button onclick="window.open('/login/efetuar-login.php', '_self')">Entrar</button>
                 <?php endif;?>
             </div>
         </div>

@@ -3,8 +3,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once 'vendor/autoload.php';
-require_once 'config/const.php';
+require_once '../vendor/autoload.php';
+require_once '../config/const.php';
 
 /**
  * @param $to Para E-mail do destinatário
