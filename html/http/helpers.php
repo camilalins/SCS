@@ -16,7 +16,7 @@ function redirect($url) {
 
 function view($path, $data=null){
     extract($data ?: []);
-    if(MAIN_PAGE) {
+    if(MAIN_PAGE && !in_array($path, MAIN_PAGE_EXCLUDE)) {
         $page = "../views/$path";
         include "../views/main.php";
     }

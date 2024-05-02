@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        .login { width: 400px; margin: auto; margin-top: 200px; }
+        .content { width: 400px; margin: auto; margin-top: 200px; }
         fieldset { width: 300px; display: flex; flex-direction: column; gap: 20px; padding: 20px; }
         fieldset div { display: flex; gap: 20px; }
         fieldset div input { width: 200px; }
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <div class="login">
+    <div class="content">
 
         <form action="/login/efetuar-login.php" method="post">
             <fieldset>

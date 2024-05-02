@@ -1,6 +1,6 @@
 <?php
 
-namespace controllers\recuperar-senha;
+namespace controllers;
 
 include_once "../core/BaseController.php";
 require_once "../repo/UsuarioRepositorio.php";
@@ -19,21 +19,18 @@ class RecuperarSenhaController extends BaseController
             $email = $_POST["email"];
 
             // VALIDAÇÃO
-            if (empty($email)) {
-                // Se o e-mail estiver vazio, lance uma exceção
+            if (!$email)
                 throw new Exception("O campo não pode estar vazio");
-            } else {
-                $userRepo = new \repositorios\UsuarioRepositorio();
-                // Verificação da existência do e-mail
-                if ($userRepo->encontrarEmail($email)) {
-                    // E-mail encontrado
-                    echo "E-mail encontrado";
-                } else {
-                    // E-mail não encontrado, defina a mensagem de erro
-                    $erro = "E-mail não encontrado";
-                    throw new Exception("E-mail não encontrado");
-                }
-            }
+
+            $repo = new \repositorios\UsuarioRepositorio();
+            $usuario = $repo->buscarPorEmail($email);
+            if (!$usuario)
+                throw new Exception("E-mail encontrado");
+
+            //TODO: ENVIAR E-MAIL DE RECUPREÇÃO DE SENHA
+            if(!send_mail("maxmmartini@gmail.com", "TESTE", "TESTE"))
+                echo send_mail_error();
+
         } catch (Exception $e) {
             view("/login/recuperar-senha.php", [ "erro" => $e->getMessage() ]);
         }
