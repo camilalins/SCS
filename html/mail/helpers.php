@@ -10,9 +10,10 @@ require_once 'config/const.php';
  * @param $to Para E-mail do destinatário
  * @param $subject Assunto Assunto do e-mail
  * @param $message Mensagem Corpo da mensagem em HTML
+ * @param $attachs Anexos Array contendo os caminhos dos anexos
  * @return bool Resposta se enviou ou não. Caso não tenha enviado, obter o erro pela função send_mail_error()
  */
-function send_mail($to, $subject, $message){
+function send_mail($to, $subject, $message, $attachs=array()){
 
     // Instância da classe
     $mail = new PHPMailer(true);
@@ -37,6 +38,10 @@ function send_mail($to, $subject, $message){
         $mail->Subject = $subject;
         $mail->Body    = $message;
         /* $mail->AltBody = 'Este é o cortpo da mensagem para clientes de e-mail que não reconhecem HTML'; */
+        foreach ($attachs as $attach) {
+            // isset($_FILES['uploaded_file']) && $_FILES['uploaded_file']['error'] == UPLOAD_ERR_OK
+            $mail->addAttachment($attach);
+        }
         // Enviar
         $mail->send();
         return true;
