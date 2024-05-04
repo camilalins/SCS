@@ -16,7 +16,7 @@ class UsuarioRepositorio {
             MYSQL_PASS,
             MYSQL_DATABASE,
             MYSQL_PORT
-        ) or throw new \Exception("Não foi possível conectar"); //$this->mysqli->connect_error
+        ) or throw new \Exception("Não foi possível conectar". DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$this->mysqli->connect_error}" : "");
 
     }
 

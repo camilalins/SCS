@@ -28,11 +28,18 @@ class Application {
         $controller = Application::defineController($uri, $routes);
         $action = strtolower($method); //$action = $path[ACTN] ?: "index";
 
-        $parthVars = str_replace($routes[$controller], "", $uri);
-        $parthVars = str_starts_with($parthVars, "/") ? substr($parthVars, 1, strlen($parthVars)) : $parthVars;
-        $GLOBALS["path"] = explode("/", $parthVars);
-
+        if($routes[$controller]) {
+            $parthVars = str_replace($routes[$controller], "", $uri);
+            $parthVars = str_starts_with($parthVars, "/") ? substr($parthVars, 1, strlen($parthVars)) : $parthVars;
+            $GLOBALS["path"] = explode("/", $parthVars);
+        }
         //print_r(["ctr" => $controller, "act" => $action, "uri" => $uri, "rou" => $routes]); die();
+
+        if(MOCKUP_MODE == 1) {
+
+            redirect(MOCKUP_ROOT);
+            exit();
+        }
 
         $ctrl = new $controller();
         $ctrl->$action();
@@ -61,7 +68,7 @@ class Application {
         $methodComments = array_filter(array_map(function ($part) { return trim($part," *"); }, explode("\n", $methodInfo->getDocComment() )), function ($part) { return $part != "/"; });
 
         $methodAction = current(array_filter($methodComments, function ($part) { return strpos(strtoupper($part), "@GET") !== false || strpos(strtoupper($part), "@POST") !== false || strpos(strtoupper($part), "@PUT") !== false || strpos(strtoupper($part), "@DELETE") !== false; }));
-        //TODO:
+        //TODO: CONFIGURAR LEITURA DE REQUEST METHOD POR COMENTARIO
     }
 
     private static function defineController($uri, $routes){

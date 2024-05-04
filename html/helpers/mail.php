@@ -48,7 +48,7 @@ function send_mail($to, $subject, $message, $attachs=array()){
         return true;
     }
     catch (Exception $e) {
-        $GLOBALS["send_mail_error"] = "Erro ao enviar e-mail: {$mail->ErrorInfo}";
+        $GLOBALS["send_mail_error"] = "Erro ao enviar e-mail".(DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$mail->ErrorInfo}" : "");
         return false;
     }
 }
