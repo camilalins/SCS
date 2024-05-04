@@ -1,10 +1,11 @@
 <?php /** @var TYPE_NAME $erro */?>
+<?php /** @var TYPE_NAME $mensagem */?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>SCS - Recuperar senha</title>
     <style>
         .content { width: 400px; margin: auto; margin-top: 200px; }
         fieldset { width: 300px; display: flex; flex-direction: column; gap: 20px; padding: 20px; border-radius: 5px; }
@@ -12,13 +13,14 @@
         fieldset div { display: flex; gap: 20px; }
         fieldset div input { width: 200px; }
         .error { color: red; }
+        .success { color: green; }
     </style>
 </head>
 <body>
 
     <div class="content">
 
-        <form action="/login/recuperar-senha.php" method="post">
+        <form action="/recuperar-senha" method="post">
 
             <fieldset>
 
@@ -30,13 +32,13 @@
                     <button>Enviar</button>
                 </div>
 
-                <a href="/login/efetuar-login.php">Voltar para o login</a>
+                <a href="/">Voltar para o login</a>
 
             </fieldset>
 
             <br><br>
 
-            <div class="error"><?=$erro?></div>
+            <div class="<?=$erro?"error":"success"?>"><?=$erro?:$mensagem?></div>
         </form>
 
     </div>

@@ -20,7 +20,7 @@
 
     <h1>Cadastro</h1>
 
-    <form action="/solicitacoes/cadastrar.php" method="post">
+    <form action="/solicitacoes/cadastrar" method="post">
         <fieldset>
 
             <div class="<?=$erro?"error":"success"?>"><?=$erro?:$mensagem?></div>
@@ -34,7 +34,7 @@
             </div>
             <div>
                 <button>Salvar</button>&nbsp;
-                <a href="/solicitacoes/apresentar.php">Ir para solicitações</a>
+                <a href="/solicitacoes/apresentar">Ir para solicitações</a>
             </div>
         </fieldset>
     </form>

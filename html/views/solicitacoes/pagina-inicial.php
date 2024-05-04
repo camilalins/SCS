@@ -2,7 +2,7 @@
 
 <h1>Solicitações</h1>
 
-<button onclick="window.open('/solicitacoes/cadastrar.php', '_self')">Criar</button> <br>
+<button onclick="window.open('/solicitacoes/cadastrar', '_self')">Criar</button> <br>
 
 <br>
 

@@ -1,10 +1,8 @@
 <?php
 
-namespace repositorios;
+namespace repo;
 
 use mysqli;
-
-include_once "../config/const.php";
 
 class UsuarioRepositorio {
 

@@ -8,7 +8,7 @@
     <title><?=$title?:MAIN_PAGE_TITLE?></title>
     <style>
         html, body { margin: 0; padding: 0; }
-        .header { background: <?=MAIN_PAGE_THEME["PRIMARY"]?>; color: <?=MAIN_PAGE_THEME["PRIMARY-TEXT"]?>; height: 80px; display: flex; align-items: center; justify-content: flex-end; }
+        .header { background: teal; color: white; height: 80px; display: flex; align-items: center; justify-content: flex-end; }
         .user { padding: 20px; }
         .user-opt { padding: 20px; }
         .content { padding: 20px;}
@@ -25,7 +25,7 @@
             </div>
             <div class="user-opt">
                 <?php if(session(USUARIO)):?>
-                    <button onclick="window.open('/login/encerrar-sessao.php', '_self')">Sair</button>
+                    <button onclick="window.open('/encerrar-sessao', '_self')">Sair</button>
                 <?php endif;?>
             </div>
         </div>

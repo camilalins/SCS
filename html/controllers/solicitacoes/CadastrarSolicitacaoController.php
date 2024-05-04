@@ -1,10 +1,13 @@
 <?php
-namespace controllers\login;
+namespace controllers\solicitacoes;
 
-include_once "../core/BaseController.php";
-include_once "../repo/SolicitacaoRepositorio.php";
+require_once "core/controllers/BaseController.php";
+require_once "repo/SolicitacaoRepositorio.php";
 
-class CadastrarSolicitacaoController extends \controllers\core\BaseController {
+/**
+ * @Route("solicitacoes/cadastrar")
+ */
+class CadastrarSolicitacaoController extends \core\controllers\BaseController {
 
     function get(){
 
@@ -26,7 +29,7 @@ class CadastrarSolicitacaoController extends \controllers\core\BaseController {
                 "cliente" => $cliente,
                 "placa" => $placa
             ];
-            $repo = new \repositorios\SolicitacaoRepositorio();
+            $repo = new \repo\SolicitacaoRepositorio();
             $solicitacao = $repo->criar($solicitacaoDto);
 
             view("solicitacoes/cadastro.php", [ "mensagem" => "Solicitação cadastrada com sucesso!", "solicitacao" => $solicitacao ]);
@@ -37,4 +40,4 @@ class CadastrarSolicitacaoController extends \controllers\core\BaseController {
         }
     }
 
-} new CadastrarSolicitacaoController();
+}

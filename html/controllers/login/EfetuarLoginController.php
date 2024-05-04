@@ -2,13 +2,15 @@
 
 namespace controllers\login;
 
-include_once "../core/BaseController.php";
-include_once "../repo/UsuarioRepositorio.php";
+require_once "core/controllers/BaseController.php";
+require_once "repo/UsuarioRepositorio.php";
 
-class EfetuarLoginController extends \controllers\core\BaseController {
+/**
+ * @Route("efetuar-login")
+ */
+class EfetuarLoginController extends \core\controllers\BaseController {
 
     public function get(){
-
         view("login/login.php");
     }
 
@@ -21,7 +23,7 @@ class EfetuarLoginController extends \controllers\core\BaseController {
             if(!$email || !$senha)
                 throw new \Exception("Preencha os campos obrigatórios");
 
-            $repo = new \repositorios\UsuarioRepositorio();
+            $repo = new \repo\UsuarioRepositorio();
             $usuario = $repo->buscarPorEmailESenha($email, $senha);
 
             if(!$usuario)
@@ -29,7 +31,7 @@ class EfetuarLoginController extends \controllers\core\BaseController {
 
             session(USUARIO, $usuario);
 
-            redirect("solicitacoes/apresentar.php");
+            redirect("solicitacoes/apresentar");
         }
         catch (\Exception $e) {
 
@@ -37,4 +39,4 @@ class EfetuarLoginController extends \controllers\core\BaseController {
         }
     }
 
-} new EfetuarLoginController();
+}

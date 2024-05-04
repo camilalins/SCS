@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>SCS - Login</title>
     <style>
         .content { width: 400px; margin: auto; margin-top: 200px; }
         fieldset { width: 300px; display: flex; flex-direction: column; gap: 20px; padding: 20px; border-radius: 5px; }
@@ -18,7 +18,7 @@
 
     <div class="content">
 
-        <form action="/login/efetuar-login.php" method="post">
+        <form action="/efetuar-login" method="post">
             <fieldset>
                 <legend>Informe suas credenciais</legend>
                 <div class="error"><?=$erro?></div>
@@ -32,7 +32,7 @@
                 </div>
                 <div>
                     <button>Entrar</button>
-                    <a href="/login/recuperar-senha.php">Recuperar senha</a>
+                    <a href="/recuperar-senha">Recuperar senha</a>
                 </div>
 
             </fieldset>

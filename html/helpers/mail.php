@@ -3,8 +3,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once '../vendor/autoload.php';
-require_once '../config/const.php';
+require_once 'vendor/autoload.php';
+require_once 'config/const.php';
 
 /**
  * @param $to Para E-mail do destinatário
@@ -22,6 +22,7 @@ function send_mail($to, $subject, $message, $attachs=array()){
         // Configurações do servidor
         $mail->isSMTP();        //Devine o uso de SMTP no envio
         $mail->SMTPAuth = true; //Habilita a autenticação SMTP
+        $mail->CharSet = "UTF-8";
         $mail->Username   = MAIL_SMTP_USER;
         $mail->Password   = MAIL_SMTP_PASS;
         // Criptografia do envio SSL também é aceito

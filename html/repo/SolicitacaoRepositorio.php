@@ -1,7 +1,5 @@
 <?php
-namespace repositorios;
-
-require_once "../config/const.php";
+namespace repo;
 
 use mysqli;
 
