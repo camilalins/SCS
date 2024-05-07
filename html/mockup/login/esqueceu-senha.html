@@ -37,12 +37,10 @@
         </div>
         <div class="col-lg-5  mb-4 col-12 d-flex flex-column justify-content-start">
           <div class="img-login" style="width: 100%; text-align: center; padding: 10px;">
-            <img style="width: 265px;" src="../img/logo-gray.png" alt="Sistema de Cadastro de Cliente">
-        </div>
+            <img style="width: 265px;" src="../img/logo-branca.png" alt="SCS">
+          </div>
           <input type="email" placeholder="Email" class="box col-12">
-          <input type="password" placeholder="Senha" class="box col-12">
-          <p>Esqueceu sua senha? <a id="btn-esqueceu" href="#" class="unique-text">Recuperar Senha</a></p>
-          <button id="btn-entrar" class="btn mt-1">entrar</button>
+          <button id="btn-enviar" class="btn mt-1">Enviar</button>
         </div>
       </div>
     </div>
@@ -50,6 +48,5 @@
 </body>
 
 <script>
-  document.getElementById("btn-entrar").onclick = function (e) { window.open("/mockup/inicial/pagina-inicial.html", "_self") }
-  document.getElementById("btn-esqueceu").onclick = function (e) { window.open("/mockup/login/esqueceu-senha.html", "_self") }
+  document.getElementById("btn-enviar").onclick = function (e) { if (confirm("Email de recuperacao enviado [fake]")) window.open("/mockup/login/login.html", "_self") }
 </script>

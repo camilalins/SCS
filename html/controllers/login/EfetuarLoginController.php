@@ -31,7 +31,7 @@ class EfetuarLoginController extends \core\controllers\BaseController {
 
             session(USUARIO, $usuario);
 
-            redirect("solicitacoes/apresentar");
+            redirect("home");
         }
         catch (\Exception $e) {
 
