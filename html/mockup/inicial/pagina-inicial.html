@@ -187,67 +187,41 @@
                     <tr>
                       <th>ID</th>
                       <th>Cliente</th>
-                      <th>CNPJ</th>
-                      <th>Responsável</th>
-                      <th>Telefone</th>
-                      <th>Email</th>
+                      <th>Data de Início</th>
+                      <th>Status</th>
+                      <th>Ação</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
+                      <td>1</td>
+                      <td>Cliente A</td>
+                      <td>01/04/2024</td>
+                      <td><span class="bg-yellow">Aguardando</span></td>
                       <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                        <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
+
                       </td>
                     </tr>
                     <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
+                      <td>2</td>
+                      <td>Cliente B</td>
+                      <td>05/04/2024</td>
+                      <td><span class="bg-green">Finalizada</span></td>
                       <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
+                        <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
                       </td>
                     </tr>
                     <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
+                      <td>3</td>
+                      <td>Cliente C </td>
+                      <td>05/04/2024</td>
+                      <td><span class="bg-red">Cancelada</span></td>
                       <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-info">Processing</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                        <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
                       </td>
                     </tr>
                     </tbody>
@@ -258,194 +232,10 @@
             </div>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Menu -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <button class="btn my-2 my-sm-0" type="button" id="searchButton"><i class="fas fa-search"></i></button>
-            </form>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Pop-up de Filtro -->
-      <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="filterModalLabel">Filtrar Solicitações</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!-- Adicione seus filtros aqui -->
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Filtrar por Cliente</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Cliente">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlInput2">Filtrar por Data</label>
-                <input type="date" class="form-control" id="exampleFormControlInput2">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Filtrar por Status</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>Aguardando</option>
-                  <option>Finalizada</option>
-                </select>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-light-mode">Buscar</button>
-            </div>
-          </div>
-        </div>
       </div>
-
-      <!-- Conteúdo -->
-      <div class="container mt-3">
-
-
-        <!-- Tabela de Solicitações -->
-        <table class="table table-hover table-dark">
-          <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome do Cliente</th>
-            <th>Data de Início</th>
-            <th>Status</th>
-            <th>Ação</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>1</td>
-            <td>Cliente A</td>
-            <td>01/04/2024</td>
-            <td><span class="bg-yellow">Aguardando</span></td>
-            <td>
-              <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
-              <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
-
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Cliente B</td>
-            <td>05/04/2024</td>
-            <td><span class="bg-green">Finalizada</span></td>
-            <td>
-              <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
-              <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Cliente B</td>
-            <td>05/04/2024</td>
-            <td><span class="bg-red">Cancelada</span></td>
-            <td>
-              <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
-              <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
-            </td>
-          </tr>
-          <!-- Adicione mais linhas conforme necessário -->
-          </tbody>
-        </table>
-      </div>
-
-
-
-
-
-
     </div>
-
   </section>
+
   <!-- ============== End Why us section ========== -->
 
 
