@@ -27,7 +27,7 @@
 
   <!-- main css file -->
   <link rel="stylesheet" href="../css/style.css">
-  <title> SCS - Página Inicial </title>
+  <title> Sistema de Cadastro de Cliente - Cadastro de Cliente </title>
 </head>
 
 <body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
@@ -37,7 +37,7 @@
   <header class="header">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
       <div class="container">
-        <a class="navbar-brand " href="#"><img style="width: 200px;" src="../img/logo-branca.png" alt="SCS"></a>
+        <a class="navbar-brand " href="#"><img style="width: 200px;" src="../img/logo-gray.png" alt="Sistema de Cadastro de Cliente"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <i class="bi bi-list" id="menu"></i>
         </button>
@@ -47,6 +47,7 @@
             <a class="btn" href="#">Dashboard</a>
             <button id="mode-toggle" class="btn-light-mode switch-button"><i class="fa-solid fa-circle-half-stroke"></i></button>
           </div>
+
         </div>
       </div>
     </nav>
@@ -62,100 +63,111 @@
         Verifique as informações dos clientes, caso não encontre realize o cadastro.
       </p>
       <div class="row  gy-4 gx-4" data-aos="fade-up" data-aos-delay="150">
-<br><br>
+      <br><br>
       </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="card">
 
-      <!-- Menu -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <button class="btn my-2 my-sm-0" type="button" id="searchButton"> Lista de Clientes</button>
-            </form>
+            <div class="card-header border-transparent">
+              <!-- Menu -->
+              <div class="menu">
+                <div class="btn-tool" style="display: flex;">
+                  <a class="nav-link" href="../inicial/pagina-inicial.html"><b class=""><i class="fa-solid fa-angle-left"></i> Voltar </b></a>
+                  <h3 class="card-title">Latest Orders</h3>
+                </div>
+                <div class="btn-tool" style="display: flex;">
+                  <form class="form-inline my-2 my-lg-0">
+                    <button class="btn my-2 my-sm-0" type="button" id="AdicionarButton"><i class="fas fa-plus"></i></button>
+                  </form>
+                  <form class="form-inline my-2 my-lg-0">
+                    <button class="btn my-2 my-sm-0" type="button" id="searchButton"><i class="fas fa-search"></i></button>
+                  </form>
+                </div>
+              </div>
+              <!-- Pop-up de Filtro -->
+              <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="filterModalLabel">Filtrar Solicitações</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <!-- Adicione seus filtros aqui -->
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Filtrar por Cliente</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Cliente">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlInput2">Filtrar por Data</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput2">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">Filtrar por Status</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                          <option>Aguardando</option>
+                          <option>Finalizada</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-light-mode">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0 table-hover">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Cliente</th>
+                      <th>CNPJ</th>
+                      <th>Responsável</th>
+                      <th>Telefone</th>
+                      <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>OR9842</td>
+                      <td>Cliente A</td>
+                      <td>XX.XXX.XXX/0001-XX</td>
+                      <td>Fulano de Abreu</td>
+                      <td>21 996015689</td>
+                      <td>email@email.com</td>
+                    </tr>
+                    <tr>
+                      <td>OR9843</td>
+                      <td>Cliente B</td>
+                      <td>XX.XXX.XXX/0001-XX</td>
+                      <td>Fulano de Abreu</td>
+                      <td>21 996015689</td>
+                      <td>email@email.com</td>
+                    </tr>
+                    <tr>
+                      <td>OR9844</td>
+                      <td>Cliente C</td>
+                      <td>XX.XXX.XXX/0001-XX</td>
+                      <td>Fulano de Abreu</td>
+                      <td>21 996015689</td>
+                      <td>email@email.com</td>
+                    </tr>
+
+                    </tbody>
+                  </table>
+                </div><!-- /.table-responsive -->
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
-
-      <!-- Pop-up de Filtro -->
-      <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="filterModalLabel">Filtrar Solicitações</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!-- Adicione seus filtros aqui -->
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Filtrar por Cliente</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Cliente">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlInput2">Filtrar por Data</label>
-                <input type="date" class="form-control" id="exampleFormControlInput2">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Filtrar por Status</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>Aguardando</option>
-                  <option>Finalizada</option>
-                </select>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-light-mode">Buscar</button>
-            </div>
-          </div>
-        </div>
       </div>
-
-      <!-- Conteúdo -->
-      <div class="container mt-3">
-
-
-
-        <div class="container">
-          <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-
-              <form>
-                <div class="form-group">
-                  <label for="inputCliente">Cliente</label>
-                  <input type="text" class="form-control" id="inputCliente" placeholder="Nome do cliente">
-                </div>
-                <div class="form-group">
-                  <label for="inputCNPJ">CNPJ</label>
-                  <input type="text" class="form-control" id="inputCNPJ" placeholder="Número do CNPJ">
-                </div>
-                <div class="form-group">
-                  <label for="inputStatus">Status</label>
-                  <select class="form-control" id="inputStatus">
-                    <option value="Aguardando">Aguardando</option>
-                    <option value="Finalizado">Finalizado</option>
-                    <option value="Em Andamento">Em Andamento</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn btn-light-mode">Cadastrar</button>
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-
     </div>
-
   </section>
   <!-- ============== End Why us section ========== -->
 

@@ -30,12 +30,14 @@
                     <label for="senha">Senha</label>
                     <input type="password" name="senha">
                 </div>
+                <p>Esqueceu sua senha? <a href="../../views/login/recuperar-senha.php" id="forgotPasswordLink" class="float-right">Recuperar Senha</a></p>
                 <div>
                     <button>Entrar</button>
                     <a href="/recuperar-senha">Recuperar senha</a>
                 </div>
 
             </fieldset>
+
         </form>
 
     </div>

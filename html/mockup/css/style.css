@@ -2,11 +2,20 @@
 Project: techida | IT Solutions & Business Services HTML landing page template  
 Author: ERRAMIX
 ====================================================*/
-
+/* start global classes */
 header.header {
   padding-bottom: 6rem;
 }
-
+.menu{
+  display: flex;
+  justify-content: space-between;
+}
+.btn-tool {
+  background-color: transparent;
+  font-size: .875rem;
+  margin: 0.25rem 0;
+  padding: .25rem .5rem;
+}
 /* start global classes */
 :root {
 
@@ -46,7 +55,7 @@ header.header {
 body {
   font-family: 'Outfit', sans-serif;
   color: var(--primaryColor);
-  background-color: #141b1f;;
+  background-color: #fff;
   text-align: left;
   text-transform: none;
   position: relative;
@@ -76,6 +85,8 @@ body.dark-mode {
 
   /* title 2 Color (subtitle-color) */
   --title-2-color: #ebebeb;
+  /* Background */
+  background-color: #141b1f;
 
 }
 
@@ -109,7 +120,7 @@ html {
 }
 
 .title {
-  color: white;
+  color: #868686;
   font-size: 45px;
   font-weight: bold;
   position: relative;
@@ -214,11 +225,15 @@ a:focus {
 }
 
 /* start buttons style */
+btn:hover{
+  color:#ffffff!important;
+}
+
 .btn,
 .btn-sec {
   border: 1px solid #06326d;
   background: #06326d;
-  color: var(--bodyColor);
+  color: #fff;
   font-weight: 800;
   border-radius: 40px;
   padding: 8px 25px;
