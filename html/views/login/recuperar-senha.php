@@ -3,45 +3,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCS - Recuperar senha</title>
-    <style>
-        .content { width: 400px; margin: auto; margin-top: 200px; }
-        fieldset { width: 300px; display: flex; flex-direction: column; gap: 20px; padding: 20px; border-radius: 5px; }
-        fieldset legend { font-size: 18px; font-weight: bold; }
-        fieldset div { display: flex; gap: 20px; }
-        fieldset div input { width: 200px; }
-        .error { color: red; }
-        .success { color: green; }
-    </style>
+    <meta name="description" content="Sistema de Controle de Solicitações ">
+    <!-- fav icon -->
+    <link rel="icon" href="/public/img/icon.ico">
+
+    <!-- bootstarp css file -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+
+    <!-- bootstrap icons -->
+    <link rel="stylesheet" href="/public/css/bootstrap-icons.css">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <!-- main css file -->
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/global.css">
+
+    <title>Sistema de Controle de Solicitações - Recuperar senha</title>
+
 </head>
-<body>
-
-    <div class="content">
-
-        <form action="/recuperar-senha" method="post">
-
-            <fieldset>
-
-                <legend>Recuperar senha</legend>
-
-                <div>
-                    <input type="email" class="" name="email" id="email" placeholder="Digite seu email" size="40">
-
-                    <button>Enviar</button>
+<body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
+    <div class="auth">
+        <div class="container">
+            <div class="row align-items-center g-4 justify-content-between">
+                <div class="col-lg-6 col-12">
+                    <img src="/public/login/img/SIOP.jpg" alt="singup">
                 </div>
+                <div class="col-lg-5  mb-4 col-12 d-flex flex-column justify-content-start">
+                    <div class="img-login" style="width: 100%; text-align: center; padding: 10px;">
+                        <img style="width: 265px;" src="/public/img/logo-gray.png" alt="Sistema de Cadastro de Cliente">
+                    </div>
+                    <br>
 
-                <a href="/">Voltar para o login</a>
+                    <form action="/recuperar-senha" method="post">
+                        <p>Digite o email cadastrado para recuperar a senha.</p>
+                        <div class="<?=$erro?"error":"success"?>"><?=$erro?:$mensagem?></div>
 
-            </fieldset>
+                        <input type="email" placeholder="Email" name="email" id="email" class="box col-12">
 
-            <br><br>
+                        <p><a id="btn-esqueceu"  href="/" class="unique-text">Voltar para o login</a></p>
+                        <button id="btn-entrar" class="btn mt-1">Recuperar</button>
 
-            <div class="<?=$erro?"error":"success"?>"><?=$erro?:$mensagem?></div>
-        </form>
-
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
 </body>
-</html>

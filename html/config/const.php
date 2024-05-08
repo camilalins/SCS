@@ -23,7 +23,7 @@ const LOGIN_PAGE_MOCKUP = "mockup/login/login.html";
 # MAIN LAYOUT
 const MAIN_PAGE = "main";
 const MAIN_PAGE_EXCLUDE = [ "login/login.php", "login/recuperar-senha.php" ];
-const MAIN_PAGE_TITLE = "SCS";
+const MAIN_PAGE_TITLE = "Sistema de Controle de Solicitações";
 
 # MOCKUP
 const MOCKUP_MODE = 0;
