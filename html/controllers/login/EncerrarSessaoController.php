@@ -4,7 +4,7 @@ namespace controllers\login;
 require_once "core/controllers/BaseController.php";
 
 /**
- * @Route("login/encerrar-sessao")
+ * @Route("logout")
  */
 class EncerrarSessaoController extends \core\controllers\BaseController {
 

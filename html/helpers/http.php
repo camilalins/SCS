@@ -2,8 +2,6 @@
 
 require_once "config/const.php";
 
-session_start();
-
 function session($name, $value=null){
     if($value) $_SESSION[$name] = $value;
     else return $_SESSION[$name];

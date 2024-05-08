@@ -8,13 +8,31 @@ class Application {
 
     public static function run(){
 
+        #SESSION
+        session_start(['cookie_lifetime' => 0, 'cookie_secure' => true, 'cookie_httponly' => true]);
+
+        $cookie = session_get_cookie_params();
+        $sessid = session_id();
+        setcookie(
+            'PHPSESSID', //name
+            $sessid, //value
+            time() + (SESSION_TIMEOUT?:60*30), //expires in seconds
+            $cookie['path'],//path
+            $cookie['domain'],//domain
+            true, //secure
+            true  //httpOnly
+        );
+
+        #WARNING LEVEL
         error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
+        #DEBUG LOG
         if (DEBUG_MODE == 1) {
             openlog("localhost", LOG_PID | LOG_PERROR, LOG_LOCAL0);
             syslog(LOG_INFO, $_SERVER["REQUEST_URI"]);
         }
 
+        #SEEKING ROUTES
         foreach (glob("controllers/*.php") as $filename) include $filename;
         foreach (glob("controllers/*") as $directory) foreach (glob("$directory/*.php") as $filename) include $filename;
 
@@ -29,25 +47,26 @@ class Application {
                 Application::seekRoutes($namespace, $filename, $routes);
         }
 
+        #DEFINE CONTROLLER & ACTION
         $uri = $_SERVER["REQUEST_URI"];
         $method = $_SERVER["REQUEST_METHOD"];
 
         $controller = Application::defineController($uri, $routes);
         $action = strtolower($method); //$action = $path[ACTN] ?: "index";
 
+        #DEFINE PATH VARIBELS
         if($routes[$controller]) {
             $parthVars = str_replace($routes[$controller], "", $uri);
             $parthVars = str_starts_with($parthVars, "/") ? substr($parthVars, 1, strlen($parthVars)) : $parthVars;
             $GLOBALS["path"] = explode("/", $parthVars);
         }
-        //print_r(["ctr" => $controller, "act" => $action, "uri" => $uri, "rou" => $routes]); die();
 
-        if(MOCKUP_MODE == 1) {
+        #./SEEKING ROUTES
 
-            redirect(MOCKUP_ROOT);
-            exit();
-        }
+        # MOCKUP OPTION
+        if(MOCKUP_MODE == 1) redirect(MOCKUP_ROOT);
 
+        #ROUTE CALL
         try {
 
             $ctrl = new $controller();

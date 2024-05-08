@@ -9,7 +9,8 @@
         <meta name="description" content="Sistema de Controle de Solicitações ">
         <!-- fav icon -->
         <link rel="icon" href="/public/img/icon.ico">
-        <script src="https://kit.fontawesome.com/eaf468bfde.js" crossorigin="anonymous"></script>
+<!--        <script src="https://kit.fontawesome.com/eaf468bfde.js" crossorigin="anonymous"></script>-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- bootstarp css file -->
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
@@ -206,7 +207,7 @@
         <!-- Inclua o Bootstrap JS (opcional, mas necessário para alguns componentes interativos) -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<!--        <script src="https://kit.fontawesome.com/a076d05399.js"></script>-->
 
         <?php scripts();?>
     </body>
