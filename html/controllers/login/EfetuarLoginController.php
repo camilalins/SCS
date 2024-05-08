@@ -11,6 +11,9 @@ require_once "repo/UsuarioRepositorio.php";
 class EfetuarLoginController extends \core\controllers\BaseController {
 
     public function get(){
+
+        if(user()) redirect(HOME_PAGE);
+
         view("login/login.php");
     }
 
@@ -31,7 +34,7 @@ class EfetuarLoginController extends \core\controllers\BaseController {
 
             user($usuario);
 
-            redirect("home");
+            redirect(HOME_PAGE);
         }
         catch (\Exception $e) {
 

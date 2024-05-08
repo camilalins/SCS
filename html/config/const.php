@@ -18,6 +18,7 @@ const MAIL_SMTP_PORT = "587";
 # DEFAULT VARS
 const USER = "USER";
 const LOGIN_PAGE = "/login";
+const HOME_PAGE = "/home";
 
 # MAIN LAYOUT
 const MAIN_PAGE = "main";

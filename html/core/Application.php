@@ -10,6 +10,11 @@ class Application {
 
         error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
+        if (DEBUG_MODE == 1) {
+            openlog("localhost", LOG_PID | LOG_PERROR, LOG_LOCAL0);
+            syslog(LOG_INFO, $_SERVER["REQUEST_URI"]);
+        }
+
         foreach (glob("controllers/*.php") as $filename) include $filename;
         foreach (glob("controllers/*") as $directory) foreach (glob("$directory/*.php") as $filename) include $filename;
 
