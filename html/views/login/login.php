@@ -23,7 +23,7 @@
     <!-- main css file -->
     <link rel="stylesheet" href="/public/css/style.css">
     <link rel="stylesheet" href="/public/css/global.css">
-    <title> SCS - Login </title>
+    <title> <?=MAIN_PAGE_TITLE?> - Login </title>
 </head>
 
 <body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
@@ -43,7 +43,7 @@
                     <img style="width: 265px;" src="/public/img/logo-gray.png" alt="Sistema de Cadastro de Cliente">
                 </div>
 
-                <form action="/efetuar-login" method="post">
+                <form action="/login" method="post">
 
                     <div class="error"><?=$erro?></div>
 

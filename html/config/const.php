@@ -17,7 +17,7 @@ const MAIL_SMTP_PORT = "587";
 
 # DEFAULT VARS
 const USER = "USER";
-const LOGIN_PAGE = "/efetuar-login";
+const LOGIN_PAGE = "/login";
 
 # MAIN LAYOUT
 const MAIN_PAGE = "main";

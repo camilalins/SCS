@@ -6,7 +6,7 @@ require_once "core/controllers/BaseController.php";
 require_once "repo/UsuarioRepositorio.php";
 
 /**
- * @Route("efetuar-login")
+ * @Route("login")
  */
 class EfetuarLoginController extends \core\controllers\BaseController {
 
