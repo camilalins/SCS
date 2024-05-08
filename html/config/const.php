@@ -16,7 +16,7 @@ const MAIL_SMTP_CRYPTO = "tls";
 const MAIL_SMTP_PORT = "587";
 
 # SESSION
-const SESSION_TIMEOUT=10;
+const SESSION_TIMEOUT=600; //10 minutes
 
 # DEFAULT VARS
 const USER = "USER";
