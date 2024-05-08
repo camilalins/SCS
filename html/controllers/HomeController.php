@@ -10,7 +10,9 @@ class HomeController extends \core\controllers\AuthorizedController {
 
     public function get() {
 
-        view("home.php", [  ]);
+        title(MAIN_PAGE_TITLE." - Página Inicial");
+
+        view("home.php", [ ]);
     }
 
 }

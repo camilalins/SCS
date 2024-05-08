@@ -2,6 +2,8 @@
 
 namespace core;
 
+require_once "config/const.php";
+
 class Application {
 
     public static function run(){
@@ -41,9 +43,14 @@ class Application {
             exit();
         }
 
-        $ctrl = new $controller();
-        $ctrl->$action();
+        try {
 
+            $ctrl = new $controller();
+            $ctrl->$action();
+        }
+        catch (\Error $e) {
+            print("Rota não encontrada". (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$e->getMessage()}. arquivo: <b>{$e->getFile()} {$e->getLine()}</b>" : ""));
+        }
         exit();
     }
 

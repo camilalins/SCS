@@ -16,9 +16,8 @@ const MAIL_SMTP_CRYPTO = "tls";
 const MAIL_SMTP_PORT = "587";
 
 # DEFAULT VARS
-const USUARIO = "usuario";
+const USER = "USER";
 const LOGIN_PAGE = "/efetuar-login";
-const LOGIN_PAGE_MOCKUP = "mockup/login/login.html";
 
 # MAIN LAYOUT
 const MAIN_PAGE = "main";

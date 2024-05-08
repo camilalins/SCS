@@ -29,7 +29,7 @@ class EfetuarLoginController extends \core\controllers\BaseController {
             if(!$usuario)
                 throw new \Exception("Usuário e/ou senha inválidos");
 
-            session(USUARIO, $usuario);
+            user($usuario);
 
             redirect("home");
         }
