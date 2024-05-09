@@ -1,22 +1,7 @@
 <?php /** @var TYPE_NAME $erro */?>
 <?php /** @var TYPE_NAME $mensagem */?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <style>
-        fieldset { width: 300px; display: flex; flex-direction: column; gap: 20px; padding: 20px; }
-        fieldset div { display: flex; gap: 20px; }
-        fieldset div input { width: 200px; }
-        .error { color: red; }
-        .success { color: green; }
-    </style>
-</head>
-<body>
 
-<div class="cadastro">
+<section class="container py-5" id="container-solicitacoes-cadastro">
 
     <h1>Cadastro</h1>
 
@@ -34,12 +19,9 @@
             </div>
             <div>
                 <button>Salvar</button>&nbsp;
-                <a href="/solicitacoes/apresentar">Ir para solicitações</a>
+                <a href="/solicitacoes">Ir para solicitações</a>
             </div>
         </fieldset>
     </form>
 
-</div>
-
-</body>
-</html>
+</section>

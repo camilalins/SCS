@@ -5,16 +5,21 @@ require_once "core/controllers/AuthorizedController.php";
 require_once "repo/SolicitacaoRepositorio.php";
 
 /**
- * @Route("/solicitacoes/apresentar")
+ * @Route("/solicitacoes")
  */
-class ApresentarSolicitacaoController extends \core\controllers\AuthorizedController {
+class PesquisarSolicitacaoController extends \core\controllers\AuthorizedController {
 
     public function get() {
+
+        view("solicitacoes/pesquisa.php");
+    }
+
+    public function post() {
 
         $repo = new \repo\SolicitacaoRepositorio();
         $solicitacoes = $repo->obterTodos();
 
-        view("solicitacoes/pagina-inicial.php", [ "solicitacoes" => $solicitacoes ]);
+        view("solicitacoes/pesquisa.php", [ "solicitacoes" => $solicitacoes ]);
     }
 
 }

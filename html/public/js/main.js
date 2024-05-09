@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var form = document.querySelector("form");
+    var form = document.querySelector("form0");
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();

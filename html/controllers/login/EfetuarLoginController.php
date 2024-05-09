@@ -6,11 +6,14 @@ require_once "core/controllers/BaseController.php";
 require_once "repo/UsuarioRepositorio.php";
 
 /**
- * @Route("efetuar-login")
+ * @Route("login")
  */
 class EfetuarLoginController extends \core\controllers\BaseController {
 
     public function get(){
+
+        if(user()) redirect(HOME_PAGE);
+
         view("login/login.php");
     }
 
@@ -29,9 +32,9 @@ class EfetuarLoginController extends \core\controllers\BaseController {
             if(!$usuario)
                 throw new \Exception("Usuário e/ou senha inválidos");
 
-            session(USUARIO, $usuario);
+            user($usuario);
 
-            redirect("home");
+            redirect(HOME_PAGE);
         }
         catch (\Exception $e) {
 

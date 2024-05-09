@@ -15,10 +15,13 @@ const MAIL_SMTP_PASS = "#SIOP*2024";
 const MAIL_SMTP_CRYPTO = "tls";
 const MAIL_SMTP_PORT = "587";
 
+# SESSION
+const SESSION_TIMEOUT=600; //10 minutes
+
 # DEFAULT VARS
-const USUARIO = "usuario";
-const LOGIN_PAGE = "/efetuar-login";
-const LOGIN_PAGE_MOCKUP = "mockup/login/login.html";
+const USER = "USER";
+const LOGIN_PAGE = "/login";
+const HOME_PAGE = "/home";
 
 # MAIN LAYOUT
 const MAIN_PAGE = "main";
