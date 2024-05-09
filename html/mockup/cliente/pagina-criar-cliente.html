@@ -12,6 +12,7 @@
 
   <!-- bootstarp css file -->
   <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/select2.min.css">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- aos.css file -->
@@ -27,7 +28,7 @@
 
   <!-- main css file -->
   <link rel="stylesheet" href="../css/style.css">
-  <title> Sistema de Cadastro de Cliente - Cadastro de Cliente </title>
+  <title> SCS - Cadastro de Cliente </title>
 </head>
 
 <body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
@@ -37,7 +38,7 @@
   <header class="header">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
       <div class="container">
-        <a class="navbar-brand " href="#"><img style="width: 200px;" src="../img/logo-gray.png" alt="Sistema de Cadastro de Cliente"></a>
+        <a class="navbar-brand " href="../mockup/inicial/pagina-inicial.html"><img style="width: 200px;" src="../img/logo-gray.png" alt="Sistema de Cadastro de Cliente"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <i class="bi bi-list" id="menu"></i>
         </button>
@@ -53,18 +54,62 @@
     </nav>
   </header>
   <!-- ======= end Header ======= -->
+
+
+  <!-- ============== Início Busca ========== -->
+  <section class="container why-choose-us py-5">
+    <div class="container-fluid">
+      <h2 class="text-left display-4">Clientes</h2>
+      <form action="#" data-select2-id="10">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <div class="row">
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Sort Order:</label>
+                  <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="3" tabindex="-1" aria-hidden="true">
+                    <option selected="" data-select2-id="5">ASC</option>
+                    <option data-select2-id="18">DESC</option>
+                  </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="4" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-rjpt-container"><span class="select2-selection__rendered" id="select2-rjpt-container" role="textbox" aria-readonly="true" title="ASC">ASC</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Order By:</label>
+                  <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+                    <option selected="" data-select2-id="8">Title</option>
+                    <option data-select2-id="20">Date</option>
+                  </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="7" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-gxiv-container"><span class="select2-selection__rendered" id="select2-gxiv-container" role="textbox" aria-readonly="true" title="Title">Title</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum" data-sider-insert-id="f142bb97-5f23-4334-961a-d9da0b123a64" data-sider-select-id="26511f8e-74c5-4a7e-8fad-78b4f995447d">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-lg btn-default">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </section>
+  <!-- ============== Fim Busca ========== -->
+
+
+
+
+
+
+
   <!-- ============== Start Why us section ========== -->
   <section class="container why-choose-us py-5">
     <div class="heading">
-      <h4 class="pretitle aos-init" data-aos="fade-up">
-        Relação de Clientes
-      </h4>
-      <p class="col-lg-7 col-12 aos-init" data-aos="fade-up" data-aos-delay="150">
-        Verifique as informações dos clientes, caso não encontre realize o cadastro.
-      </p>
-      <div class="row  gy-4 gx-4" data-aos="fade-up" data-aos-delay="150">
-      <br><br>
-      </div>
       <div class="container-fluid">
         <div class="row">
           <div class="card">
@@ -172,7 +217,6 @@
   <!-- ============== End Why us section ========== -->
 
 
-  <!-- ============== end Footer section ========== -->
 
   <!--  JQuery file     -->
   <script src="../js/jquery-3.6.1.min.js.download"></script>

@@ -19,7 +19,7 @@
         <br>
     <div class="row gy-4 gx-4 ">
         <!-- service number 1 -->
-        <a href="#" class="col-md-6 col-12 col-lg-4 mx-auto" data-aos="fade-down" data-aos-delay="200" >
+        <a href="../controllers/clientes/CadastrarClienteController.php" class="col-md-6 col-12 col-lg-4 mx-auto" data-aos="fade-down" data-aos-delay="200" >
             <div>
                 <div class="box box-service box-hover aos-init aos-animate" data-aos="fade-right" data-aos-delay="250">
                     <div class="box-icon my-2">
