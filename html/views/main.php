@@ -38,7 +38,7 @@
         <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
-                <a class="navbar-brand " href="#"><img style="width: 200px;" src="/public/img/logo-gray.png" alt="SCS"></a>
+                <a class="navbar-brand " href="<?=HOME_PAGE?>"><img style="width: 200px;" src="/public/img/logo-gray.png" alt="SCS"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="bi bi-list" id="menu"></i>
                 </button>
