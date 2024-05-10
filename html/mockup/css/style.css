@@ -16,6 +16,16 @@ header.header {
   margin: 0.25rem 0;
   padding: .25rem .5rem;
 }
+.nav {
+  align-items: center;
+}
+.nav .fa {
+  font-size: 30px;
+  padding: 10px;
+}
+.card-header {
+  margin: 6px;
+}
 /* start global classes */
 :root {
 
@@ -29,7 +39,7 @@ header.header {
   --dark-brand-color: #202020;
 
   /* brand color */
-  --brand-color: #1FA84F;
+  --brand-color: #4e7596!important;
 
   /* Primary Text Color */
   --primaryColor: #404742;
@@ -1753,6 +1763,13 @@ button.action-cancel {
 button.action-edit {
   font-size: 19px;
   color: #ffc107;
+  border: none;
+  background: none;
+  padding: 0px 5px 0px 5px;
+}
+button.action-view {
+  font-size: 19px;
+  color: #1c3b78;
   border: none;
   background: none;
   padding: 0px 5px 0px 5px;
