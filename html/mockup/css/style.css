@@ -23,6 +23,17 @@ header.header {
   font-size: 30px;
   padding: 10px;
 }
+li.nav-item {
+  padding: 5px;
+}
+a.nav-link {
+  font-size: 20px;
+  padding: 9px;
+  margin: 5PX;
+}
+.nav-link .fa {
+  color: #06326d;
+}
 .card-header {
   margin: 6px;
 }

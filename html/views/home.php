@@ -5,13 +5,9 @@
 
 <section class="container py-5" id="container-home">
     <div class="heading">
-
         <h1 class="title col-lg-10 col-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-            <?=user()->nome?>
+           Olá, <?=user()->nome?>!
         </h1>
-        <p class="col-lg-7 col-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="150">
-            <?=user()->email?>
-        </p>
     </div>
         <br>
     <div class="row gy-4 gx-4 ">

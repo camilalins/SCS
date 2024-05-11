@@ -10,10 +10,10 @@ const MYSQL_PORT = "3336";
 # SMTP SETTINGS
 const MAIL_SMTP = "smtp.dreamhost.com";
 const MAIL_SMTP_NAME = "SIOP";
-const MAIL_SMTP_USER = "monitoramento@inteligenciasiop.com";
-const MAIL_SMTP_PASS = "#SIOP*2024";
-const MAIL_SMTP_CRYPTO = "tls";
-const MAIL_SMTP_PORT = "587";
+const MAIL_SMTP_USER = "camila.lins@inteligenciasiop.com";
+const MAIL_SMTP_PASS = "firegirl*20";
+const MAIL_SMTP_CRYPTO = "tls/ssl";
+const MAIL_SMTP_PORT = "465";
 
 # SESSION
 const SESSION_TIMEOUT=600; //10 minutes
@@ -29,7 +29,7 @@ const MAIN_PAGE_EXCLUDE = [ "login/login.php", "login/recuperar-senha.php" ];
 const MAIN_PAGE_TITLE = "Sistema de Controle de Solicitações";
 
 # MOCKUP
-const MOCKUP_MODE = 0;
+const MOCKUP_MODE = 1;
 const MOCKUP_ROOT = "mockup/login/login.html";
 
 # DEBUG SETTINGS
