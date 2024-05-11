@@ -29,7 +29,7 @@ const MAIN_PAGE_EXCLUDE = [ "login/login.php", "login/recuperar-senha.php" ];
 const MAIN_PAGE_TITLE = "Sistema de Controle de Solicitações";
 
 # MOCKUP
-const MOCKUP_MODE = 0;
+const MOCKUP_MODE = 1;
 const MOCKUP_ROOT = "mockup/login/login.html";
 
 # DEBUG SETTINGS

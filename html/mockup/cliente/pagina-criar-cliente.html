@@ -56,25 +56,36 @@
   <!-- ======= end Header ======= -->
 
 
-
   <!-- ============== Início Busca ========== -->
   <section class="container why-choose-us py-5">
     <div class="container-fluid">
-      <div class="nav">
-        <a class="navbar-brand " href="../mockup/inicial/pagina-inicial.html">
-          <i class="fa fa-angle-left" aria-hidden="true"></i>
-        </a>
-        <h2 class="text-left display-5">Clientes</h2>
-      </div>
-
-      <br>
+      <h2 class="text-left display-4">Clientes</h2>
       <form action="#" data-select2-id="10">
         <div class="row">
           <div class="col-md-10 offset-md-1">
-            <!-- Formulário de pesquisa -->
+            <div class="row">
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Sort Order:</label>
+                  <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="3" tabindex="-1" aria-hidden="true">
+                    <option selected="" data-select2-id="5">ASC</option>
+                    <option data-select2-id="18">DESC</option>
+                  </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="4" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-rjpt-container"><span class="select2-selection__rendered" id="select2-rjpt-container" role="textbox" aria-readonly="true" title="ASC">ASC</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Order By:</label>
+                  <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+                    <option selected="" data-select2-id="8">Title</option>
+                    <option data-select2-id="20">Date</option>
+                  </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="7" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-gxiv-container"><span class="select2-selection__rendered" id="select2-gxiv-container" role="textbox" aria-readonly="true" title="Title">Title</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+              </div>
+            </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="search" class="form-control form-control-lg" placeholder="Palavra chave" value="Pesquisar" data-sider-insert-id="f142bb97-5f23-4334-961a-d9da0b123a64" data-sider-select-id="26511f8e-74c5-4a7e-8fad-78b4f995447d">
+                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum" data-sider-insert-id="f142bb97-5f23-4334-961a-d9da0b123a64" data-sider-select-id="26511f8e-74c5-4a7e-8fad-78b4f995447d">
                 <div class="input-group-append">
                   <button type="submit" class="btn btn-lg btn-default">
                     <i class="fa fa-search"></i>
@@ -85,66 +96,70 @@
           </div>
         </div>
       </form>
-
-      <!-- Botão para abrir o modal de cadastro -->
-      <div class="row">
-        <div class="col-md-10 offset-md-1">
-          <div class="" style="border-top: solid 1px #cecece; padding: 10px; margin: 30px 2px 2px 2px;">
-            <form class="form-inline my-2 my-lg-0">
-              <button class="btn my-2 my-sm-0" type="button" id="searchButton">Cadastrar</button>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
+
   </section>
   <!-- ============== Fim Busca ========== -->
 
 
-  <!-- ============== Start Tabela ========== -->
-  <section class="container why-choose-us py-1">
+
+
+
+
+
+  <!-- ============== Start Why us section ========== -->
+  <section class="container why-choose-us py-5">
     <div class="heading">
       <div class="container-fluid">
         <div class="row">
           <div class="card">
 
             <div class="card-header border-transparent">
-              <!-- Pop-up de Cadastro de Cliente -->
-              <div class="modal fade" id="cadastroClienteModal" tabindex="-1" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
+              <!-- Menu -->
+              <div class="menu">
+                <div class="btn-tool" style="display: flex;">
+                  <a class="nav-link" href="../inicial/pagina-inicial.html"><b class=""><i class="fa-solid fa-angle-left"></i> Voltar </b></a>
+                  <h3 class="card-title">Latest Orders</h3>
+                </div>
+                <div class="btn-tool" style="display: flex;">
+                  <form class="form-inline my-2 my-lg-0">
+                    <button class="btn my-2 my-sm-0" type="button" id="AdicionarButton"><i class="fas fa-plus"></i></button>
+                  </form>
+                  <form class="form-inline my-2 my-lg-0">
+                    <button class="btn my-2 my-sm-0" type="button" id="searchButton"><i class="fas fa-search"></i></button>
+                  </form>
+                </div>
+              </div>
+              <!-- Pop-up de Filtro -->
+              <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="cadastroClienteModalLabel">Cadastro de Cliente</h5>
+                      <h5 class="modal-title" id="filterModalLabel">Filtrar Solicitações</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <!-- Formulário de Cadastro de Cliente -->
-                      <form id="cadastroClienteForm">
-                        <div class="form-group">
-
-                          <label for="clienteInput">Cliente</label>
-                          <input type="text" class="form-control" id="clienteInput" placeholder="Nome do Cliente">
-                        </div>
-                        <div class="form-group">
-                          <label for="cnpjInput">CNPJ</label>
-                          <input type="text" class="form-control" id="cnpjInput" placeholder="CNPJ">
-                        </div>
-                        <div class="form-group">
-                          <label for="responsavelInput">Responsável</label>
-                          <input type="text" class="form-control" id="responsavelInput" placeholder="Responsável">
-                        </div>
-                        <div class="form-group">
-                          <label for="telefoneInput">Telefone</label>
-                          <input type="tel" class="form-control" id="telefoneInput" placeholder="Telefone">
-                        </div>
-                        <div class="form-group">
-                          <label for="emailInput">Email</label>
-                          <input type="email" class="form-control" id="emailInput" placeholder="Email">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                      </form>
+                      <!-- Adicione seus filtros aqui -->
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Filtrar por Cliente</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome do Cliente">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlInput2">Filtrar por Data</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput2">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">Filtrar por Status</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                          <option>Aguardando</option>
+                          <option>Finalizada</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-light-mode">Buscar</button>
                     </div>
                   </div>
                 </div>
@@ -193,50 +208,44 @@
                   </table>
                 </div><!-- /.table-responsive -->
               </div>
-              <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">«</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">»</a></li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- ============== End Tabela ========== -->
+  <!-- ============== End Why us section ========== -->
+
+
+
   <!--  JQuery file     -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../js/jquery-3.6.1.min.js.download"></script>
+
   <!-- bootstrap min js -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.min.js.download"></script>
+
   <!--  owl carousel    -->
   <script src="../js/owl.carousel.min.js.download"></script>
+
   <!-- aos file    -->
   <script src="../js/aos.js.download"></script>
+
   <!-- gsap file    -->
   <script src="../js/gsap.min.js.download"></script>
+
   <!--  main js file  -->
   <script src="../js/main.js.download"></script>
+  <!-- Inclua o Bootstrap JS (opcional, mas necessário para alguns componentes interativos) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
   <script>
     $(document).ready(function(){
       $('#searchButton').click(function(){
-        $('#cadastroClienteModal').modal('show');
-      });
-
-      // Aqui você pode adicionar o código JavaScript para lidar com o envio do formulário de cadastro de cliente
-      $('#cadastroClienteForm').submit(function(e){
-        e.preventDefault();
-        // Adicione aqui a lógica para enviar os dados do formulário para o servidor
-        // Você pode usar AJAX para isso
+        $('#filterModal').modal('show');
       });
     });
   </script>
-
-
 
 </body>
