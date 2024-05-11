@@ -33,7 +33,7 @@ class RecuperarSenhaController extends \core\controllers\BaseController {
             if(!send_mail($email, "Recuperação de senha", "<p>Clique <a href='#'>aqui</a> para recuperação sua senha.</p>"))
                 throw new \Exception(send_mail_error());
 
-            view("login/recuperar-senha.php", [ "mensagem" => "E-mail de recupração enviado com sucesso." ]);
+            view("login/recuperar-senha.php", [ "mensagem" => "E-mail de recuperação enviado com sucesso." ]);
         }
         catch (\Exception $e) {
             view("login/recuperar-senha.php", [ "erro" => $e->getMessage() ]);

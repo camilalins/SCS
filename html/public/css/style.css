@@ -517,6 +517,12 @@ svg {
   background-color: var(--boxColor);
 }
 
+/* CUSTOMIZADO */
+.navbar .dropdown-menu {
+  width: 300px !important;
+  margin-left: -130px;
+}
+/* ./CUSTOMIZADO */
 /*================== End navbar section ==================*/
 
 /*================== start hero section ==================*/
