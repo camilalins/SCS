@@ -73,19 +73,19 @@
         </div>
 
         <!--  JQuery file     -->
-        <script src="/public/js/jquery-3.6.1.min.js.download"></script>
+        <script src="/public/js/jquery-3.6.1.min.js"></script>
 
         <!-- bootstrap min js -->
-        <script src="/public/js/bootstrap.min.js.download"></script>
+        <script src="/public/js/bootstrap.min.js"></script>
 
         <!--  owl carousel    -->
-        <script src="/public/js/owl.carousel.min.js.download"></script>
+        <script src="/public/js/owl.carousel.min.js"></script>
 
         <!-- aos file    -->
-        <script src="/public/js/aos.js.download"></script>
+        <script src="/public/js/aos.js"></script>
 
         <!-- gsap file    -->
-        <script src="/public/js/gsap.min.js.download"></script>
+        <script src="/public/js/gsap.min.js"></script>
 
         <!--  main js file TODO: CAUSANDO PROBLEMA NOS POSTS DAS PÁGINAS -->
         <script src="/public/js/main.js"></script>

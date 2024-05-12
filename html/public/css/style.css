@@ -16,6 +16,10 @@ header.header {
   margin: 0.25rem 0;
   padding: .25rem .5rem;
 }
+button.action-view {
+  border: none;
+  background: none;
+}
 /* start global classes */
 :root {
 

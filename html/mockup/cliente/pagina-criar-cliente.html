@@ -101,18 +101,94 @@
   </div>
 </section>
 <!-- /Busca  -->
-
 <br>
-<!--Tabela -->
+<br>
+<!-- Tabela -->
 <section class="container why-choose-us py-1">
   <div class="heading">
     <div class="container-fluid">
       <div class="row">
         <div class="card">
+          <div class="card-header">
+            <div class="card-tools">
+              <!-- Menu -->
+              <div class="" style="display: flex; justify-content: flex-end;">
+                <div class="" id="">
+                  <ul class="navbar-nav ml-auto" style="display: flex;flex-direction: row; font-size: 20px;">
+                    <li class="nav-item" style="padding: 0px;color: #06326d;">
+                      <a class="nav-link" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item" style="padding: 0px 0px 0px 1px;color: #06326d;">
+                      <button type="button" id="cadastrarButton" style="padding-left: 10px;padding-top: 14px;border:none; background: none;color:#06326d;"><i class="fa fa-plus-square" aria-hidden="true" style="padding-right: 3px;"></i>Cadastrar</button>
+                    </li>
+                  </ul>
+                  <form class="form-inline" style="display: none;">
+                    <button class="btn my-2 my-sm-0" type="button" id="cadastrarButtone">Cadastrar</button>
+                  </form>
+                </div>
+              </div><!-- /Menu -->
+            </div>
+          </div><!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+              <tr>
 
-          <div class="card-header border-transparent">
-            <!-- Pop-up de Cadastro de Cliente -->
-            <div class="modal fade" id="cadastroClienteModal" tabindex="-1" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
+                <th class="w-25 p-3" scope="col">ID</th>
+                <th class="w-25 p-3" scope="col">Cliente</th>
+                <th class="w-25 p-3" scope="col">CNPJ</th>
+                <th class="w-25 p-3" scope="col">Responsável</th>
+                <th class="w-25 p-3" scope="col">Telefone</th>
+                <th class="w-25 p-3" scope="col">Email</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>OR9842</td>
+                <td>Cliente A</td>
+                <td>XX.XXX.XXX/0001-XX</td>
+                <td>Fulano de Abreu	</td>
+                <td>21 996015689</td>
+                <td>email@email.com</td>
+              </tr>
+              <tr>
+                <td>OR9843</td>
+                <td>Cliente B</td>
+                <td>XX.XXX.XXX/0001-XX</td>
+                <td>Fulano de Abreu	</td>
+                <td>21 996015689</td>
+                <td>email@email.com</td>
+              </tr>
+              <tr>
+                <td>OR9844</td>
+                <td>Cliente C</td>
+                <td>XX.XXX.XXX/0001-XX</td>
+                <td>Fulano de Abreu	</td>
+                <td>21 996015689</td>
+                <td>email@email.com</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+              <li class="page-item"><a class="page-link" href="#">«</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">»</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Tabela  -->
+
+<!--Modal -->
+<section class="container why-choose-us py-1">
+  <div class="modal fade" id="cadastroClienteModal" tabindex="-1" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -161,86 +237,10 @@
                 </div>
               </div>
             </div>
-
-
-
-
-            <div class="" style="padding: 10px; display: flex; justify-content: flex-end;">
-
-              <div class="" id="">
-                <ul class="navbar-nav ml-auto" style="display: flex;flex-direction: row; font-size: 20px;">
-                  <li class="nav-item" style="padding: 5px;color: #06326d;">
-                    <a class="nav-link" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-                  </li>
-                  <li class="nav-item" style="padding: 5px;color: #06326d;">
-                    <button type="button" id="cadastrarButton" style="border:none; padding: 9px;background: none;color:#06326d;"><i class="fa fa-plus-square" aria-hidden="true" style="padding-right: 3px;"></i>Cadastrar</button>
-                  </li>
-                </ul>
-                <form class="form-inline" style="display: none;">
-                  <button class="btn my-2 my-sm-0" type="button" id="cadastrarButtone">Cadastrar</button>
-                </form>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table m-0 table-hover">
-                  <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Cliente</th>
-                    <th>CNPJ</th>
-                    <th>Responsável</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>OR9842</td>
-                    <td>Cliente A</td>
-                    <td>XX.XXX.XXX/0001-XX</td>
-                    <td>Fulano de Abreu</td>
-                    <td>21 996015689</td>
-                    <td>email@email.com</td>
-                  </tr>
-                  <tr>
-                    <td>OR9843</td>
-                    <td>Cliente B</td>
-                    <td>XX.XXX.XXX/0001-XX</td>
-                    <td>Fulano de Abreu</td>
-                    <td>21 996015689</td>
-                    <td>email@email.com</td>
-                  </tr>
-                  <tr>
-                    <td>OR9844</td>
-                    <td>Cliente C</td>
-                    <td>XX.XXX.XXX/0001-XX</td>
-                    <td>Fulano de Abreu</td>
-                    <td>21 996015689</td>
-                    <td>email@email.com</td>
-                  </tr>
-
-                  </tbody>
-                </table>
-              </div><!-- /.table-responsive -->
-            </div>
-            <div class="card-footer clearfix">
-              <ul class="pagination pagination-sm m-0 float-right">
-                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">»</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
-<!-- ============== End Tabela ========== -->
+<!-- /Modal -->
+
+
 <!--  JQuery file     -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- bootstrap min js -->

@@ -1,6 +1,9 @@
 .error { color: red; }
 .success { color: green; }
-
+.action-view {
+    border: none;
+    background: none;
+}
 /* -- Drop menu-- */
 .dropdown-menu.show {
     padding: 10px;
