@@ -1,14 +1,16 @@
 <?php
 namespace controllers;
 
+use core\controllers\security\AuthorizedController;
+
 /**
  * @Route("/home")
  */
-class HomeController extends \core\controllers\AuthorizedController {
+class HomeController extends AuthorizedController {
+
+    public function __construct() { title(MAIN_PAGE_TITLE." - Página Inicial");  }
 
     public function get() {
-
-        title(MAIN_PAGE_TITLE." - Página Inicial");
 
         view("home.php", [ ]);
     }

@@ -80,7 +80,7 @@
                         </div>
                     </div><!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table id="tb-clientes" class="table table-hover text-nowrap">
                             <thead>
                             <tr>
                                 <th class="w-25 p-3" scope="col">ID</th>
@@ -173,5 +173,6 @@
     </div>
 </section>
 <!-- /Modal -->
-
+<?php
+scripts([["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "uri" => "/api/clientes" ]]);?>
 </section>

@@ -1,16 +1,16 @@
 <?php
 namespace controllers\clientes;
 
-use models\Cliente;
-use models\cliente\status;
+use core\controllers\security\AuthorizedController;
+use PHPMailer\PHPMailer\Exception;
+use repo\ClienteRepositorio;
+use models\cliente\Status;
 
-require_once "core/controllers/AuthorizedController.php";
-require_once "repo/ClienteRepositorio.php";
 
 /**
  * @Route("/clientes")
  */
-class PesquisarClienteController extends \core\controllers\AuthorizedController {
+class PesquisarClienteController extends AuthorizedController {
 
     public function get() {
 
@@ -23,12 +23,14 @@ class PesquisarClienteController extends \core\controllers\AuthorizedController 
 
             $body = body();
 
-            $repo = new \repo\ClienteRepositorio();
-            $clientes = $repo->filtrar([
+            if(!$body->nome && !$body->cnpj && !$body->email) throw new Exception();
+
+            $repo = new ClienteRepositorio();
+            $clientes = $repo->obterPor([
                 "nome" => like($body->nome),
                 "cnpj" => $body->cnpj,
                 "email" => like($body->email),
-                "status" => status::ativo
+                "status" => Status::Ativo
             ], 50);
         }
         catch (\Exception $e) { $clientes = []; }

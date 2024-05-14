@@ -2,10 +2,12 @@
 
 namespace controllers\relatorios;
 
+use core\controllers\security\AuthorizedController;
+
 /**
  * @Route("login")
  */
-class ApresentarRelatoriosController extends \core\controllers\BaseController {
+class ApresentarRelatoriosController extends AuthorizedController {
 
     public function get(){
 

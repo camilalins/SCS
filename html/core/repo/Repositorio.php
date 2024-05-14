@@ -35,7 +35,7 @@ class Repositorio {
 
     /**
      * Obtem todos registros de determinada Entidade
-     * @return array
+     * @return Model[]
      * @throws Exception
      */
     public function obterTodos():array {
@@ -79,17 +79,18 @@ class Repositorio {
 
     /**
      * Buscar com filtro dinâmico
+     * @return Model[]
      * @throws Exception
      */
-    public function filtrar($clausulas=[], $limite=0):array {
+    public function obterPor($dto=[], $limite=0):array {
 
-        if (!$clausulas) throw new Exception(sys_messages(MSG_REPO_ERR_A010));
+        if (!$dto) throw new Exception(sys_messages(MSG_REPO_ERR_A010));
 
-        $ctype = gettype($clausulas);
-        if($ctype != "object" && $ctype != "array") throw new Exception(sys_messages(MSG_REPO_ERR_A004));
+        $dtotype = gettype($dto);
+        if($dtotype != "object" && $dtotype != "array") throw new Exception(sys_messages(MSG_REPO_ERR_A004));
 
-        $campos = $ctype == "object" ? array_keys(get_object_vars($clausulas)) : array_keys($clausulas);
-        $valores = $ctype == "object" ? array_values(get_object_vars($clausulas)) : array_values($clausulas);
+        $campos = $dtotype == "object" ? array_keys(get_object_vars($dto)) : array_keys($dto);
+        $valores = $dtotype == "object" ? array_values(get_object_vars($dto)) : array_values($dto);
 
         $where = array_map(function ($k, $v) {
 
@@ -213,7 +214,7 @@ class Repositorio {
 
     /**
      * Remover diversos registros existentes
-     *
+     * @return Model[]
      * @throws Exception
      */
     public function remover($dto=[]):array {
@@ -227,7 +228,7 @@ class Repositorio {
 
         $id = $dtotype != "integer" ? $dto["id"] : $dto;
 
-        $entidades = $this->filtrar([ "id" => $id ]);
+        $entidades = $this->obterPor([ "id" => $id ]);
         if(!$entidades) throw new Exception(sys_messages(MSG_REPO_ERR_A008));
 
 
@@ -251,14 +252,14 @@ class Repositorio {
      *
      * @throws Exception
      */
-    public function removerTodos($dto=[]):array {
+    public function removerPor($dto=[]):array {
 
         if (!$dto) throw new Exception(sys_messages(MSG_REPO_ERR_A007));
 
         $dtotype = gettype($dto);
         if($dtotype != "object" && $dtotype != "array") throw new Exception(sys_messages(MSG_REPO_ERR_A004));
 
-        $entidades = $this->filtrar($dto);
+        $entidades = $this->obterPor($dto);
         if(!$entidades) throw new Exception(sys_messages(MSG_REPO_ERR_A008));
 
         $campos = $dtotype == "object" ? array_keys(get_object_vars($dto)) : array_keys($dto);

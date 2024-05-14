@@ -3,6 +3,7 @@
 namespace models;
 
 use core\Model;
+use stdClass;
 
 /**
  * @Entity("usuario")
@@ -132,6 +133,16 @@ class Usuario extends Model {
 
     public static function from($data=[]): ?Usuario {
 
-        return parent::convert($data, Usuario::class);
+        return parent::model($data, Usuario::class);
+    }
+
+    public static function toObject($model=[]): ?stdClass {
+
+        return parent::object($model, Usuario::class);
+    }
+
+    public static function toObjectArray($model=[]): array {
+
+        return parent::objectList($model, Usuario::class);
     }
 }

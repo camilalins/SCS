@@ -6,6 +6,10 @@ class Application {
 
     public static function run(){
 
+        # BASIC PARAMS
+        $uri = $_SERVER["REQUEST_URI"];
+        $method = $_SERVER["REQUEST_METHOD"];
+
         #INCLUDE CONFIG
         foreach (glob("config/*.php") as $filename) include_once $filename;
         foreach (glob("config/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
@@ -17,6 +21,7 @@ class Application {
         #INCLUDE CORE
         foreach (glob("core/*.php") as $filename) include_once $filename;
         foreach (glob("core/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
+        foreach (glob("core/controllers/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
 
         #INCLUDE MODELS
         foreach (glob("models/*.php") as $filename) include_once $filename;
@@ -29,6 +34,7 @@ class Application {
         #INCLUDE CONTROLLERS
         foreach (glob("controllers/*.php") as $filename) include_once $filename;
         foreach (glob("controllers/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
+        foreach (glob("controllers/api/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
 
         #SESSION
         session_start(['cookie_lifetime' => 0, 'cookie_secure' => true, 'cookie_httponly' => true]);
@@ -51,7 +57,7 @@ class Application {
         #DEBUG LOG
         if (DEBUG_MODE == 1) {
             openlog("localhost", LOG_PID | LOG_PERROR, LOG_LOCAL0);
-            syslog(LOG_INFO, $_SERVER["REQUEST_URI"]);
+            syslog(LOG_INFO, $uri);
         }
 
         #SEEKING ROUTES
@@ -59,16 +65,18 @@ class Application {
             $namespace = "\\controllers\\";
             Application::seekRoutes($namespace, $filename, $routes);
         }
-
         foreach (glob("controllers/*") as $directory) {
+            $namespace = "\\".str_replace("/", "\\", $directory)."\\";
+            foreach (glob("$directory/*.php") as $filename)
+                Application::seekRoutes($namespace, $filename, $routes);
+        }
+        foreach (glob("controllers/api/*") as $directory) {
             $namespace = "\\".str_replace("/", "\\", $directory)."\\";
             foreach (glob("$directory/*.php") as $filename)
                 Application::seekRoutes($namespace, $filename, $routes);
         }
 
         #SEEKING ROUTES - DEFINE CONTROLLER & ACTION
-        $uri = $_SERVER["REQUEST_URI"];
-        $method = $_SERVER["REQUEST_METHOD"];
 
         $controller = Application::defineController($uri, $routes);
         $action = strtolower($method); //$action = $path[ACTN] ?: "index";

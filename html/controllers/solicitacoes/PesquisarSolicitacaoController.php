@@ -1,13 +1,12 @@
 <?php
 namespace controllers\solicitacoes;
 
-require_once "core/controllers/AuthorizedController.php";
-require_once "repo/SolicitacaoRepositorio.php";
+use core\controllers\security\AuthorizedController;
 
 /**
  * @Route("/solicitacoes")
  */
-class PesquisarSolicitacaoController extends \core\controllers\AuthorizedController {
+class PesquisarSolicitacaoController extends AuthorizedController {
 
     public function get() {
 

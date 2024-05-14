@@ -2,10 +2,12 @@
 
 namespace controllers\login;
 
+use core\controllers\BaseController;
+
 /**
  * @Route("/recuperar-senha")
  */
-class RecuperarSenhaController extends \core\controllers\BaseController {
+class RecuperarSenhaController extends BaseController {
 
     public function get() {
         view("login/recuperar-senha.php");

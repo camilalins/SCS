@@ -1,10 +1,12 @@
 <?php
 namespace controllers;
 
+use core\controllers\BaseController;
+
 /**
  * @Route()
  */
-class IndexController extends \core\controllers\BaseController {
+class IndexController extends BaseController {
 
     public function get(){
 

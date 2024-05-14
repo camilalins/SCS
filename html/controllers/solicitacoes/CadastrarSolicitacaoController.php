@@ -1,13 +1,12 @@
 <?php
 namespace controllers\solicitacoes;
 
-require_once "core/controllers/BaseController.php";
-require_once "repo/SolicitacaoRepositorio.php";
+use core\controllers\security\AuthorizedController;
 
 /**
  * @Route("solicitacoes/cadastrar")
  */
-class CadastrarSolicitacaoController extends \core\controllers\BaseController {
+class CadastrarSolicitacaoController extends AuthorizedController {
 
     function get(){
 

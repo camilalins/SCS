@@ -2,10 +2,12 @@
 
 namespace controllers\login;
 
+use core\controllers\BaseController;
+
 /**
  * @Route("login")
  */
-class EfetuarLoginController extends \core\controllers\BaseController {
+class EfetuarLoginController extends BaseController {
 
     public function get(){
 

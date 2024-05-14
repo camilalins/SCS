@@ -3,6 +3,7 @@
 namespace models;
 
 use core\Model;
+use stdClass;
 
 /**
  * @Entity
@@ -94,6 +95,16 @@ class Solicitacao extends Model {
 
     public static function from($data=[]): ?Solicitacao {
 
-        return parent::convert($data, Solicitacao::class);
+        return parent::model($data, Solicitacao::class);
+    }
+
+    public static function toObject($model=[]): ?stdClass {
+
+        return parent::object($model, Solicitacao::class);
+    }
+
+    public static function toObjectArray($model=[]): array {
+
+        return parent::objectList($model, Solicitacao::class);
     }
 }

@@ -190,6 +190,7 @@
     </div>
 </section>
 <!-- /Tabela  -->
+
 <!-- Modal -->
 <section class="container why-choose-us py-1">
     <div class="modal fade" id="cadastroSolicitacaoModal" tabindex="-1" aria-labelledby="cadastroSolicitacaoModalLabel" aria-hidden="true">
@@ -229,60 +230,6 @@
 </section>
 <!-- /Modal -->
 
-<!--  JQuery file     -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- bootstrap min js -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!--  owl carousel    -->
-<script src="../../public/js/owl.carousel.min.js"></script>
-<!-- aos file    -->
-<script src="../../public/aos.js"></script>
-<!-- gsap file    -->
-<script src="../../public/gsap.min.js"></script>
-<!--  main js file  -->
-<script src=".../../public/main.js"></script>
-<!--  modal js  -->
-<script src=".../../public/modal/js/modal.js"></script>
-
-<!-- Script jQuery -->
-
-<section class="container py-5" id="container-solicitacoes">
-
-    <h1>Solicitações</h1>
-
-    <br>
-
-    <form action="/solicitacoes" method="post">
-
-        <fieldset>
-
-            <legend>Pesquisar solicitações</legend>
-
-            <div>
-                <input type="text" class="" name="cliente" id="cliente" placeholder="Nome do cliente" size="40">
-
-                <button>Pesquisar</button>
-            </div>
-
-        </fieldset>
-
-    </form>
-
-    <br>
-
-    <button onclick="window.open('/solicitacoes/cadastrar', '_self')">Criar</button> <br>
-
-    <br>
-
-    <div id="result">
-        <?php foreach ($solicitacoes as $s):?>
-            <div style="border: 1px solid #ccc; width: 300px; padding: 10px; display: flex">
-                <div style="width: 50px"><?=$s->id?></div>
-                <div style="width: 150px"><?=$s->nome?></div>
-                <div style="width: 150px"><?=$s->placa?></div>
-            </div>
-        <?php endforeach;?>
-    </div>
+<?php scripts(["/public/modal/js/modal.js"]);?>
 
 </section>

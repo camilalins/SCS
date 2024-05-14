@@ -2,7 +2,7 @@
 
 namespace models\cliente;
 
-enum status: string {
-    case ativo = "ativo";
-    case inativo = "inativo";
+enum Status: string {
+    case Ativo = "ativo";
+    case Inativo = "inativo";
 }

@@ -2,7 +2,7 @@
 
 use models\Usuario;
 
-function user(): ?Usuario{
+function user(): ?Usuario {
 
     return $_SESSION[USER] ? unserialize($_SESSION[USER]) : null;
 }

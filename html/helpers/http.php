@@ -12,6 +12,14 @@ function redirect($url) {
     exit();
 }
 
+function response($json, $statusCode=200){
+    header('Content-Type: application/json; charset=utf-8');
+    http_response_code($statusCode);
+    if (gettype($json) == "string") echo json_encode(["message" => $json]);
+    else echo json_encode($json);
+    exit();
+}
+
 function view($path, $data=null){
     extract($data ?: []);
     if(MAIN_PAGE && !in_array($path, MAIN_PAGE_EXCLUDES)) {
@@ -22,11 +30,19 @@ function view($path, $data=null){
 }
 
 function body($name=null){
-    return $name ? $_POST[$name] : (object)$_POST;
+    return $name ? $_POST[$name] : (!empty($_POST)?(object)$_POST:json_decode(file_get_contents('php://input'), false));
+}
+
+function post($name=null){
+    return $name ? $_POST[$name] : $_POST;
 }
 
 function query($name=null){
     return $name ? $_GET[$name] : (object)$_GET;
+}
+
+function get($name=null){
+    return $name ? $_GET[$name] : $_GET;
 }
 
 function path($id=null){
@@ -35,7 +51,18 @@ function path($id=null){
 
 function scripts($scripts=null) {
     if($scripts) $GLOBALS["scripts"] = $scripts;
-    else foreach ($GLOBALS["scripts"] as $script) if(str_starts_with($script, "<script")) echo $script; else echo "<script src=\"$script\"></script>";
+    else foreach ($GLOBALS["scripts"] as $script)
+        if (gettype($script) == "string") {
+            if (str_starts_with($script, "<script"))
+                echo $script;
+            else
+                echo "<script src=\"$script\"></script>";
+        }
+        else if(gettype($script) == "array") {
+            $props = implode(" ", array_map(function ($k, $v) { return "$k=\"$v\""; }, array_keys($script), array_values($script)));
+            echo "<script $props></script>";
+        }
+
 }
 
 function title($name=null){
