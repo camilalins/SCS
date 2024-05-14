@@ -2,7 +2,6 @@
 namespace controllers\api\clientes;
 
 use core\controllers\security\ApiAuthorizedController;
-use core\Model;
 use models\Cliente;
 use models\cliente\Status;
 use Exception;
