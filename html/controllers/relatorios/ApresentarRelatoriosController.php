@@ -1,17 +1,17 @@
 <?php
 
-namespace controllers\login;
+namespace controllers\relatorios;
 
 /**
  * @Route("login")
  */
-class EfetuarLoginController extends \core\controllers\BaseController {
+class ApresentarRelatoriosController extends \core\controllers\BaseController {
 
     public function get(){
 
         if(user()) redirect(HOME_PAGE);
 
-        view("login/login.php");
+        view("relatorios/dashboard.php");
     }
 
     public function post() {
@@ -24,7 +24,7 @@ class EfetuarLoginController extends \core\controllers\BaseController {
                 throw new \Exception(sys_messages(MSG_VALID_ERR_A001));
 
             $repo = new \repo\UsuarioRepositorio();
-            $usuario = $repo->obterPorEmailESenha($email, $senha);
+            $usuario = $repo->buscarPorEmailESenha($email, $senha);
 
             if(!$usuario)
                 throw new \Exception(sys_messages(MSG_LOGIN_ERR_A001));

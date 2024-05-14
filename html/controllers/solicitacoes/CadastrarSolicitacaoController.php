@@ -22,7 +22,7 @@ class CadastrarSolicitacaoController extends \core\controllers\BaseController {
             $placa = body("placa");
 
             if (!$cliente || !$placa)
-                throw new \Exception("Preencha os campos obrigatórios");
+                throw new \Exception(sys_messages(MSG_VALID_ERR_A001));
 
             $solicitacaoDto = (object)[
                 "data" => now(),

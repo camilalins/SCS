@@ -52,8 +52,8 @@
                             </a>
                             <div class="dropdown-menu dark-mode" aria-labelledby="dropdownMenuLink">
 
-                                <div><i class="fa fa-user" aria-hidden="true"></i><?=user()->nome?></div>
-                                <div><i class="fa fa-envelope" aria-hidden="true"></i><?=user()->email?></div>
+                                <div><i class="fa fa-user" aria-hidden="true"></i><?=user()->getNome()?></div>
+                                <div><i class="fa fa-envelope" aria-hidden="true"></i><?=user()->getEmail()?></div>
                                 <div>
                                     <button  style="border: none;" onclick="window.open('/logout', '_self')"><i class="fa fa-sign-out" aria-hidden="true"></i>Sair</button>
                                 </div>
@@ -73,10 +73,12 @@
         </div>
 
         <!--  JQuery file     -->
-        <script src="/public/js/jquery-3.6.1.min.js"></script>
+        <!--<script src="/public/js/jquery-3.6.1.min.js"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!-- bootstrap min js -->
-        <script src="/public/js/bootstrap.min.js"></script>
+        <!--<script src="/public/js/bootstrap.min.js"></script>-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <!--  owl carousel    -->
         <script src="/public/js/owl.carousel.min.js"></script>
@@ -89,11 +91,6 @@
 
         <!--  main js file TODO: CAUSANDO PROBLEMA NOS POSTS DAS PÁGINAS -->
         <script src="/public/js/main.js"></script>
-
-        <!-- Inclua o Bootstrap JS (opcional, mas necessário para alguns componentes interativos) -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <!--        <script src="https://kit.fontawesome.com/a076d05399.js"></script>-->
 
         <?php scripts();?>
 </body>

@@ -1,7 +1,9 @@
 <?php /** @var TYPE_NAME $clientes */?>
-
+<?php /** @var TYPE_NAME $nome */?>
+<?php /** @var TYPE_NAME $cnpj */?>
+<?php /** @var TYPE_NAME $email */?>
 <!-- Busca -->
-<section class="container why-choose-us py-1">
+<section class="container search py-1">
     <div class="heading">
         <div class="container-fluid">
             <div class="row">
@@ -21,17 +23,17 @@
                         <div class="row">
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control ds-input" name="cliente" id="cliente"  placeholder="Nome" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    <input type="text" class="form-control ds-input" name="nome" id="nome" value="<?=$nome?>" placeholder="Nome" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control ds-input" id="cnpj" placeholder="CNPJ" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    <input type="text" class="form-control ds-input" name="cnpj" id="cnpj" value="<?=$cnpj?>" placeholder="CNPJ" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
-                                    <input type="email" class="form-control ds-input" id="email" placeholder="Email" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    <input type="email" class="form-control ds-input" name="email" id="email" value="<?=$email?>" placeholder="Email" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
                             <div class="col-12 col-md-2">
@@ -48,7 +50,7 @@
 </section>
 <!-- /Busca  -->
 <!-- Tabela -->
-<section class="container why-choose-us py-1">
+<section class="container data-table py-1">
     <div class="heading">
         <div class="container-fluid">
             <div class="row">
@@ -92,12 +94,12 @@
                             <tbody>
                             <?php foreach ($clientes as $c):?>
                                 <tr>
-                                    <td><?=$c->id?></td>
-                                    <td><?=$c->nome?></td>
-                                    <td><?=$c->cnpj?></td>
-                                    <td><?=$c->responsavel?></td>
-                                    <td><?=$c->telefone?></td>
-                                    <td><?=$c->email?></td>
+                                    <td><?=$c->getId()?></td>
+                                    <td><?=$c->getNome()?></td>
+                                    <td><?=$c->getCnpj()?></td>
+                                    <td><?=$c->getResponsavel()?></td>
+                                    <td><?=$c->getTelefone()?></td>
+                                    <td><?=$c->getEmail()?></td>
                                 </tr>
                             <?php endforeach;?>
                             </tbody>
@@ -119,7 +121,7 @@
 </section>
 <!-- /Tabela  -->
 <!--Modal -->
-<section class="container why-choose-us py-1">
+<section class="container modal py-1">
     <div class="modal fade" id="cadastroClienteModal" tabindex="-1" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -171,31 +173,5 @@
     </div>
 </section>
 <!-- /Modal -->
-
-
-<!--  JQuery file     -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- bootstrap min js -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!--  owl carousel    -->
-<script src="../../public/js/owl.carousel.min.js"></script>
-<!-- aos file    -->
-<script src="../../public/aos.js"></script>
-<!-- gsap file    -->
-<script src="../../public/gsap.min.js"></script>
-<!--  main js file  -->
-<script src=".../../public/main.js"></script>
-<!--  modal js  -->
-<script src=".../../public/modal/js/modal.js"></script>
-
-
-<section class="container py-5" id="container-solicitacoes">
-
-    <h1>Clientes</h1>
-    <br>
-    <br>
-    <button onclick="window.open('/clientes/cadastrar', '_self')">Criar</button> <br>
-    <br>
 
 </section>

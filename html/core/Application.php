@@ -2,11 +2,33 @@
 
 namespace core;
 
-require_once "config/const.php";
-
 class Application {
 
     public static function run(){
+
+        #INCLUDE CONFIG
+        foreach (glob("config/*.php") as $filename) include_once $filename;
+        foreach (glob("config/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
+
+        #INCLUDE HELPERS
+        foreach (glob("helpers/*.php") as $filename) include_once $filename;
+        foreach (glob("helpers/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
+
+        #INCLUDE CORE
+        foreach (glob("core/*.php") as $filename) include_once $filename;
+        foreach (glob("core/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
+
+        #INCLUDE MODELS
+        foreach (glob("models/*.php") as $filename) include_once $filename;
+        foreach (glob("models/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
+
+        #INCLUDE REPO
+        foreach (glob("repo/*.php") as $filename) include_once $filename;
+        foreach (glob("repo/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
+
+        #INCLUDE CONTROLLERS
+        foreach (glob("controllers/*.php") as $filename) include_once $filename;
+        foreach (glob("controllers/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
 
         #SESSION
         session_start(['cookie_lifetime' => 0, 'cookie_secure' => true, 'cookie_httponly' => true]);
@@ -33,9 +55,6 @@ class Application {
         }
 
         #SEEKING ROUTES
-        foreach (glob("controllers/*.php") as $filename) include $filename;
-        foreach (glob("controllers/*") as $directory) foreach (glob("$directory/*.php") as $filename) include $filename;
-
         foreach (glob("controllers/*.php") as $filename) {
             $namespace = "\\controllers\\";
             Application::seekRoutes($namespace, $filename, $routes);
@@ -47,14 +66,14 @@ class Application {
                 Application::seekRoutes($namespace, $filename, $routes);
         }
 
-        #DEFINE CONTROLLER & ACTION
+        #SEEKING ROUTES - DEFINE CONTROLLER & ACTION
         $uri = $_SERVER["REQUEST_URI"];
         $method = $_SERVER["REQUEST_METHOD"];
 
         $controller = Application::defineController($uri, $routes);
         $action = strtolower($method); //$action = $path[ACTN] ?: "index";
 
-        #DEFINE PATH VARIBELS
+        #SEEKING ROUTES - DEFINE PATH VARIBELS
         if($routes[$controller]) {
             $parthVars = str_replace($routes[$controller], "", $uri);
             $parthVars = str_starts_with($parthVars, "/") ? substr($parthVars, 1, strlen($parthVars)) : $parthVars;
@@ -73,7 +92,7 @@ class Application {
             $ctrl->$action();
         }
         catch (\Error $e) {
-            print("Rota não encontrada". (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$e->getMessage()}. arquivo: <b>{$e->getFile()} {$e->getLine()}</b>" : ""));
+            print("Erro na rota". (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$e->getMessage()}. arquivo: <b>{$e->getFile()} {$e->getLine()}</b>" : ""));
         }
         exit();
     }
@@ -112,5 +131,6 @@ class Application {
             if ($matches) return $key;
         }
     }
+
 }
 

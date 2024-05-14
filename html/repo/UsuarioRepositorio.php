@@ -2,33 +2,23 @@
 
 namespace repo;
 
-use mysqli;
+use core\repo\Repositorio;
+use models\Usuario;
 
-class UsuarioRepositorio {
-
-    private $mysqli;
+class UsuarioRepositorio extends Repositorio {
 
     public function __construct() {
-
-        $this->mysqli = new mysqli(
-            MYSQL_HOST,
-            MYSQL_USER,
-            MYSQL_PASS,
-            MYSQL_DATABASE,
-            MYSQL_PORT
-        ) or throw new \Exception("Não foi possível conectar". DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$this->mysqli->connect_error}" : "");
-
+        parent::__construct(Usuario::class);
     }
 
     /**
-     * Buscar usuario por email e senha
+     * Buscar usuario por email
      *
      * @param $email E-mail do usuário
-     * @param $senha Senha do usuário
      * @return Usuario
      * @throws Exception Erro de acesso ao banco de dados
      */
-    public function buscarPorEmail($email) {
+    public function obterPorEmail(string $email): ?Usuario {
 
         $email = $this->mysqli->real_escape_string($email);
 
@@ -38,7 +28,7 @@ class UsuarioRepositorio {
         $result = $stmt->get_result();
 
         if (($usuario = $result->fetch_object()))
-            return $usuario;
+            return Usuario::from($usuario);
 
         return null;
     }
@@ -51,21 +41,17 @@ class UsuarioRepositorio {
      * @return Usuario
      * @throws Exception Erro de acesso ao banco de dados
      */
-    public function buscarPorEmailESenha($email, $senha) {
+    public function obterPorEmailESenha(string $email, string $senha): ?Usuario {
 
         $email = $this->mysqli->real_escape_string($email);
         $senha = $this->mysqli->real_escape_string($senha);
 
-        $usuario = $this->buscarPorEmail($email);
+        $usuario = $this->obterPorEmail($email);
 
-        if ($usuario && password_verify($senha, $usuario->senha))
+        if ($usuario && password_verify($senha, $usuario->getSenha()))
             return $usuario;
 
         return null;
     }
 
-
-    // Outras funções do modelo aqui...
 }
-
-?>

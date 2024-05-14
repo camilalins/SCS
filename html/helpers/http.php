@@ -1,15 +1,8 @@
 <?php
 
-require_once "config/const.php";
-
 function session($name, $value=null){
     if($value) $_SESSION[$name] = $value;
     else return $_SESSION[$name];
-}
-
-function user($userdata=null){
-    if($userdata) $_SESSION[USER] = $userdata;
-    else return $_SESSION[USER];
 }
 
 function redirect($url) {
@@ -21,7 +14,7 @@ function redirect($url) {
 
 function view($path, $data=null){
     extract($data ?: []);
-    if(MAIN_PAGE && !in_array($path, MAIN_PAGE_EXCLUDE)) {
+    if(MAIN_PAGE && !in_array($path, MAIN_PAGE_EXCLUDES)) {
         $page = $GLOBALS["page"] = "views/$path";
         include "views/".MAIN_PAGE.".php";
     }

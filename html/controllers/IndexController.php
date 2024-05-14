@@ -1,8 +1,6 @@
 <?php
 namespace controllers;
 
-require_once "core/controllers/BaseController.php";
-
 /**
  * @Route()
  */

@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
 
 <section class="container py-5" id="container-home">
     <div class="heading">
         <h1 class="title col-lg-10 col-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-           Olá, <?=user()->nome?>!
+           Olá, <?=user()->getNome()?>!
         </h1>
     </div>
         <br>
