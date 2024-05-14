@@ -173,6 +173,5 @@
     </div>
 </section>
 <!-- /Modal -->
-<?php
-scripts([["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "uri" => "/api/clientes" ]]);?>
+<?php scripts([["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "uri" => "/api/clientes" ]]);?>
 </section>
