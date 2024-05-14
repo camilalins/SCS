@@ -32,7 +32,7 @@ class PesquisarClienteController extends ApiAuthorizedController {
                 "status" => Status::Ativo
             ], 50);
         }
-        catch (Exception $e) { $clientes = []; }
+        catch (Exception) { $clientes = []; }
 
         response(Cliente::toObjectArray($clientes));
     }

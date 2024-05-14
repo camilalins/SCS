@@ -17,13 +17,13 @@ onsubmit = (e) => {
         },
         body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
     })
-    .then(res => { if(!res.ok) throw "erro!"; res.json(); })
+    .then(res => { if(!res.ok) throw res; return res.json(); })
     .then(data => done(data))
-    .catch((err) => { console.warn(err); })
-
+    .catch(ex => ex.text())
+    .then(err => { if(err) console.warn(err); })
 }
 
-function done(eventos){
+function done(eventos){ console.log(eventos);
 
     eventos.forEach((e) => {
         console.log(e);

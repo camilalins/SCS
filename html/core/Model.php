@@ -38,8 +38,9 @@ abstract class Model {
         return (object)$object;
     }
 
-    protected static function objectList(array $models, $class): array {
+    protected static function objectList(array $models=[], $class): array {
 
+        $results = [];
         foreach ($models as $model) $results[] = self::object($model, $class);
         return $results;
     }
