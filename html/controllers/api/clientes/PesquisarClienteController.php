@@ -2,10 +2,9 @@
 namespace controllers\api\clientes;
 
 use core\controllers\security\ApiAuthorizedController;
-use models\Cliente;
 use models\cliente\Status;
-use Exception;
 use repo\ClienteRepositorio;
+use Exception;
 
 /**
  * @Route("/api/clientes")
@@ -34,7 +33,7 @@ class PesquisarClienteController extends ApiAuthorizedController {
         }
         catch (Exception) { $clientes = []; }
 
-        response(Cliente::toObjectArray($clientes));
+        response($clientes);
     }
 
     public function put() {

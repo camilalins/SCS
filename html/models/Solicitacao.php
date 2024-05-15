@@ -93,18 +93,7 @@ class Solicitacao extends Model {
         $this->placa = $placa;
     }
 
-    public static function from($data=[]): ?Solicitacao {
-
-        return parent::model($data, Solicitacao::class);
-    }
-
-    public static function toObject($model=[]): ?stdClass {
-
-        return parent::object($model, Solicitacao::class);
-    }
-
-    public static function toObjectArray($model=[]): array {
-
-        return parent::objectList($model, Solicitacao::class);
+    public function jsonSerialize(): mixed {
+        return get_object_vars($this);
     }
 }

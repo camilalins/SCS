@@ -30,6 +30,7 @@ class Entity {
                 "namespace" => $classInfo->getNamespaceName(),
                 "qualifiedName" => $classInfo->getName(),
                 "parent" => $classInfo->getParentClass(),
+                "interfaces" => $classInfo->getInterfaceNames(),
             ],
             "props" => [] ];
         foreach ($props as $prop) {

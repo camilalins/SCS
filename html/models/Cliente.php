@@ -3,6 +3,7 @@
 namespace models;
 
 use core\Model;
+use JetBrains\PhpStorm\Internal\TentativeType;
 use stdClass;
 
 /**
@@ -151,20 +152,7 @@ class Cliente extends Model {
         $this->email = $email;
     }
 
-
-    public static function from($data=[]): ?Cliente {
-
-        return parent::model($data, Cliente::class);
+    public function jsonSerialize(): mixed {
+        return get_object_vars($this);
     }
-
-    public static function toObject($model=[]): ?stdClass {
-
-        return parent::object($model, Cliente::class);
-    }
-
-    public static function toObjectArray($model=[]): array {
-
-        return parent::objectList($model, Cliente::class);
-    }
-
 }

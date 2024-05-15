@@ -131,18 +131,8 @@ class Usuario extends Model {
         $this->senha = $senha;
     }
 
-    public static function from($data=[]): ?Usuario {
-
-        return parent::model($data, Usuario::class);
+    public function jsonSerialize(): mixed {
+        return get_object_vars($this);
     }
 
-    public static function toObject($model=[]): ?stdClass {
-
-        return parent::object($model, Usuario::class);
-    }
-
-    public static function toObjectArray($model=[]): array {
-
-        return parent::objectList($model, Usuario::class);
-    }
 }

@@ -28,7 +28,7 @@ class UsuarioRepositorio extends Repositorio {
         $result = $stmt->get_result();
 
         if (($usuario = $result->fetch_object()))
-            return Usuario::from($usuario);
+            return Usuario::deserialize($usuario);
 
         return null;
     }

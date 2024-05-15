@@ -17,16 +17,16 @@ onsubmit = (e) => {
         },
         body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
     })
-    .then(res => { if(!res.ok) throw res; return res.json(); })
+    .then(res => { if(!res.ok) throw res.text(); return res.json(); })
     .then(data => done(data))
-    .catch(ex => ex.text())
+    .catch(ex => ex)
     .then(err => { if(err) console.warn(err); })
 }
 
-function done(eventos){ console.log(eventos);
+function done(eventos){
 
     eventos.forEach((e) => {
-        console.log(e);
+
         tbody.innerHTML +=
         `<tr>
              <td>${e.id}</td>

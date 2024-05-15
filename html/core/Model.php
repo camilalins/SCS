@@ -4,49 +4,34 @@ namespace core;
 
 use ReflectionClass;
 use ReflectionProperty;
-use stdClass;
+use ReflectionException;
+use JsonSerializable;
 
-abstract class Model {
+abstract class Model implements JsonSerializable {
 
-    protected static function model($data, $class): ?Model {
+    /**
+     * @throws ReflectionException
+     */
+    static function deserialize(mixed $object): ?Model {
 
-        if(!$data) return null;
-
-        $classInfo = new ReflectionClass($class);
-
-        $className = $classInfo->getName();
-        $object = new $className();
-        foreach ($data as $k => $v) {
-            $setter = "set" . ucwords($k);
-            $object->$setter($v);
+        $instance = new static();
+        $objJson = gettype($object) == "string" ? json_encode($object) : json_decode(json_encode($object));
+        $classInfo = new ReflectionClass($instance);
+        $publicProps = $classInfo->getProperties();
+        foreach ($publicProps as $prop) {
+            $propName = $prop->name;
+            $prop->setValue($instance, $objJson->$propName?:null);
         }
-        return $object;
+        return $instance;
     }
 
-    protected static function object(?Model $model, $class): ?stdClass {
+    /**
+     * @throws ReflectionException
+     */
+    static function jsonDeserialize(string $json): ?Model {
 
-        if(!$model) return null;
-
-        $classInfo = new ReflectionClass($class);
-        $props   = $classInfo->getProperties(ReflectionProperty::IS_PRIVATE | ReflectionProperty::IS_PROTECTED);
-
-        $object = [];
-        foreach ($props as $prop) {
-            $getter = "get" . ucwords($prop->getName());
-            $object[$prop->getName()] = $model->$getter();
-        }
-        return (object)$object;
+        return self::deserialize($json);
     }
 
-    protected static function objectList(array $models=[], $class): array {
-
-        $results = [];
-        foreach ($models as $model) $results[] = self::object($model, $class);
-        return $results;
-    }
-
-    public abstract static function from($data=[]): ?Model;
-    public abstract static function toObject($model=[]): ?stdClass;
-    public abstract static function toObjectArray($model=[]): array;
+    public abstract function jsonSerialize(): mixed;
 }
-

@@ -23,6 +23,7 @@ class Repositorio {
 
         $this->meta = Entity::metadata($class);
         if($this->meta->class->parent->name != "core\Model") throw new \Error(sys_messages(MSG_REPO_ERR_A002). (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": ". sys_messages(MSG_REPO_ERR_B002) : ""));
+        //if(!in_array("core\Model", $this->meta->class->interfaces)) throw new \Error(sys_messages(MSG_REPO_ERR_A002). (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": ". sys_messages(MSG_REPO_ERR_B002) : ""));
 
         $this->mysqli = new mysqli(
             MYSQL_HOST,
@@ -45,12 +46,12 @@ class Repositorio {
 
         $result = $this->mysqli->query($sql);
 
-        $solicitacoes = [];
-        while ($row = $result->fetch_object()) $solicitacoes[] = $row;
+        $entidades = [];
+        while ($entidade = $result->fetch_object()) $entidades[] = $this->meta->class->qualifiedName::deserialize($entidade);
 
         $this->mysqli->close();
 
-        return $solicitacoes;
+        return $entidades;
     }
 
     /**
@@ -72,7 +73,7 @@ class Repositorio {
         $result = $stmt->get_result();
 
         if ($entidade = $result->fetch_object())
-            return $this->meta->class->qualifiedName::from($entidade);
+            return $this->meta->class->qualifiedName::deserialize($entidade);
 
         return null;
     }
@@ -130,7 +131,7 @@ class Repositorio {
 
         $results = [];
         while($entidade = $result->fetch_object())
-            $results[] = $this->meta->class->qualifiedName::from($entidade);
+            $results[] = $this->meta->class->qualifiedName::deserialize($entidade);
 
         return $results;
     }

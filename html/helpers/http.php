@@ -12,11 +12,13 @@ function redirect($url) {
     exit();
 }
 
-function response($json, $statusCode=200){
+function response(mixed $json, int $statusCode=200){
     header('Content-Type: application/json; charset=utf-8');
     http_response_code($statusCode);
-    if (gettype($json) == "string") echo json_encode(["message" => $json]);
-    else echo json_encode($json);
+    switch (gettype($json)) {
+        case "string": echo json_encode(["message" => $json]); break;
+        default: echo json_encode($json);
+    }
     exit();
 }
 
