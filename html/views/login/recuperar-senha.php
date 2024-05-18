@@ -76,7 +76,7 @@
     const loadingSpinner = document.getElementById('loading-spinner');
     const messageDiv = document.querySelector('.error, .success');
 
-    self.addEventListener("submit", (event) => {
+    self.addEventListener("submit0", (event) => {
 
         event.preventDefault();
         const form = event.target;
