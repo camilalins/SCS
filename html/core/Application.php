@@ -60,7 +60,7 @@ class Application {
             #DEBUG LOG
             if (DEBUG_MODE == 1) {
                 openlog(getHostByName(getHostName()), LOG_PID | LOG_PERROR, LOG_LOCAL0);
-                syslog(LOG_INFO, now(DEF_LANG, "d/M/Y:H:i:s")."+0000 \"$method $uri\" $status");
+                syslog(LOG_INFO, now(LOCALE, "d/M/Y:H:i:s")."+0000 \"$method $uri\" $status");
             }
 
             #SEEKING ROUTES

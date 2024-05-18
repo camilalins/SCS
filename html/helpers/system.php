@@ -19,5 +19,5 @@ const MSG_REPO_ERR_A008 = [ "pt-BR" => "Nenhuma entidade encontrada para ser rem
 const MSG_REPO_ERR_A009 = [ "pt-BR" => "Para atualizar é necessário informar o atributo Id", "en-US" => "" ];
 const MSG_REPO_ERR_A010 = [ "pt-BR" => "Cláusula não pode ser vazia", "en-US" => "" ];
 
-function sys_messages($name, $lang=null): string { return $name[$lang?:(DEF_LANG?:"pt-BR")]; }
+function sys_messages($name, $locale=null): string { return $name[$locale?:(LOCALE?:"pt-BR")]; }
 
