@@ -1,3 +1,12 @@
+#PHPSTORM IDE FILE
 .idea
+
+#ENV FILE
 .env
+
+#NGINX & PHP LOGS
 /logs/*
+
+#NGINX
+nginx/*
+!nginx/default.conf
