@@ -22,7 +22,9 @@ const SESSION_TIMEOUT = 600; //10 minutes
 const USER = "USER";
 const LOGIN_PAGE = "/login";
 const HOME_PAGE = "/home";
-const LOCALE = "pt-BR";
+const LOCALE_PT_BR = "pt-BR";
+const LOCALE_EN_US = "en-US";
+const LOCALE = LOCALE_PT_BR;
 
 # MAIN LAYOUT
 const MAIN_PAGE = "main";
