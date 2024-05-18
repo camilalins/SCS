@@ -9,12 +9,12 @@ const MYSQL_PORT = "3336";
 const MYSQL_SCHEMA = "scs";
 
 # SMTP SETTINGS
-const MAIL_SMTP = "smtp.gmail.com";
+const MAIL_SMTP = "smtp.dreamhost.com";
 const MAIL_SMTP_NAME = "SIOP";
-const MAIL_SMTP_USER = "camila.lins@inteligenciasiop.com";
-const MAIL_SMTP_PASS = "firegirl*20";
-const MAIL_SMTP_CRYPTO = "tls/ssl";
-const MAIL_SMTP_PORT = "587";
+const MAIL_SMTP_USER = "suporte@siopservicosinteligencia.com.br";
+const MAIL_SMTP_PASS = "Siop*246";
+const MAIL_SMTP_CRYPTO = "ssl";
+const MAIL_SMTP_PORT = "465";
 
 # SESSION
 const SESSION_TIMEOUT=600; //10 minutes
