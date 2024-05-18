@@ -2,15 +2,25 @@
 
 use models\Usuario;
 
+/**
+ * @return Usuario|null
+ */
 function user(): ?Usuario {
 
-    return $_SESSION[USER] ? unserialize($_SESSION[USER]) : null;
+    try {
+        if (!$_SESSION[USER]) throw new Exception();
+
+        return unserialize($_SESSION[USER]);
+    }
+    catch (Exception) { return null; }
 }
 
+/**
+ * @throws Exception
+ */
 function authenticate(Usuario $usuario=null): void {
 
-    if(!$usuario)
-        throw new Exception(sys_messages(MSG_AUTH_ERR_A001));
+    if(!$usuario) throw new Exception(sys_messages(MSG_AUTH_ERR_A001));
 
     $_SESSION[USER] = serialize($usuario);
 }

@@ -16,7 +16,7 @@ define("MAIL_SMTP_CRYPTO", getenv("MAIL_SMTP_CRYPTO"));
 define("MAIL_SMTP_PORT", getenv("MAIL_SMTP_PORT"));
 
 # SESSION
-const SESSION_TIMEOUT = 600; //10 minutes
+const SESSION_TIMEOUT = 6; //10 minutes
 
 # DEFAULT VARS
 const USER = "USER";
