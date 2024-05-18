@@ -18,10 +18,14 @@ define("MAIL_SMTP_PORT", getenv("MAIL_SMTP_PORT"));
 # SESSION
 const SESSION_TIMEOUT = 600; //10 minutes
 
-# DEFAULT VARS
+# DEFAULT SESSION USER
 const USER = "USER";
+
+# DEFAULT PAGES
 const LOGIN_PAGE = "/login";
 const HOME_PAGE = "/home";
+
+# DEFAULT LOCALE
 const LOCALE_PT_BR = "pt-BR";
 const LOCALE_EN_US = "en-US";
 const LOCALE = LOCALE_PT_BR;
