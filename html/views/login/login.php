@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
 
     <!-- bootstrap icons -->
-    <link rel="stylesheet" href="/public/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="/public/css/bootstrap-icons/bootstrap-icons.css">
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">

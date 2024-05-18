@@ -61,26 +61,26 @@
 
 
     <!--  JQuery file     -->
-    <script src="js/jquery-3.6.1.min.js"></script>
+    <script src="../public/js/jquery-3.6.1.min.js"></script>
 
     <!-- bootstrap min js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
 
     <!--  toasts file     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <!--  owl carousel    -->
-    <script src="js/owl.carousel.min.js"></script>
+    <script src="../public/js/owl.carousel.min.js"></script>
 
     <!-- aos file    -->
-    <script src="js/aos.js"></script>
+    <script src="../public/js/aos.js"></script>
 
     <!-- gsap file    -->
-    <script src="js/gsap.min.js"></script>
+    <script src="../public/js/gsap.min.js"></script>
 
     <!--  counter     -->
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/jquery.waypoints.js"></script>
+    <script src="../public/js/jquery.counterup.min.js"></script>
+    <script src="../public/js/jquery.waypoints.js"></script>
 
     <!-- particles js file  -->
     <script src="js/particles.min.js"></script>
