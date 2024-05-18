@@ -40,18 +40,21 @@ class Application {
             foreach (glob("controllers/api/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
 
             #SESSION
-            session_start(['cookie_lifetime' => 0, 'cookie_secure' => true, 'cookie_httponly' => true]);
+            session_start([ 'cookie_lifetime' => time() + (SESSION_TIMEOUT?:60*30), 'cookie_secure' => true, 'cookie_httponly' => true ]);
 
             $cookie = session_get_cookie_params();
             $sessid = session_id();
             setcookie(
                 'PHPSESSID', //name
                 $sessid, //value
-                time() + (SESSION_TIMEOUT?:60*30), //expires in seconds
-                $cookie['path'],//path
-                $cookie['domain'],//domain
-                true, //secure
-                true  //httpOnly
+                [
+                    "expires" => time() + (SESSION_TIMEOUT?:60*30), // lifetime
+                    "path" => $cookie["path"],//path
+                    "domain" => $cookie["domain"],//domain
+                    "secure" => true, //secure
+                    "httponly" => true,  //httpOnly
+                    "samesite" => "lax"
+                ]
             );
 
             #WARNING LEVEL

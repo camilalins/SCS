@@ -16,10 +16,12 @@ define("MAIL_SMTP_CRYPTO", getenv("MAIL_SMTP_CRYPTO"));
 define("MAIL_SMTP_PORT", getenv("MAIL_SMTP_PORT"));
 
 # SESSION
-const SESSION_TIMEOUT = 600; //10 minutes
+define("SESSION_TIMEOUT", getenv("SESSION_TIMEOUT")); //in minutes
+define("SESSION_SECRET", getenv("SESSION_SECRET"));
 
-# DEFAULT SESSION USER
-const USER = "USER";
+# DEFAULT SESSION USER & TOKEN
+const USER = "__ApplicationUser";
+const TOKEN = "__RequestVerificationToken";
 
 # DEFAULT PAGES
 const LOGIN_PAGE = "/login";

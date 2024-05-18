@@ -2,6 +2,8 @@
 
 # SYSTEM MESSAGES
 const MSG_AUTH_ERR_A001 = [ "pt-BR" => "Nenhum usuario para autenticar", "en-US" => "No user to authenticate" ];
+const MSG_AUTH_ERR_A002 = [ "pt-BR" => "CRSF Token não encontrado", "en-US" => "CRSF Token not found" ];
+const MSG_AUTH_ERR_A003 = [ "pt-BR" => "CRSF Token inválido", "en-US" => "CRSF Token is invalid" ];
 const MSG_VALID_ERR_A001 = [ "pt-BR" => "Preencha os campos obrigatórios", "en-US" => "Please fill the required fields" ];
 const MSG_LOGIN_ERR_A001 = [ "pt-BR" => "Usuário e/ou senha inválidos", "en-US" => "User or password are invalid" ];
 const MSG_RECOV_ERR_A001 = [ "pt-BR" => "E-mail não encontrado", "en-US" => "E-mail not found" ];

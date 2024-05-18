@@ -5,6 +5,27 @@ function session($name, $value=null){
     else return $_SESSION[$name];
 }
 
+function cookie($name, $value=null){
+
+    if($value) {
+
+        $cookie = session_get_cookie_params();
+        setcookie(
+            $name, //name
+            $value, //value
+            [
+                "expires" => time() + (SESSION_TIMEOUT?:60*30), // lifetime
+                "path" => $cookie["path"],//path
+                "domain" => $cookie["domain"],//domain
+                "secure" => true, //secure
+                "httponly" => true,  //httpOnly
+                "samesite" => "lax"
+            ]
+        );
+
+    } else return $_COOKIE[$name];
+}
+
 function redirect($url) {
     if($url == "/") $url = "";
     if(str_starts_with($url, "/")) $url = substr($url, 1, strlen($url));
@@ -24,6 +45,7 @@ function response(mixed $json, int $statusCode=200){
 
 function view($path, $data=null){
     extract($data ?: []);
+    cookie(TOKEN, password_hash(SESSION_SECRET, PASSWORD_BCRYPT));
     if(MAIN_PAGE && !in_array($path, MAIN_PAGE_EXCLUDES)) {
         $page = $GLOBALS["page"] = "views/$path";
         include "views/".MAIN_PAGE.".php";
@@ -32,6 +54,8 @@ function view($path, $data=null){
 }
 
 function body($name=null){
+
+    //TODO: SANITIZAR ENTRADAS
     return $name ? $_POST[$name] : (!empty($_POST)?(object)$_POST:json_decode(file_get_contents('php://input'), false));
 }
 
