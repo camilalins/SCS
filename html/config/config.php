@@ -1,23 +1,22 @@
 <?php
 
 # DATABASE SETTINGS
-const MYSQL_HOST = "host.docker.internal";
-const MYSQL_USER = "scs";
-const MYSQL_PASS = 'Siop@2024';
-const MYSQL_DATABASE = "scs";
-const MYSQL_PORT = "3336";
-const MYSQL_SCHEMA = "scs";
+define("MYSQL_HOST", getenv("MYSQL_HOST"));
+define("MYSQL_USER", getenv("MYSQL_USER"));
+define("MYSQL_PASSWORD", getenv("MYSQL_PASSWORD"));
+define("MYSQL_DATABASE", getenv("MYSQL_DATABASE"));
+define("MYSQL_PORT", getenv("MYSQL_LOCAL_PORT"));
 
 # SMTP SETTINGS
-const MAIL_SMTP = "smtp.dreamhost.com";
-const MAIL_SMTP_NAME = "SIOP";
-const MAIL_SMTP_USER = "suporte@siopservicosinteligencia.com.br";
-const MAIL_SMTP_PASS = "Siop*246";
-const MAIL_SMTP_CRYPTO = "ssl";
-const MAIL_SMTP_PORT = "465";
+define("MAIL_SMTP", getenv("MAIL_SMTP"));
+define("MAIL_SMTP_NAME", getenv("MAIL_SMTP_NAME"));
+define("MAIL_SMTP_USER", getenv("MAIL_SMTP_USER"));
+define("MAIL_SMTP_PASSWORD", getenv("MAIL_SMTP_PASSWORD"));
+define("MAIL_SMTP_CRYPTO", getenv("MAIL_SMTP_CRYPTO"));
+define("MAIL_SMTP_PORT", getenv("MAIL_SMTP_PORT"));
 
 # SESSION
-const SESSION_TIMEOUT=600; //10 minutes
+const SESSION_TIMEOUT = 600; //10 minutes
 
 # DEFAULT VARS
 const USER = "USER";

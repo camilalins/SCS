@@ -28,9 +28,9 @@ class Repositorio {
         $this->mysqli = new mysqli(
             MYSQL_HOST,
             MYSQL_USER,
-            MYSQL_PASS,
+            MYSQL_PASSWORD,
             MYSQL_DATABASE,
-            MYSQL_PORT
+            MYSQL_PORT?:3306
         ) or throw new Exception(sys_messages(MSG_REPO_ERR_A003). DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$this->mysqli->connect_error}" : "");
     }
 

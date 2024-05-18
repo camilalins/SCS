@@ -1,7 +1,6 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.2-fpm-alpine
 
-#ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-#RUN chmod +x /usr/local/bin/install-php-extensions
+RUN apk --update --no-cache --virtual build-dependencies add curl wget nmap
 
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN docker-php-ext-install opcache && docker-php-ext-enable opcache

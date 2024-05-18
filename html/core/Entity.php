@@ -22,8 +22,8 @@ class Entity {
         $metadata = (object)[
             "table" => (object) [
                 "name" => $tableName,
-                "schema" => MYSQL_SCHEMA,
-                "qualifiedName" => MYSQL_SCHEMA ? MYSQL_SCHEMA.".".$tableName : $tableName
+                "schema" => MYSQL_DATABASE,
+                "qualifiedName" => MYSQL_DATABASE.".".$tableName
             ],
             "class" => (object)[
                 "name" => $classInfo->getShortName(),

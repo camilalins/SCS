@@ -23,7 +23,7 @@ function send_mail($to, $subject, $message, $attachs=array()){
         $mail->SMTPAuth = true; //Habilita a autenticação SMTP
         $mail->CharSet = "UTF-8";
         $mail->Username   = MAIL_SMTP_USER;
-        $mail->Password   = MAIL_SMTP_PASS;
+        $mail->Password   = MAIL_SMTP_PASSWORD;
         // Criptografia do envio SSL também é aceito
         $mail->SMTPSecure = MAIL_SMTP_CRYPTO;
         // Informações específicadas pelo Google

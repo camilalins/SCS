@@ -136,7 +136,8 @@ function rotateIcon(iconId) {
     const icon = document.getElementById(iconId);
     icon.classList.toggle('rotated');
 }
-
+// ---------------- back to top button -------------------- //
+// REMOVIDO
 
 // ---------------- particles  -------------------- //
 

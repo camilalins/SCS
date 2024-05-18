@@ -503,7 +503,7 @@ svg {
 
 .navbar ul li a {
   font-weight: 600;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   color: var(--secendaryColor) !important;
 }
 

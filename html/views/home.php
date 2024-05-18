@@ -1,16 +1,15 @@
 <body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
 
-    <!-- primeira section  -->
-    <section class="hero d-flex flex-column mt-5 pt-5" id="hero">
+    <!-- única section  -->
+    <section class="container home py-1">
         <div id="particles-js"><canvas class="particles-js-canvas-el" width="1519" height="227" style="width: 100%; height: 100%;"></canvas></div>
         <div class="container">
             <div class="row">
-                <div class="hero-text col-12 col-lg-5">
-                    <div class="row">
-                        <div class="col-12 ">
-                            <h1 class="title col-12 aos-init aos-animate" data-aos="fade-up" data-aos-delay="150">Olá <span class="unique-text"><?=user()->getNome()?></span>!</h1>
-                        </div>
-                    </div>
+                <div class="nav">
+                    <a class="navbar-brand " href="<?=HOME_PAGE?>">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </a>
+                    <h3 class="text-left display-5">Olá <span class="unique-text"><?=user()->getNome()?></span>!</h3>
                 </div>
                 <div class="row gy-4 gx-4 ">
                     <!-- service number 1 -->
@@ -56,42 +55,8 @@
             </div>
         </div>
     </section>
-    <!-- /primeira section -->
+    <!-- ./única section -->
 
-
-
-    <!--  JQuery file     -->
-    <script src="../public/js/jquery-3.6.1.min.js"></script>
-
-    <!-- bootstrap min js -->
-    <script src="../public/js/bootstrap.min.js"></script>
-
-    <!--  toasts file     -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-    <!--  owl carousel    -->
-    <script src="../public/js/owl.carousel.min.js"></script>
-
-    <!-- aos file    -->
-    <script src="../public/js/aos.js"></script>
-
-    <!-- gsap file    -->
-    <script src="../public/js/gsap.min.js"></script>
-
-    <!--  counter     -->
-    <script src="../public/js/jquery.counterup.min.js"></script>
-    <script src="../public/js/jquery.waypoints.js"></script>
-
-    <!-- particles js file  -->
-    <script src="js/particles.min.js"></script>
-
-    <!-- jquery isotope file -->
-    <script src="js/isotope.min.js"></script>
-
-    <!-- jquery fancybox file -->
-    <script src="js/jquery.fancybox.min.js"></script>
-
-    <!--  main js file  -->
-    <script src="js/main.js"></script>
+    <?php scripts([ "/public/home/js/home.js" ]);?>
 
 </body>

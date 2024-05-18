@@ -5,26 +5,33 @@ services:
     platform: linux/x86_64 # se estiver usando windows, comente essa linha com #
     image: mysql:8
     restart: unless-stopped
+    env_file: .env
     environment:
-      - TZ=America/Sao_Paulo
-      - MYSQL_ROOT_PASSWORD=P@$$$$w0rd
-      - MYSQL_DATABASE=scs
-      - MYSQL_USER=scs
-      - MYSQL_PASSWORD=Siop@2024
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - TZ=$TZ
     ports:
-      - 3336:3306
+      - $MYSQL_PORT:${MYSQL_LOCAL_PORT:-3306}
     expose:
-      - 3336
+      - $MYSQL_PORT
+    networks:
+      scs-network:
+        ipv4_address: 192.168.2.10
     volumes:
       - data:/var/lib/mysql
       - ./scripts:/docker-entrypoint-initdb.d
   nginx:
     container_name: scs-nginx
     image: nginx:latest
+    depends_on:
+      - db
     ports:
       - 8080:80
     networks:
-      - internal
+      scs-network:
+        ipv4_address: 192.168.2.11
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./html/:/var/www/html/
@@ -32,13 +39,28 @@ services:
   php:
     container_name: scs-php
     build: ./php
+    env_file: .env
     networks:
-      - internal
+      scs-network:
+        ipv4_address: 192.168.2.12
+    environment:
+      - MYSQL_HOST=$MYSQL_HOST
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - TZ=$TZ
+      - MAIL_SMTP=$MAIL_SMTP
+      - MAIL_SMTP_NAME=$MAIL_SMTP_NAME
+      - MAIL_SMTP_USER=$MAIL_SMTP_USER
+      - MAIL_SMTP_PASS=$MAIL_SMTP_PASS
+      - MAIL_SMTP_CRYPTO=$MAIL_SMTP_CRYPTO
+      - MAIL_SMTP_PORT=$MAIL_SMTP_PORT
     volumes:
       - ./html/:/var/www/html/
       - ./logs/php.log:/var/log/fpm-php.www.log
 networks:
-  internal:
-    driver: bridge
+  scs-network:
+    external: true
+
 volumes:
   data:
