@@ -7,12 +7,7 @@ use models\Usuario;
  */
 function user(): ?Usuario {
 
-    try {
-        if (!$_SESSION[USER]) throw new Exception();
-
-        return unserialize($_SESSION[USER]);
-    }
-    catch (Exception) { return null; }
+    return $_SESSION[USER] ? unserialize($_SESSION[USER]) : null;
 }
 
 /**

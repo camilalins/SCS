@@ -87,9 +87,9 @@
             method: form.method,
             body: new FormData(form),
         })
-        .then(res => res.json())
-        .then(data => { if(data.error) throw Error(); done('success', data.message) })
-        .catch(() => done('error', 'Ocorreu um erro. Tente novamente mais tarde.'));
+        .then(res => { if(!res.ok) throw Error(); return res; })
+        .then(() => done('success', '<?=sys_messages(MSG_RECOV_INFO_A001)?>'))
+        .catch(() => done('error', '<?=sys_messages(MSG_RECOV_ERR_A002)?>'));
     });
 
     function done(className, message) {

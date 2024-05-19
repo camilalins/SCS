@@ -7,7 +7,8 @@ const MSG_AUTH_ERR_A003 = [ "pt-BR" => "CRSF Token inválido", "en-US" => "CRSF 
 const MSG_VALID_ERR_A001 = [ "pt-BR" => "Preencha os campos obrigatórios", "en-US" => "Please fill the required fields" ];
 const MSG_LOGIN_ERR_A001 = [ "pt-BR" => "Usuário e/ou senha inválidos", "en-US" => "User or password are invalid" ];
 const MSG_RECOV_ERR_A001 = [ "pt-BR" => "E-mail não encontrado", "en-US" => "E-mail not found" ];
-const MSG_RECOV_INFO_A001 = [ "pt-BR" => "E-mail de recuperação enviado com sucesso.", "en-US" => "Recovery passsword sent" ];
+const MSG_RECOV_INFO_A001 = [ "pt-BR" => "E-mail de recuperação enviado com sucesso.", "en-US" => "Recovery passsword sent." ];
+const MSG_RECOV_ERR_A002 = [ "pt-BR" => "Ocorreu um erro. Tente novamente mais tarde.", "en-US" => "There's an error. Please try again." ];
 const MSG_REPO_ERR_A001 = [ "pt-BR" => "Por favor informe qual Model o repositório pertence", "en-US" => "" ];
 const MSG_REPO_ERR_B001 = [ "pt-BR" => "É necessário usar uma classe marcada com @Entity na instanciação do Repositório", "en-US" => "" ];
 const MSG_REPO_ERR_A002 = [ "pt-BR" => "O Model do repositório precisa ser derivada de core\Model", "en-US" => "" ];

@@ -5,6 +5,7 @@ use core\Entity;
 use core\Model;
 use Error;
 use Exception;
+use models\Usuario;
 use ReflectionClass;
 use mysqli;
 
@@ -147,11 +148,12 @@ class Repositorio {
 
         $dtotype = gettype($dto);
         if($dtotype != "object" && $dtotype != "array") throw new Exception(sys_messages(MSG_REPO_ERR_A004));
+        if($dtotype == "object") $dto = json_decode(json_encode($dto), true);
 
         if($dto["id"])  unset($dto["id"]);
 
-        $campos = $dtotype == "object" ? array_keys(get_object_vars($dto)) : array_keys($dto);
-        $valores = $dtotype == "object" ? array_values(get_object_vars($dto)) : array_values($dto);
+        $campos = array_keys($dto);
+        $valores = array_values($dto);
 
         $joinCampos = implode(", ", $campos);
         $joinParams = implode(", ", array_map(function () { return "?"; }, $valores));
@@ -185,14 +187,15 @@ class Repositorio {
 
         $dtotype = gettype($dto);
         if($dtotype != "object" && $dtotype != "array") throw new Exception(sys_messages(MSG_REPO_ERR_A004));
+        if($dtotype == "object") $dto = json_decode(json_encode($dto), true);
 
         if(!$dto["id"]) throw new Exception(sys_messages(MSG_REPO_ERR_A009));
 
         $id = $dto["id"];
         unset($dto["id"]);
 
-        $campos = $dtotype == "object" ? array_keys(get_object_vars($dto)) : array_keys($dto);
-        $valores = $dtotype == "object" ? array_values(get_object_vars($dto)) : array_values($dto);
+        $campos = array_keys($dto);
+        $valores = array_values($dto);
 
         $valoresEId = array_merge($valores,[$id]);
         $joinSets = implode(", ", array_map(function ($k, $v){ return "$k = ?"; }, $campos, $valores));
@@ -224,6 +227,7 @@ class Repositorio {
 
         $dtotype = gettype($dto);
         if($dtotype != "object" && $dtotype != "array" && $dtotype != "integer") throw new Exception(sys_messages(MSG_REPO_ERR_A005));
+        if($dtotype == "object") $dto = json_decode(json_encode($dto), true);
 
         if($dtotype != "integer" && !$dto["id"]) throw new Exception(sys_messages(MSG_REPO_ERR_A006));
 
@@ -259,12 +263,13 @@ class Repositorio {
 
         $dtotype = gettype($dto);
         if($dtotype != "object" && $dtotype != "array") throw new Exception(sys_messages(MSG_REPO_ERR_A004));
+        if($dtotype == "object") $dto = json_decode(json_encode($dto), true);
 
         $entidades = $this->obterPor($dto);
         if(!$entidades) throw new Exception(sys_messages(MSG_REPO_ERR_A008));
 
-        $campos = $dtotype == "object" ? array_keys(get_object_vars($dto)) : array_keys($dto);
-        $valores = $dtotype == "object" ? array_values(get_object_vars($dto)) : array_values($dto);
+        $campos = array_keys($dto);
+        $valores = array_values($dto);
 
         $where = array_map(function ($k, $v) {
             if(str_starts_with(strtoupper($v), "LIKE")) {

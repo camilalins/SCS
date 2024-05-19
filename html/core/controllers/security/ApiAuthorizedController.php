@@ -2,9 +2,9 @@
 
 namespace core\controllers\security;
 
-use core\controllers\BaseController;
+use core\controllers\ApiBaseController;
 
-class ApiAuthorizedController extends BaseController {
+class ApiAuthorizedController extends ApiBaseController {
 
     public function __construct() {
         if (!user()) response("Unauthorized", 401);
