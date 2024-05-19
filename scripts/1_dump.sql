@@ -97,7 +97,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Camila Lins','gmlins06@gmail.com','131.813.337-86','administrador','$2y$10$7kTKPc3KH.lfWECAH.uoyuCV/apjHYX/lL0In5RIhBzqPAV2NO.ne'),(2,'Max Martini','maxmmartini@gmail.com','116.774.470-77','administrador','$2y$10$2MNUb7rJ4Lm8C26vx8KIk.3sKns/Mf8JKgzKZwovDIJdxysMEDqC6');
+INSERT INTO `usuario` VALUES (1,'Camila Lins','gmlins06@gmail.com','131.813.337-86','administrador','$2y$10$7kTKPc3KH.lfWECAH.uoyuCV/apjHYX/lL0In5RIhBzqPAV2NO.ne'),(2,'Max Martini','maxmmartini@gmail.com','116.774.470-77','administrador','$2y$10$yKkUR1eL.Btj.dWLkq2tLePUVpzkP4fpiTAGUBlkQcUoBqcIakPh.');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-18 14:24:23
+-- Dump completed on 2024-05-18 21:09:59
