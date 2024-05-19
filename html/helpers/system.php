@@ -1,6 +1,7 @@
 <?php
 
 # SYSTEM MESSAGES
+const MSG_GERAL_ERR_A001 = [ "pt-BR" => "Falha ao executar", "en-US" => "Failed to run" ];
 const MSG_AUTH_ERR_A001 = [ "pt-BR" => "Nenhum usuario para autenticar", "en-US" => "No user to authenticate" ];
 const MSG_AUTH_ERR_A002 = [ "pt-BR" => "CRSF Token não encontrado", "en-US" => "CRSF Token not found" ];
 const MSG_AUTH_ERR_A003 = [ "pt-BR" => "CRSF Token inválido", "en-US" => "CRSF Token is invalid" ];
@@ -22,5 +23,7 @@ const MSG_REPO_ERR_A008 = [ "pt-BR" => "Nenhuma entidade encontrada para ser rem
 const MSG_REPO_ERR_A009 = [ "pt-BR" => "Para atualizar é necessário informar o atributo Id", "en-US" => "" ];
 const MSG_REPO_ERR_A010 = [ "pt-BR" => "Cláusula não pode ser vazia", "en-US" => "" ];
 
-function sys_messages($name, $locale=null): string { return $name[$locale?:(LOCALE?:LOCALE_PT_BR)]; }
+function sys_messages($name, $details=null, $locale=null): string {
+    return $name[$locale?:(LOCALE?:LOCALE_PT_BR)].(DEBUG_QUERY == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH?": ".$details:"");
+}
 

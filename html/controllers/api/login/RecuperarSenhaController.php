@@ -17,7 +17,7 @@ class RecuperarSenhaController extends ApiBaseController {
 
         try {
             // OBTER DADOS
-            $email = body("email"); die($email);
+            $email = body("email");
 
             // VALIDAÇÃO
             if (!$email)
@@ -27,15 +27,26 @@ class RecuperarSenhaController extends ApiBaseController {
             $usuario = $repo->obterPorEmail($email);
             if (!$usuario)
                 throw new \Exception(sys_messages(MSG_RECOV_ERR_A001));
+            /*
+            // ATUALIZANDO SENHA
+            $novaSenha = hash('adler32', uniqid(rand(), true));
+            $usuario->setSenha(password_hash($novaSenha, PASSWORD_BCRYPT));
+            $repo->atualizar($usuario);
 
-            //TODO: ENVIAR E-MAIL DE RECUPREÇÃO DE SENHA
-            if(!send_mail($email, "Recuperação de senha", "<p>Clique <a href='#'>aqui</a> para recuperação sua senha.</p>"))
+            if(!send_mail($email, "Recuperação de senha",
+                "<p>
+                    Olá {$usuario->getNome()},
+                    <br><br>
+                    Sua nova senha é: <big>$novaSenha</big>.
+                    <br><br>
+                    Acesse o sistema <a href='".BASE_URL."login'>AQUI</a> para efetuar seu login.
+                </p>"))
                 throw new \Exception(send_mail_error());
-
-            view("login/recuperar-senha.php", [ "mensagem" => sys_messages(MSG_RECOV_INFO_A001) ]);
+            */
+            response([ "mensagem" => sys_messages(MSG_RECOV_INFO_A001) ]);
         }
         catch (\Exception $e) {
-            view("login/recuperar-senha.php", [ "erro" => $e->getMessage() ]);
+            response([ "erro" => sys_messages(MSG_RECOV_ERR_A002, $e->getMessage()) ], 400);
         }
     }
 

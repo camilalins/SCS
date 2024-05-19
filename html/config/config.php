@@ -19,7 +19,8 @@ define("MAIL_SMTP_PORT", getenv("MAIL_SMTP_PORT"));
 define("SESSION_TIMEOUT", getenv("SESSION_TIMEOUT")); //in minutes
 define("SESSION_SECRET", getenv("SESSION_SECRET"));
 
-# BASE URL
+# DOMAIN & BASE URL
+const DOMAIN = "localhost";
 const BASE_URL = "http://localhost:8080/";
 
 # DEFAULT SESSION USER & TOKEN

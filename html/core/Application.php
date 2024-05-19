@@ -50,7 +50,7 @@ class Application {
                 [
                     "expires" => time() + (SESSION_TIMEOUT?:60*30), // lifetime
                     "path" => $cookie["path"],//path
-                    "domain" => $cookie["domain"],//domain
+                    "domain" => DOMAIN,//domain
                     "secure" => true, //secure
                     "httponly" => true,  //httpOnly
                     "samesite" => "lax"
@@ -156,7 +156,9 @@ class Application {
             $ctrl->$action();
         }
         catch (\Error $e) {
-            print("Erro na rota". (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$e->getMessage()}. arquivo: <b>{$e->getFile()} {$e->getLine()}</b>" : ""));
+            http_response_code(400);
+            echo sys_messages(MSG_GERAL_ERR_A001, $e->getMessage(). ". arquivo: <b>{$e->getFile()} {$e->getLine()}</b>");
+            die();
         }
     }
 

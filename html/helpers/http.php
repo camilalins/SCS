@@ -16,7 +16,7 @@ function cookie($name, $value=null){
             [
                 "expires" => time() + (SESSION_TIMEOUT?:60*30), // lifetime
                 "path" => $cookie["path"],//path
-                "domain" => $cookie["domain"],//domain
+                "domain" => DOMAIN,//domain
                 "secure" => true, //secure
                 "httponly" => true,  //httpOnly
                 "samesite" => "lax"
@@ -43,9 +43,10 @@ function response(mixed $json, int $statusCode=200){
     exit();
 }
 
-function view($path, $data=null){
+function view($path, $data=null): void {
+
     extract($data ?: []);
-    cookie(TOKEN, password_hash(SESSION_SECRET, PASSWORD_BCRYPT));
+
     if(MAIN_PAGE && !in_array($path, MAIN_PAGE_EXCLUDES)) {
         $page = $GLOBALS["page"] = "views/$path";
         include "views/".MAIN_PAGE.".php";
@@ -56,7 +57,8 @@ function view($path, $data=null){
 function body($name=null){
 
     //TODO: SANITIZAR ENTRADAS
-    return $name ? $_POST[$name] : (!empty($_POST)?(object)$_POST:json_decode(file_get_contents('php://input'), false));
+    $post = !empty($_POST)?(object)$_POST:json_decode(file_get_contents('php://input'), false);
+    return $name ? $post->$name : $post;
 }
 
 function post($name=null){
@@ -101,4 +103,8 @@ function page(){
     else return $GLOBALS["page"];
 }
 
-
+function crsf(): void {
+    $name = TOKEN;
+    $value = password_hash(SESSION_SECRET, PASSWORD_BCRYPT);
+    echo "<input type=\"hidden\" name=\"$name\" value=\"$value\">";
+}

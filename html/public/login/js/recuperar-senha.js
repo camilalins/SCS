@@ -1,41 +1,34 @@
-document.getElementById('recover-form').addEventListener('submit', function(event) {
+const btnEntrar = document.getElementById('btn-entrar');
+const loadingSpinner = document.getElementById('loading-spinner');
+const messageDiv = document.querySelector('.error, .success');
+
+self.addEventListener("submit", (event) => {
+
     event.preventDefault();
+    const form = event.target;
 
-    var btnEntrar = document.getElementById('btn-entrar');
-    var loadingSpinner = document.getElementById('loading-spinner');
-    var form = document.getElementById('recover-form');
-    var formData = new FormData(form);
-
-    btnEntrar.disabled = true;
-    loadingSpinner.style.display = 'inline-block';
+    loader(true);
 
     fetch(form.action, {
         method: form.method,
-        body: formData,
+        body: new FormData(form),
     })
-        .then(response => response.json())
-        .then(data => {
-            btnEntrar.disabled = false;
-            loadingSpinner.style.display = 'none';
-
-            // Atualize a mensagem de erro ou sucesso
-            var messageDiv = document.querySelector('.error, .success');
-            if (data.error) {
-                messageDiv.className = 'error';
-                messageDiv.textContent = data.error;
-            } else {
-                messageDiv.className = 'success';
-                messageDiv.textContent = data.message;
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            btnEntrar.disabled = false;
-            loadingSpinner.style.display = 'none';
-
-            // Mostre uma mensagem de erro genérica
-            var messageDiv = document.querySelector('.error, .success');
-            messageDiv.className = 'error';
-            messageDiv.textContent = 'Ocorreu um erro. Tente novamente mais tarde.';
-        });
+        .then(res => { if(!res.ok) throw Error(); return res; })
+        .then(() => done('success', '<?=sys_messages(MSG_RECOV_INFO_A001)?>'))
+        .catch(() => done('error', '<?=sys_messages(MSG_RECOV_ERR_A002)?>'));
 });
+
+function done(className, message) {
+
+    if(className=="error") console.error(message);
+
+    loader(false);
+
+    messageDiv.className = className;
+    messageDiv.textContent = message;
+}
+function loader(start){
+
+    btnEntrar.disabled = start;
+    loadingSpinner.style.display = start ? 'inline-block' : 'none';
+}

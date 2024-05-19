@@ -20,11 +20,10 @@ class Repositorio {
      */
     public function __construct(string $class=null) {
 
-        if(!$class) throw new Error(sys_messages(MSG_REPO_ERR_A001). (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": ".sys_messages(MSG_REPO_ERR_B001) : ""));
+        if(!$class) throw new Error(sys_messages(MSG_REPO_ERR_A001, MSG_REPO_ERR_B001));
 
         $this->meta = Entity::metadata($class);
-        if($this->meta->class->parent->name != "core\Model") throw new \Error(sys_messages(MSG_REPO_ERR_A002). (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": ". sys_messages(MSG_REPO_ERR_B002) : ""));
-        //if(!in_array("core\Model", $this->meta->class->interfaces)) throw new \Error(sys_messages(MSG_REPO_ERR_A002). (DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": ". sys_messages(MSG_REPO_ERR_B002) : ""));
+        if($this->meta->class->parent->name != "core\Model") throw new \Error(sys_messages(MSG_REPO_ERR_A002, MSG_REPO_ERR_B002));
 
         $this->mysqli = new mysqli(
             MYSQL_HOST,
@@ -32,7 +31,7 @@ class Repositorio {
             MYSQL_PASSWORD,
             MYSQL_DATABASE,
             MYSQL_PORT?:3306
-        ) or throw new Exception(sys_messages(MSG_REPO_ERR_A003). DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH ? ": {$this->mysqli->connect_error}" : "");
+        ) or throw new Exception(sys_messages(MSG_REPO_ERR_A003, $this->mysqli->connect_error));
     }
 
     /**

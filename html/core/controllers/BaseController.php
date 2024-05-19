@@ -10,7 +10,7 @@ class BaseController {
         if(!validateCsrfToken()) redirect(LOGIN_PAGE);
 
         #OWASP SECURITY - CONTENT-SECURITY-POLICY
-        //header("Content-Security-Policy: default-src 'self' http://localhost:8080/");
+        //header("Content-Security-Policy: default-src 'self' ".BASE_URL);
 
         if($title) title(MAIN_PAGE_TITLE." - $title");
     }
