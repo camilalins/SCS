@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="techida | IT Solutions &amp; Business Services HTML landing page template ">
+    <meta name="description" content="SCS | Sistema de Controle de Solicitações ">
     <!-- fav icon -->
     <link rel="icon" href="/public/img/icon.ico">
 
@@ -33,6 +33,8 @@
 
     <!-- main css file -->
     <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/global.css">
+
     <title> <?php echo title()?> </title>
 </head>
 <body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
@@ -41,7 +43,7 @@
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
-                <a class="navbar-brand " href="<?=HOME_PAGE?>"><img src="/public/img/logo-gray.png" class="logo" alt="LOGO"></a>
+                <a class="navbar-brand " href="<?=HOME_PAGE?>"><img src="/public/img/logo-gray.png" class="logo" alt="Sistema de Controle de Solicitações "></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="bi bi-list" id="menu"></i>
                 </button>
@@ -112,6 +114,9 @@
 
     <!--  main js file -->
     <script src="/public/js/main.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/eaf468bfde.js" crossorigin="anonymous"></script>
 
     <?php scripts();?>
 </body>

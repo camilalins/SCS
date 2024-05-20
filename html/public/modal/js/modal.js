@@ -1,6 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function() {
     // Função para abrir o modal ao clicar no botão de cadastro
-    $('.open-modal').click(function(){
+    $('.open-modal').click(function() {
         var targetModalId = $(this).data('target'); // Obtenha o ID do modal alvo
         $('#' + targetModalId).modal('show'); // Mostre o modal
     });
@@ -12,15 +12,5 @@ $(document).ready(function(){
         }
     });
 
-    // Aqui você pode adicionar o código JavaScript para lidar com o envio do formulário de cadastro de cliente
-    $('.modal form').submit(function(e){
-        e.preventDefault();
-        // Adicione aqui a lógica para enviar os dados do formulário para o servidor
-        // Você pode usar AJAX para isso
-    });
 
-    // Adicione o botão para alternar entre os formulários
-    $('#alternarForm').click(function(){
-        $('.modal-body .form-group').toggle(); // Alternar visibilidade dos formulários
-    });
 });

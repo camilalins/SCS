@@ -7,38 +7,36 @@
     <div class="heading">
         <div class="container-fluid">
             <div class="row">
-                <div class="nav">
-                    <a class="navbar-brand " href="<?=HOME_PAGE?>">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <div class="nav d-flex align-items-sm-center">
+                    <a class="navbar-brand" href="<?=HOME_PAGE?>">
+                        <i class="fa fa-angle-left fs-3" aria-hidden="true"></i>
                     </a>
-                    <h3 class="text-left display-5">Clientes</h3>
+                    <h3 class="text-left display-5 p-5">Clientes</h3>
                 </div>
                 <br>
                 <br>
                 <div class="card">
-                    <br>
+
                     <form action="/clientes" method="post" data-select2-id="10">
-
-
-                        <div class="row">
-                            <div class="col-12 col-md-4">
+                        <div class="row p-3">
+                            <div class="col-12 col-md-5 p-2">
                                 <div class="form-group">
                                     <input type="text" class="form-control ds-input" name="nome" id="nome" value="<?=$nome?>" placeholder="Nome" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-3 p-2">
                                 <div class="form-group">
                                     <input type="text" class="form-control ds-input" name="cnpj" id="cnpj" value="<?=$cnpj?>" placeholder="CNPJ" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-3 p-2">
                                 <div class="form-group">
                                     <input type="email" class="form-control ds-input" name="email" id="email" value="<?=$email?>" placeholder="Email" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-1 p-2">
                                 <div>
-                                    <button class="btn my-2 my-sm-0"><i class="fa fa-search"></i></button>
+                                    <button class="btn my-2 my-sm-0"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -58,23 +56,23 @@
                     <div class="card-header">
                         <div class="card-tools">
                             <!-- Menu -->
-                            <div class="" style="display: flex; justify-content: flex-end;">
+                            <div class="d-flex justify-content-end">
                                 <div class="" id="">
-                                    <ul class="navbar-nav ml-auto" style="display: flex;flex-direction: row; font-size: 20px;">
+                                    <ul class="navbar-nav ml-auto d-flex flex-row align-items-sm-center" style="font-size: 20px;">
                                         <li class="nav-item" style="padding: 0px;color: #06326d;">
                                             <a class="nav-link" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
                                         </li>
                                         <li class="nav-item" style="padding: 0px 0px 0px 1px;color: #06326d;">
-                                            <button type="button" class="open-modal" data-target="cadastroClienteModal" style="padding-left: 10px;padding-top: 9px;border:none; background: none;color:#06326d;">
+
+                                            <button type="button" class="open-modal" data-target="cadastroClienteModal" style="padding-left: 10px;border:none; background: none;color:#06326d;">
                                                 <i class="fa fa-plus-square" aria-hidden="true" style="padding-right: 3px;"></i>Cadastrar
                                             </button>
+
 
                                         </li>
 
                                     </ul>
-                                    <form class="form-inline" style="display: none;">
-                                        <button class="btn my-2 my-sm-0" type="button" id="cadastrarButtone">Cadastrar</button>
-                                    </form>
+
                                 </div>
                             </div><!-- /Menu -->
                         </div>
@@ -120,58 +118,53 @@
     </div>
 </section>
 <!-- /Tabela  -->
-<!--Modal -->
-<section class="container modal py-1">
-    <div class="modal fade" id="cadastroClienteModal" tabindex="-1" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cadastroClienteModalLabel">Cadastro de Cliente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Formulário de Cadastro de Cliente -->
-                    <form id="cadastroClienteForm">
-
-                        <div class="row" style="align-items: center;}">
-                            <div class="col-12 col-md-7">
-                                <div class="form-group">
-                                    <input type="search" class="form-control ds-input" id="" placeholder="Nome" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-5">
-                                <div class="form-group">
-                                    <input type="search" class="form-control ds-input" id="" placeholder="CNPJ" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
-                                </div>
-                            </div>
+<!-- Modal de Cadastro de Cliente -->
+<section class="modal py-1" id="cadastroClienteModal" tabindex="-1" role="dialog" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cadastroClienteModalLabel">Cadastro de Cliente</h5>
+                <button type="button" class="close p-3 bg-transparent border-0"" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="cadastroClienteForm">
+                    <div class="row">
+                        <div class="col-12 col-md-6 p-2">
+                            <label for="nomeCliente">Nome</label>
+                            <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" required>
                         </div>
-                        <div class="row" style="align-items: center;}">
-                            <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <input class="form-control ds-input"  placeholder="Responsável"  autocomplete="on" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <input class="form-control ds-input"  placeholder="Telefone"  autocomplete="on" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <input class="form-control ds-input"  placeholder="Email"  autocomplete="on" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
-                                </div>
-                            </div>
+                        <div class="col-12 col-md-6 p-2">
+                            <label for="cnpjCliente">CNPJ</label>
+                            <input type="text" class="form-control" id="cnpjCliente" name="cnpjCliente" required>
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 p-2">
+                            <label for="responsavelCliente">Responsável</label>
+                            <input type="text" class="form-control" id="responsavelCliente" name="responsavelCliente" required>
+                        </div>
+                        <div class="col-12 col-md-3 p-2">
+                            <label for="emailCliente">Email</label>
+                            <input type="email" class="form-control" id="emailCliente" name="emailCliente" required>
+                        </div>
+                        <div class="col-12 col-md-3 p-2">
+                            <label for="telefoneCliente">Telefone</label>
+                            <input type="text" class="form-control" id="telefoneCliente" name="telefoneCliente" required>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 p-2 d-flex justify-content-end w-100">
+                        <button type="submit" class="btn my-2 my-sm-0">Salvar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
-<!-- /Modal -->
-<?php scripts([["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "uri" => "/api/clientes" ]]);?>
-</section>
+<!-- /Modal de Cadastro de Cliente -->
+<?php scripts([
+        ["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "uri" => "/api/clientes" ],
+        ["src" => "/public/modal/js/modal.js" ]
+
+]);?>
