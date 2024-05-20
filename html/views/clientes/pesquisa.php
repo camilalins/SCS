@@ -18,6 +18,7 @@
                 <div class="card">
 
                     <form action="/clientes" method="post" data-select2-id="10">
+                        <?=crsf()?>
                         <div class="row p-3">
                             <div class="col-12 col-md-5 p-2">
                                 <div class="form-group">

@@ -25,7 +25,7 @@ function validateCsrfToken(): bool {
     try {
         if ($_SERVER["REQUEST_METHOD"] == "GET") return true;
 
-        $token = post(TOKEN);
+        $token = body(TOKEN).getallheaders()[ucfirst(TOKEN)];
 
         if(!$token) throw new Exception(sys_messages(MSG_AUTH_ERR_A002));
 

@@ -24,8 +24,8 @@ const DOMAIN = "localhost";
 const BASE_URL = "http://localhost:8080/";
 
 # DEFAULT SESSION USER & TOKEN
-const USER = "__ApplicationUser";
-const TOKEN = "__RequestVerificationToken";
+const USER = "user";
+const TOKEN = "anticrsf";
 
 # DEFAULT PAGES
 const LOGIN_PAGE = "/login";
