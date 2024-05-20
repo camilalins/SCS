@@ -1,3 +1,7 @@
+/* -- logo -- */
+img.logo {
+    width: 193px !important;
+}
 /* -- loading recuperar-senha -- */
 .loading-spinner {
     display: none;
