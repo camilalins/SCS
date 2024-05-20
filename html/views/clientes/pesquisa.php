@@ -3,7 +3,6 @@
 <?php /** @var TYPE_NAME $cnpj */?>
 <?php /** @var TYPE_NAME $email */?>
 <!-- Busca -->
-
 <section class="container search py-1">
     <div class="heading">
         <div class="container-fluid">

@@ -1,68 +1,57 @@
 <?php /** @var TYPE_NAME $solicitacoes */?>
 
 <!-- Busca -->
-<section class="container why-choose-us py-1">
+<section class="container search py-1">
     <div class="heading">
         <div class="container-fluid">
             <div class="row">
-                <div class="nav">
-                    <a class="navbar-brand " href="<?=HOME_PAGE?>">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <div class="nav d-flex align-items-sm-center">
+                    <a class="navbar-brand" href="<?=HOME_PAGE?>">
+                        <i class="fa fa-angle-left fs-3" aria-hidden="true"></i>
                     </a>
-                    <h3 class="text-left display-5">Solicitações</h3>
+                    <h3 class="text-left display-5 p-5">Solicitações</h3>
                 </div>
                 <br>
                 <br>
                 <div class="card">
-                    <br>
-                    <form action="#" data-select2-id="10">
-
-                        <div class="row">
-                            <div class="col-12 col-md-6">
+                    <form action="/clientes" method="post" data-select2-id="10">
+                        <div class="row p-1">
+                            <div class="col-12 col-md-6 p-2">
                                 <div class="form-group">
-                                    <label for="nomeCliente">Cliente</label>
-                                    <input type="text" class="form-control ds-input" id="cliente" placeholder="Nome" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    <input type="text" class="form-control ds-input" id="cliente" placeholder="Local Origem" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-6 p-2">
                                 <div class="form-group">
-                                    <label for="data-inicio">Data Solicitação</label>
-                                    <input type="date" class="form-control" id="data-inicio" name="data-inicio">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <div class="form-group">
-                                    <label for="status">Status:</label>
-                                    <div class="input-group">
-                                        <select class="custom-select" id="status" name="status">
-                                            <option value="Escolha">Escolha</option>
-                                            <option value="fechado">Fechado</option>
-                                            <option value="aguardando">Aguardando</option>
-                                            <option value="cancelado">Cancelado</option>
-                                        </select>
-                                    </div>
+                                    <input type="text" class="form-control ds-input" id="cliente" placeholder="Local Destino" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-12 col-md-5">
+                        <div class="row p-1">
+                            <div class="col-12 col-md-5 p-2">
                                 <div class="form-group">
-                                    <label for="">Origem</label>
-                                    <input type="search" class="form-control ds-input" id="" placeholder="Local Origem" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    <input type="text" class="form-control ds-input" id="cliente" placeholder="Cliente" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-5">
+                            <div class="col-12 col-md-3 p-2">
                                 <div class="form-group">
-                                    <label for="">Destino</label>
-                                    <input type="search" class="form-control ds-input" id="" placeholder="Local Destino" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    <input type="date" class="form-control" id="data-inicio" placeholder="Data Solicitação" name="data-inicio">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-2">
-                                <form class="form-inline my-2 my-lg-0" action="" method="post">
-                                    <br>
-                                    <button class="btn my-2 my-sm-0" type="button" id=""><i class="fa fa-search"></i></button>
-                                </form>
+                            <div class="col-12 col-md-3 p-2">
+                                <div class="form-group">
+                                    <select class="form-control ds-input custom-select" id="status" name="status">
+                                        <option value="Escolha">Escolha</option>
+                                        <option value="fechado">Fechado</option>
+                                        <option value="aguardando">Aguardando</option>
+                                        <option value="cancelado">Cancelado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-1 p-2">
+                                <div>
+                                    <button class="btn my-2 my-sm-0"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -72,6 +61,8 @@
     </div>
 </section>
 <!-- /Busca  -->
+
+
 <!-- Tabela -->
 <section class="container why-choose-us py-1">
     <div class="heading">
@@ -81,21 +72,23 @@
                     <div class="card-header">
                         <div class="card-tools">
                             <!-- Menu -->
-                            <div class="" style="display: flex; justify-content: flex-end;">
+                            <div class="d-flex justify-content-end">
                                 <div class="" id="">
-                                    <ul class="navbar-nav ml-auto" style="display: flex;flex-direction: row; font-size: 20px;">
+                                    <ul class="navbar-nav ml-auto d-flex flex-row align-items-sm-center" style="font-size: 20px;">
                                         <li class="nav-item" style="padding: 0px;color: #06326d;">
                                             <a class="nav-link" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
                                         </li>
                                         <li class="nav-item" style="padding: 0px 0px 0px 1px;color: #06326d;">
-                                            <button type="button" class="open-modal" data-target="cadastroSolicitacaoModal" style="padding-left: 10px;padding-top: 9px;border:none; background: none;color:#06326d;">
+
+                                            <button type="button" class="open-modal" data-target="cadastroClienteModal" style="padding-left: 10px;border:none; background: none;color:#06326d;">
                                                 <i class="fa fa-plus-square" aria-hidden="true" style="padding-right: 3px;"></i>Cadastrar
                                             </button>
+
+
                                         </li>
+
                                     </ul>
-                                    <form class="form-inline" style="display: none;">
-                                        <button class="btn my-2 my-sm-0" type="button" id="cadastrarButtone">Cadastrar</button>
-                                    </form>
+
                                 </div>
                             </div><!-- /Menu -->
                         </div>
@@ -105,14 +98,14 @@
                             <thead>
                             <tr>
 
-                                <th class="w-25 p-3" scope="col">ID</th>
-                                <th class="w-25 p-3" scope="col">Cliente</th>
-                                <th class="w-25 p-3" scope="col">Data de Início</th>
-                                <th class="w-25 p-3" scope="col">Tipo Operação</th>
-                                <th class="w-25 p-3" scope="col">Origem</th>
-                                <th class="w-25 p-3" scope="col">Destino</th>
-                                <th class="w-25 p-3" scope="col">Status</th>
-                                <th class="w-100 p-3" scope="col">Ação</th>
+                                <th class="w-10 p-3" scope="col">ID</th>
+                                <th class="w-20 p-3" scope="col">Cliente</th>
+                                <th class="w-20 p-3" scope="col">Data de Início</th>
+                                <th class="w-20 p-3" scope="col">Tipo Operação</th>
+                                <th class="w-20 p-3" scope="col">Origem</th>
+                                <th class="w-20 p-3" scope="col">Destino</th>
+                                <th class="w-20 p-3" scope="col">Status</th>
+                                <th class="w-20 p-3" scope="col">Ação</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -191,44 +184,30 @@
 </section>
 <!-- /Tabela  -->
 
-<!-- Modal -->
-<section class="container why-choose-us py-1">
-    <div class="modal fade" id="cadastroSolicitacaoModal" tabindex="-1" aria-labelledby="cadastroSolicitacaoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cadastroSolicitacaoModalLabel">Cadastro Solicitação</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12 col-md-12">
-                        <div class="form-group">
-                            <label for="status">Selecione o Cliente:</label>
-                            <div class="input-group">
-                                <select class="custom-select" id="escolhaCliente" name="escolhaCliente">
-                                    <option value="fechado">Mondelez</option>
-                                    <option value="aguardando">Troca</option>
-                                </select>
-                                <div class="input-group-append">
-                                    <div class="input-group-text"><i class="fas fa-caret-down"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <!-- Adicione o botão para alternar entre os formulários -->
-                    <button type="button" id="alternarForm" class="btn btn-primary">Alternar Formulário</button>
+<!-- Modal de Cadastro de Cliente -->
+<section class="modal py-1" id="cadastroClienteModal" tabindex="-1" role="dialog" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cadastroClienteModalLabel">Cadastro de Solicitação</h5>
+                <button type="button" class="close p-3 bg-transparent border-0"" data-dismiss="modal" aria-label="Close">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="status">Selecione o Cliente:</label>
+                <div class="input-group">
+                    <select class="form-control ds-input custom-select" id="escolhaCliente" name="escolhaCliente">
+                        <option value="fechado">Mondelez</option>
+                        <option value="aguardando">Troca</option>
+                    </select>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- /Modal -->
+<!-- /Modal de Cadastro de Cliente -->
+
 
 <?php scripts(["/public/modal/js/modal.js"]);?>
 
