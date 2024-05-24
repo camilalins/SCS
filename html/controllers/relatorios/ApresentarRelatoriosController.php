@@ -5,7 +5,7 @@ namespace controllers\relatorios;
 use core\controllers\security\AuthorizedController;
 
 /**
- * @Route("login")
+ * @Route("relatorio")
  */
 class ApresentarRelatoriosController extends AuthorizedController {
 

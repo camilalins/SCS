@@ -1,26 +1,43 @@
+
+const formRecup = document.getElementById("form-recup");
+const scriptRecup = document.getElementById("script-recup");
+const { uri, err001 } = b64JsonDecode( scriptRecup.getAttribute("encdata"));
+
 const btnEntrar = document.getElementById('btn-entrar');
 const loadingSpinner = document.getElementById('loading-spinner');
 const messageDiv = document.querySelector('.error, .success');
 
-self.addEventListener("submit", (event) => {
+formRecup.addEventListener("submit",  async (e) => {
 
-    event.preventDefault();
-    const form = event.target;
+    e.preventDefault();
+    try {
+        const form = e.target;
+        const formData = new FormData(form)
+        const { email } = Object.fromEntries(formData);
 
-    loader(true);
+        if(!email) throw Error(err001)
 
-    fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-    })
-        .then(res => { if(!res.ok) throw Error(); return res; })
-        .then(() => done('success', '<?=sys_messages(MSG_RECOV_INFO_A001)?>'))
-        .catch(() => done('error', '<?=sys_messages(MSG_RECOV_ERR_A002)?>'));
+        loader(true);
+
+        const res = await fetch(uri, {
+            method: form.method,
+            body: formData,
+        })
+
+        if(!res.ok) {
+            const { message } = await res.json();
+            throw Error(message);
+        }
+
+        const { message } = await res.json();
+        done('success', message)
+    }
+    catch (e) {
+        done('error', e.message)
+    }
 });
 
 function done(className, message) {
-
-    if(className=="error") console.error(message);
 
     loader(false);
 

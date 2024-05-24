@@ -1,6 +1,6 @@
 <?php
 
-namespace models\cliente;
+namespace models\enums\cliente;
 
 enum Status: string {
     case Ativo = "ativo";

@@ -2,7 +2,9 @@
 
 namespace core;
 
+use models\enums\cliente\Status;
 use ReflectionClass;
+use ReflectionEnum;
 use ReflectionProperty;
 use ReflectionException;
 use JsonSerializable;
@@ -20,7 +22,20 @@ abstract class Model implements JsonSerializable {
         $publicProps = $classInfo->getProperties();
         foreach ($publicProps as $prop) {
             $propName = $prop->name;
-            $prop->setValue($instance, $objJson->$propName?:null);
+            $class = $prop->getType()->getName();
+            if(!$prop->getType()->isBuiltin() && (new ReflectionClass($class))->isEnum()){
+                $caseName = null;
+                $enum = new ReflectionEnum($class);
+                foreach ( $enum->getCases() as $case )
+                    if ($objJson->$propName == $case->getValue()->value)
+                        $caseName = $case->getName();
+
+                if($caseName) {
+                    $value = constant("$class::$caseName");
+                    $prop->setValue($instance, $value);
+                }
+            }
+            else $prop->setValue($instance, $objJson->$propName?:null);
         }
         return $instance;
     }

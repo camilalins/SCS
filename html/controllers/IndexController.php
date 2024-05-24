@@ -8,6 +8,9 @@ use core\controllers\BaseController;
  */
 class IndexController extends BaseController {
 
+    /**
+     * @Get()
+     */
     public function get(){
 
         redirect(LOGIN_PAGE);

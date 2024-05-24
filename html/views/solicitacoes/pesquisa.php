@@ -9,7 +9,7 @@
                     <a class="navbar-brand" href="<?=HOME_PAGE?>">
                         <i class="fa fa-angle-left fs-3" aria-hidden="true"></i>
                     </a>
-                    <h3 class="text-left display-5 p-5">Solicitações</h3>
+                    <h3 class="text-left display-5 ms-3">Solicitações</h3>
                 </div>
                 <br>
                 <br>

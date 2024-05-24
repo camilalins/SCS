@@ -14,6 +14,7 @@ define("MAIL_SMTP_USER", getenv("MAIL_SMTP_USER"));
 define("MAIL_SMTP_PASSWORD", getenv("MAIL_SMTP_PASSWORD"));
 define("MAIL_SMTP_CRYPTO", getenv("MAIL_SMTP_CRYPTO"));
 define("MAIL_SMTP_PORT", getenv("MAIL_SMTP_PORT"));
+const MAIL_SMTP_ACTIVE = 0;
 
 # SESSION
 define("SESSION_TIMEOUT", getenv("SESSION_TIMEOUT")); //in minutes

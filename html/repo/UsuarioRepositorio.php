@@ -1,5 +1,4 @@
 <?php
-
 namespace repo;
 
 use core\repo\Repositorio;
@@ -52,6 +51,34 @@ class UsuarioRepositorio extends Repositorio {
             return $usuario;
 
         return null;
+    }
+
+    /**
+     * Atualiza a senha do usuário pelo seu e-mail
+     *
+     * @param string $email O e-mail do usuário
+     * @param string $novaSenha A nova senha do usuário
+     * @return bool Retorna true se a senha for atualizada com sucesso, caso contrário, false
+     * @throws Exception Se houver um erro ao executar a consulta SQL
+     */
+    public function atualizarSenha(string $email, string $novaSenha): bool {
+        $email = $this->mysqli->real_escape_string($email);
+
+        // Hash da nova senha
+        $hashedPassword = password_hash($novaSenha, PASSWORD_BCRYPT);
+
+        $sql = "UPDATE {$this->meta->table->qualifiedName} SET senha = ? WHERE email = ?";
+        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
+
+        $stmt = $this->mysqli->prepare($sql);
+        $stmt->bind_param("ss", $hashedPassword, $email);
+        $stmt->execute();
+
+        $success = $stmt->affected_rows > 0;
+
+        $stmt->close();
+
+        return $success;
     }
 
 }

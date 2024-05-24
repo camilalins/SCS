@@ -4,6 +4,7 @@ namespace models;
 
 use core\Model;
 use JetBrains\PhpStorm\Internal\TentativeType;
+use models\enums\cliente\Status;
 use stdClass;
 
 /**
@@ -15,7 +16,7 @@ class Cliente extends Model {
     private Int $id;
     private String $nome;
     private String $cnpj;
-    private ?String $status;
+    private ?Status $status;
     private ?String $responsavel;
     private ?String $telefone;
     private ?String $email;
@@ -29,7 +30,7 @@ class Cliente extends Model {
      * @param String|null $telefone
      * @param String|null $email
      */
-    public function __construct(string $nome="", string $cnpj="", ?string $status="ativo", ?string $responsavel="", ?string $telefone="", ?string $email="")
+    public function __construct(string $nome="", string $cnpj="", ?Status $status=Status::Ativo, ?string $responsavel="", ?string $telefone="", ?string $email="")
     {
         $this->id = 0;
         $this->nome = $nome;
@@ -91,7 +92,7 @@ class Cliente extends Model {
     /**
      * @return string|null
      */
-    public function getStatus(): ?string
+    public function getStatus(): ?Status
     {
         return $this->status;
     }
@@ -99,7 +100,7 @@ class Cliente extends Model {
     /**
      * @param string|null $status
      */
-    public function setStatus(?string $status): void
+    public function setStatus(?Status $status): void
     {
         $this->status = $status;
     }

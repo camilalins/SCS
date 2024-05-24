@@ -8,7 +8,10 @@ use core\controllers\security\AuthorizedController;
  */
 class PesquisarSolicitacaoController extends AuthorizedController {
 
-    public function get() {
+    /**
+     * @Get()
+     */
+    public function index() {
 
         view("solicitacoes/pesquisa.php");
     }

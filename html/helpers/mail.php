@@ -43,7 +43,7 @@ function send_mail($to, $subject, $message, $attachs=array()){
             $mail->addAttachment($attach);
         }
         // Enviar
-        $mail->send();
+        if(MAIL_SMTP_ACTIVE == 1) $mail->send();
         return true;
     }
     catch (Exception $e) {

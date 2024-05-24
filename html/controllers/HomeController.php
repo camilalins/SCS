@@ -10,7 +10,10 @@ class HomeController extends AuthorizedController {
 
     public function __construct() { parent::__construct("Página Inicial"); }
 
-    public function get() {
+    /**
+     * @Get()
+     */
+    public function home() {
 
         view("home.php", [ ]);
     }

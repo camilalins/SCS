@@ -5,17 +5,15 @@ namespace controllers\login;
 use core\controllers\BaseController;
 
 /**
- * @Route("/recuperar-senha")
+ * @Route("recuperar-senha")
  */
 class RecuperarSenhaController extends BaseController {
 
-    public function get() {
+    /**
+     * @Get()
+     */
+    public function index() {
         view("login/recuperar-senha.php");
-    }
-
-    public function post() {
-
-        response("Method not allowed", 405);
     }
 
 }

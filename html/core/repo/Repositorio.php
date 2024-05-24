@@ -5,7 +5,6 @@ use core\Entity;
 use core\Model;
 use Error;
 use Exception;
-use models\Usuario;
 use ReflectionClass;
 use mysqli;
 
@@ -153,13 +152,14 @@ class Repositorio {
 
         $campos = array_keys($dto);
         $valores = array_values($dto);
+        $valores = array_map(function ($v) { return gettype($v) == "object" && (new ReflectionClass($v))->isEnum() ? $v->value : $v; }, $valores);
 
         $joinCampos = implode(", ", $campos);
         $joinParams = implode(", ", array_map(function () { return "?"; }, $valores));
         $joinBinds = implode("", array_map(function () { return "s"; }, $valores));
 
         $sql = "INSERT INTO {$this->meta->table->qualifiedName} ($joinCampos) VALUES ($joinParams)";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
+        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql." ".json_encode($valores));
 
         $stmt = $this->mysqli->prepare($sql);
         $stmt->bind_param($joinBinds, ...$valores);
@@ -195,13 +195,14 @@ class Repositorio {
 
         $campos = array_keys($dto);
         $valores = array_values($dto);
+        $valores = array_map(function ($v) { return gettype($v) == "object" && (new ReflectionClass($v))->isEnum() ? $v->value : $v; }, $valores);
 
         $valoresEId = array_merge($valores,[$id]);
         $joinSets = implode(", ", array_map(function ($k, $v){ return "$k = ?"; }, $campos, $valores));
         $joinBinds = implode("", array_map(function () { return "s"; }, $valoresEId));
 
         $sql = "UPDATE {$this->meta->table->qualifiedName} SET $joinSets WHERE id = ?";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
+        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql." ".json_encode($valores));
 
         $stmt = $this->mysqli->prepare($sql);
         $stmt->bind_param($joinBinds, ...$valoresEId);
@@ -237,7 +238,7 @@ class Repositorio {
 
 
         $sql = "DELETE FROM {$this->meta->table->qualifiedName} WHERE id = ?";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
+        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql." ".json_encode(["id" => $id]));
 
         $stmt = $this->mysqli->prepare($sql);
         $stmt->bind_param("s", $id);
@@ -269,6 +270,7 @@ class Repositorio {
 
         $campos = array_keys($dto);
         $valores = array_values($dto);
+        $valores = array_map(function ($v) { return gettype($v) == "object" && (new ReflectionClass($v))->isEnum() ? $v->value : $v; }, $valores);
 
         $where = array_map(function ($k, $v) {
             if(str_starts_with(strtoupper($v), "LIKE")) {
@@ -281,7 +283,7 @@ class Repositorio {
         $joinWhere = implode(" AND ", $where);
 
         $sql = "DELETE FROM {$this->meta->table->qualifiedName} WHERE $joinWhere";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
+        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql." ".json_encode($valores));
 
         $stmt = $this->mysqli->prepare($sql);
         $stmt->bind_param($joinBinds, ...$valores);
@@ -293,32 +295,5 @@ class Repositorio {
         $this->mysqli->close();
 
         return [];
-    }
-    /**
-     * Atualiza a senha do usuário pelo seu e-mail
-     *
-     * @param string $email O e-mail do usuário
-     * @param string $novaSenha A nova senha do usuário
-     * @return bool Retorna true se a senha for atualizada com sucesso, caso contrário, false
-     * @throws Exception Se houver um erro ao executar a consulta SQL
-     */
-    public function atualizarSenha(string $email, string $novaSenha): bool {
-        $email = $this->mysqli->real_escape_string($email);
-
-        // Hash da nova senha
-        $hashedPassword = password_hash($novaSenha, PASSWORD_BCRYPT);
-
-        $sql = "UPDATE {$this->meta->table->qualifiedName} SET senha = ? WHERE email = ?";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
-
-        $stmt = $this->mysqli->prepare($sql);
-        $stmt->bind_param("ss", $hashedPassword, $email);
-        $stmt->execute();
-
-        $success = $stmt->affected_rows > 0;
-
-        $stmt->close();
-
-        return $success;
     }
 }

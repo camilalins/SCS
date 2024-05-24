@@ -4,19 +4,24 @@ namespace controllers\clientes;
 use core\controllers\security\AuthorizedController;
 use PHPMailer\PHPMailer\Exception;
 use repo\ClienteRepositorio;
-use models\cliente\Status;
-
+use models\enums\cliente\Status;
 
 /**
  * @Route("/clientes")
  */
 class PesquisarClienteController extends AuthorizedController {
 
+    /**
+     * @Get()
+     */
     public function get() {
 
         view("clientes/pesquisa.php");
     }
 
+    /**
+     * @Post()
+     */
     public function post() {
 
         try {

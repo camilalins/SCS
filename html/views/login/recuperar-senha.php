@@ -55,14 +55,15 @@
                     <img style="width: 265px;" src="/public/img/logo-gray.png" alt="Sistema de Cadastro de Cliente">
                 </div>
                 <br>
-                <form id="recover-form" action="/recuperar-senha" method="post">
+                <form id="form-recup" action="/recuperar-senha" method="post">
+                    <?=csrf()?>
                     <p>Digite o email cadastrado para recuperar a senha.</p>
                     <div class="<?=$erro?"error":"success"?>"><?=$erro?:$mensagem?></div>
 
                     <input type="email" placeholder="Email" name="email" id="email" class="box col-12">
 
                     <p><a id="btn-esqueceu" href="/" class="unique-text">Voltar para o login</a></p>
-                    <button type="submit" id="btn-entrar" class="btn mt-1">Recuperar</button>
+                    <button id="btn-entrar" class="btn mt-1">Recuperar</button>
                     <div class="loading-spinner" id="loading-spinner"></div>
                 </form>
             </div>
@@ -70,5 +71,15 @@
     </div>
 </div>
 
-<?php scripts([ "/public/login/js/recuperar-senha.js" ]);?>
+<?php scripts([
+        [
+            "src" => "/public/login/js/recuperar-senha.js",
+            "id" => "script-recup",
+            "encdata" =>
+                b64JsonEncode([
+                    "uri" => "api/recuperar-senha",
+                    "err001" => sys_messages(MSG_VALID_ERR_A001)
+                ])
+        ]
+])();?>
 </body>

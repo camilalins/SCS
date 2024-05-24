@@ -103,9 +103,6 @@
     <script src="/public/js/jquery.counterup.min.js"></script>
     <script src="/public/js/jquery.waypoints.js"></script>
 
-    <!-- particles js file  -->
-    <script src="/public/js/particles.min.js"></script>
-
     <!-- jquery isotope file -->
     <script src="/public/js/isotope.min.js"></script>
 
@@ -117,6 +114,9 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/eaf468bfde.js" crossorigin="anonymous"></script>
+
+    <!--  GLOBAL Modal Script  -->
+    <script src="/public/modal/js/modal.js"></script>
 
     <?php scripts();?>
 </body>

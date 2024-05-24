@@ -44,7 +44,7 @@
                 </div>
 
                 <form action="/login" method="post">
-                    <?=crsf()?>
+                    <?=csrf()?>
                     <div class="error"><?=$erro?></div>
 
                     <input type="email" placeholder="Email" name="email" class="box col-12">

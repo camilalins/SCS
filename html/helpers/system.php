@@ -1,15 +1,17 @@
 <?php
 
 # SYSTEM MESSAGES
-const MSG_GERAL_ERR_A001 = [ "pt-BR" => "Falha ao executar", "en-US" => "Failed to run" ];
+const MSG_GERAL_ERR_A001 = [ "pt-BR" => "Falha na aplicação", "en-US" => "Fail at application" ];
+const MSG_GERAL_ERR_A002 = [ "pt-BR" => "Falha ao executar", "en-US" => "Failed to run" ];
 const MSG_AUTH_ERR_A001 = [ "pt-BR" => "Nenhum usuario para autenticar", "en-US" => "No user to authenticate" ];
 const MSG_AUTH_ERR_A002 = [ "pt-BR" => "CRSF Token não encontrado", "en-US" => "CRSF Token not found" ];
 const MSG_AUTH_ERR_A003 = [ "pt-BR" => "CRSF Token inválido", "en-US" => "CRSF Token is invalid" ];
 const MSG_VALID_ERR_A001 = [ "pt-BR" => "Preencha os campos obrigatórios", "en-US" => "Please fill the required fields" ];
+const MSG_VALID_ERR_A002 = [ "pt-BR" => "Preencha os campos obrigatórios com dados válidos", "en-US" => "Please fill the required fields with valid data" ];
 const MSG_LOGIN_ERR_A001 = [ "pt-BR" => "Usuário e/ou senha inválidos", "en-US" => "User or password are invalid" ];
 const MSG_RECOV_ERR_A001 = [ "pt-BR" => "E-mail não encontrado", "en-US" => "E-mail not found" ];
-const MSG_RECOV_INFO_A001 = [ "pt-BR" => "E-mail de recuperação enviado com sucesso.", "en-US" => "Recovery passsword sent." ];
-const MSG_RECOV_ERR_A002 = [ "pt-BR" => "Ocorreu um erro. Tente novamente mais tarde.", "en-US" => "There's an error. Please try again." ];
+const MSG_RECOV_INFO_A001 = [ "pt-BR" => "E-mail de recuperação enviado com sucesso", "en-US" => "Recovery passsword sent" ];
+const MSG_RECOV_ERR_A002 = [ "pt-BR" => "Ocorreu um erro. Tente novamente mais tarde", "en-US" => "There's an error. Please try again" ];
 const MSG_REPO_ERR_A001 = [ "pt-BR" => "Por favor informe qual Model o repositório pertence", "en-US" => "" ];
 const MSG_REPO_ERR_B001 = [ "pt-BR" => "É necessário usar uma classe marcada com @Entity na instanciação do Repositório", "en-US" => "" ];
 const MSG_REPO_ERR_A002 = [ "pt-BR" => "O Model do repositório precisa ser derivada de core\Model", "en-US" => "" ];
@@ -24,6 +26,6 @@ const MSG_REPO_ERR_A009 = [ "pt-BR" => "Para atualizar é necessário informar o
 const MSG_REPO_ERR_A010 = [ "pt-BR" => "Cláusula não pode ser vazia", "en-US" => "" ];
 
 function sys_messages($name, $details=null, $locale=null): string {
-    return $name[$locale?:(LOCALE?:LOCALE_PT_BR)].(DEBUG_QUERY == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH?": ".$details:"");
+    return $name[$locale?:(LOCALE?:LOCALE_PT_BR)].(DEBUG_LEVEL == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH && $details ? ": ".$details : "");
 }
 

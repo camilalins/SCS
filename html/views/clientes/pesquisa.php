@@ -11,14 +11,13 @@
                     <a class="navbar-brand" href="<?=HOME_PAGE?>">
                         <i class="fa fa-angle-left fs-3" aria-hidden="true"></i>
                     </a>
-                    <h3 class="text-left display-5 p-5">Clientes</h3>
+                    <h3 class="text-left display-5 ms-3">Clientes</h3>
                 </div>
                 <br>
                 <br>
                 <div class="card">
 
-                    <form action="/clientes" method="post" data-select2-id="10">
-                        <?=crsf()?>
+                    <form id="form-pesquisa">
                         <div class="row p-3">
                             <div class="col-12 col-md-5 p-2">
                                 <div class="form-group">
@@ -130,29 +129,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="cadastroClienteForm">
+                <form id="form-cadastro">
+                    <?=csrf()?>
                     <div class="row">
                         <div class="col-12 col-md-6 p-2">
                             <label for="nomeCliente">Nome</label>
-                            <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" required>
+                            <input type="text" class="form-control" id="nomeCliente" name="nome" required>
                         </div>
                         <div class="col-12 col-md-6 p-2">
                             <label for="cnpjCliente">CNPJ</label>
-                            <input type="text" class="form-control" id="cnpjCliente" name="cnpjCliente" required>
+                            <input type="text" class="form-control" id="cnpjCliente" name="cnpj" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 p-2">
                             <label for="responsavelCliente">Responsável</label>
-                            <input type="text" class="form-control" id="responsavelCliente" name="responsavelCliente" required>
+                            <input type="text" class="form-control" id="responsavelCliente" name="responsavel">
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <label for="emailCliente">Email</label>
-                            <input type="email" class="form-control" id="emailCliente" name="emailCliente" required>
+                            <input type="email" class="form-control" id="emailCliente" name="email">
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <label for="telefoneCliente">Telefone</label>
-                            <input type="text" class="form-control" id="telefoneCliente" name="telefoneCliente" required>
+                            <input type="text" class="form-control" id="telefoneCliente" name="telefone">
                         </div>
                     </div>
                     <div class="col-12 col-md-3 p-2 d-flex justify-content-end w-100">
@@ -163,9 +163,9 @@
         </div>
     </div>
 </section>
+
 <!-- /Modal de Cadastro de Cliente -->
 <?php scripts([
-        ["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "uri" => "/api/clientes" ],
-        ["src" => "/public/modal/js/modal.js" ]
-
+    ["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ],
+    ["src" => "/public/clientes/js/cadastro.js", "id" => "script-cadastro", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ]
 ]);?>

@@ -3,17 +3,18 @@
 namespace controllers\api\login;
 
 use core\controllers\ApiBaseController;
+use core\exceptions\RequiredDataException;
+use repo\UsuarioRepositorio;
 
 /**
  * @Route("/api/recuperar-senha")
  */
 class RecuperarSenhaController extends ApiBaseController {
 
-    public function get() {
-        response("Method not allowed", 405);
-    }
-
-    public function post() {
+    /**
+     * @Post()
+     */
+    public function enviarEmail() {
 
         try {
             // OBTER DADOS
@@ -21,13 +22,13 @@ class RecuperarSenhaController extends ApiBaseController {
 
             // VALIDAÇÃO
             if (!$email)
-                throw new \Exception(sys_messages(MSG_VALID_ERR_A001));
+                throw new RequiredDataException(sys_messages(MSG_VALID_ERR_A001));
 
-            $repo = new \repo\UsuarioRepositorio();
+            $repo = new UsuarioRepositorio();
             $usuario = $repo->obterPorEmail($email);
             if (!$usuario)
-                throw new \Exception(sys_messages(MSG_RECOV_ERR_A001));
-            /*
+                throw new RequiredDataException(sys_messages(MSG_VALID_ERR_A002));
+
             // ATUALIZANDO SENHA
             $novaSenha = hash('adler32', uniqid(rand(), true));
             $usuario->setSenha(password_hash($novaSenha, PASSWORD_BCRYPT));
@@ -42,11 +43,14 @@ class RecuperarSenhaController extends ApiBaseController {
                     Acesse o sistema <a href='".BASE_URL."login'>AQUI</a> para efetuar seu login.
                 </p>"))
                 throw new \Exception(send_mail_error());
-            */
-            response([ "mensagem" => sys_messages(MSG_RECOV_INFO_A001) ]);
+
+            response(sys_messages(MSG_RECOV_INFO_A001));
+        }
+        catch (RequiredDataException $e) {
+            response($e->getMessage(), 400);
         }
         catch (\Exception $e) {
-            response([ "erro" => sys_messages(MSG_RECOV_ERR_A002, $e->getMessage()) ], 400);
+            response(sys_messages(MSG_RECOV_ERR_A002, $e->getMessage()), 400);
         }
     }
 

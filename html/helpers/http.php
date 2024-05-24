@@ -26,20 +26,76 @@ function cookie($name, $value=null){
     } else return $_COOKIE[$name];
 }
 
-function redirect($url) {
+function redirect($url): void
+{
     if($url == "/") $url = "";
     if(str_starts_with($url, "/")) $url = substr($url, 1, strlen($url));
     header("Location: /$url");
     exit();
 }
 
-function response(mixed $json, int $statusCode=200){
-    header('Content-Type: application/json; charset=utf-8');
-    http_response_code($statusCode);
-    switch (gettype($json)) {
-        case "string": echo json_encode(["message" => $json]); break;
-        default: echo json_encode($json);
+function response(mixed $json, int $statusCode=200): void {
+
+    switch ($json) {
+
+        case BAD_REQUEST_400:
+            $statusCode = 400;
+            $responseText = status($json);  break;
+
+        case UNAUTHORIZED_401:
+            $statusCode = 401;
+            $responseText = status($json);  break;
+
+        case NOT_FOUND_404:
+            $statusCode = 404;
+            $responseText = status($json);  break;
+
+        case METHOD_NOT_ALLOWED_405:
+            $statusCode = 405;
+            $responseText = status($json);  break;
+
+        default:
+            $responseText = gettype($json) == "string" ? json_encode([ "message" => $json ]) : json_encode($json);
+            break;
     }
+    http_response_code($statusCode);
+    header('Content-Type: application/json; charset=utf-8');
+
+    echo $responseText;
+    exit();
+}
+
+function responseText(mixed $text, int $statusCode=200): void {
+
+    switch ($text) {
+        case BAD_REQUEST_400:
+            $statusCode = 400;
+            $responseText = status($text);  break;
+
+        case UNAUTHORIZED_401:
+            $statusCode = 401;
+            $responseText = status($text);  break;
+
+        case NOT_FOUND_404:
+            $statusCode = 404;
+            $responseText = status($text);  break;
+
+        case METHOD_NOT_ALLOWED_405:
+            $statusCode = 405;
+            $responseText = status($text);  break;
+
+        default:
+            if (gettype($text) == "string") $responseText = nl2br($text);
+            else $responseText = $statusCode < 400 ? "OK" : "Undefined";
+            break;
+    }
+    http_response_code($statusCode);
+    header('Content-Type: text/html; charset=utf-8');
+
+    if(gettype($text) == "string")
+        view($statusCode < 400 ? "general.php" : "error.php", [ "statusCode" => $statusCode, "responseText" => $responseText ]);
+    else
+        view($statusCode < 400 ? "general.php" : "error.php", [ "statusCode" => $statusCode, "responseText" => $responseText ]+(array)$text);
     exit();
 }
 
@@ -78,19 +134,29 @@ function path($id=null){
 }
 
 function scripts($scripts=null) {
-    if($scripts) $GLOBALS["scripts"] = $scripts;
-    else foreach ($GLOBALS["scripts"] as $script)
-        if (gettype($script) == "string") {
-            if (str_starts_with($script, "<script"))
-                echo $script;
-            else
-                echo "<script src=\"$script\"></script>";
-        }
-        else if(gettype($script) == "array") {
-            $props = implode(" ", array_map(function ($k, $v) { return "$k=\"$v\""; }, array_keys($script), array_values($script)));
-            echo "<script $props></script>";
-        }
 
+    $loadScripts = function(){
+
+        echo "<script src=\"/public/js/helper-functions.js\"></script>";
+
+        foreach ($GLOBALS["scripts"] as $script)
+            if (gettype($script) == "string") {
+                if (str_starts_with($script, "<script"))
+                    echo $script;
+                else
+                    echo "<script src=\"$script\"></script>";
+            }
+            else if(gettype($script) == "array") {
+                $props = implode(" ", array_map(function ($k, $v) { return "$k=\"$v\""; }, array_keys($script), array_values($script)));
+                echo "<script $props></script>";
+            }
+    };
+
+    if($scripts) {
+        $GLOBALS["scripts"] = $scripts;
+        return $loadScripts;
+    }
+    else $loadScripts();
 }
 
 function title($name=null){
@@ -103,7 +169,7 @@ function page(){
     else return $GLOBALS["page"];
 }
 
-function crsf(): void {
+function csrf(): void {
     $name = TOKEN;
     $value = password_hash(SESSION_SECRET, PASSWORD_BCRYPT);
     echo "<input type=\"hidden\" name=\"$name\" value=\"$value\">";

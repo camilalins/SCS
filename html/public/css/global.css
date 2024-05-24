@@ -20,6 +20,7 @@ img.logo {
 
 .error { color: red; }
 .success { color: green; }
+
 .action-view {
     border: none;
     background: none;
@@ -43,3 +44,5 @@ img.logo {
     background: none;
     color: #6c6969;
 }
+
+.error-page, .general-page { text-align: center; font-size: xx-large; padding: 100px 0px; }

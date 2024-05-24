@@ -3,20 +3,27 @@
 namespace controllers\login;
 
 use core\controllers\BaseController;
+use repo\UsuarioRepositorio;
 
 /**
  * @Route("login")
  */
 class EfetuarLoginController extends BaseController {
 
-    public function get(){
+    /**
+     * @Get()
+     */
+    public function index(){
 
         if(user()) redirect(HOME_PAGE);
 
         view("login/login.php");
     }
 
-    public function post() {
+    /**
+     * @Post()
+     */
+    public function efetuarLogin() {
 
         try {
             $email = body("email");
@@ -25,7 +32,7 @@ class EfetuarLoginController extends BaseController {
             if(!$email || !$senha)
                 throw new \Exception(sys_messages(MSG_VALID_ERR_A001));
 
-            $repo = new \repo\UsuarioRepositorio();
+            $repo = new UsuarioRepositorio();
             $usuario = $repo->obterPorEmailESenha($email, $senha);
 
             if(!$usuario)

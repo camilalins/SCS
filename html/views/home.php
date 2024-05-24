@@ -48,6 +48,9 @@
     </section>
     <!-- ./única section -->
 
-    <?php scripts([ "/public/home/js/home.js" ]);?>
+    <?php scripts([
+            "/public/js/particles.min.js",
+            "/public/home/js/home.js"
+    ]);?>
 
 </body>

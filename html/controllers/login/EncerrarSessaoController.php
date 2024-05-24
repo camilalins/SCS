@@ -1,4 +1,5 @@
 <?php
+
 namespace controllers\login;
 
 use core\controllers\BaseController;
@@ -8,10 +9,12 @@ use core\controllers\BaseController;
  */
 class EncerrarSessaoController extends BaseController {
 
-    public function get(){
+    /**
+     * @Get()
+     */
+    public function index(){
 
         session_destroy();
         redirect(LOGIN_PAGE);
     }
-
 }

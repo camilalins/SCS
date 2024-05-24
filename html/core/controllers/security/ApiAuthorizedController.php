@@ -7,7 +7,7 @@ use core\controllers\ApiBaseController;
 class ApiAuthorizedController extends ApiBaseController {
 
     public function __construct() {
-        if (!user()) response("Unauthorized", 401);
+        if (!user()) response(UNAUTHORIZED_401);
         parent::__construct();
     }
 }
