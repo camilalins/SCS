@@ -1,5 +1,3 @@
-<?php /** @var TYPE_NAME $erro */?>
-<?php /** @var TYPE_NAME $mensagem */?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,25 +20,14 @@
 
     <!-- main css file -->
     <link rel="stylesheet" href="/public/css/style.css">
+
+    <!-- global css file -->
     <link rel="stylesheet" href="/public/css/global.css">
 
-    <title>Sistema de Controle de Solicitações - Recuperar senha</title>
-    <style>
-        .loading-spinner {
-            display: none;
-            margin-left: 10px;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 2px solid #3498db;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    <!-- page css file -->
+    <link rel="stylesheet" href="/public/login/css/recuperar-senha.css">
+
+    <title>SCS - Recuperar senha</title>
 
 </head>
 <body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
@@ -58,13 +45,15 @@
                 <form id="form-recup" action="/recuperar-senha" method="post">
                     <?=csrf()?>
                     <p>Digite o email cadastrado para recuperar a senha.</p>
-                    <div class="<?=$erro?"error":"success"?>"><?=$erro?:$mensagem?></div>
+                    <div id="message"></div>
 
                     <input type="email" placeholder="Email" name="email" id="email" class="box col-12">
 
-                    <p><a id="btn-esqueceu" href="/" class="unique-text">Voltar para o login</a></p>
-                    <button id="btn-entrar" class="btn mt-1">Recuperar</button>
-                    <div class="loading-spinner" id="loading-spinner"></div>
+                    <p><a id="btn-esqueceu" href="/login" class="unique-text">Voltar para o login</a></p>
+                    <div class="recuperar">
+                        <button id="btn-recuperar" class="btn mt-1">Recuperar</button>
+                        <div class="loading-spinner" id="loading-spinner"></div>
+                    </div>
                 </form>
             </div>
         </div>

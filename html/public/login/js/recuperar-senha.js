@@ -3,9 +3,9 @@ const formRecup = document.getElementById("form-recup");
 const scriptRecup = document.getElementById("script-recup");
 const { uri, err001 } = b64JsonDecode( scriptRecup.getAttribute("encdata"));
 
-const btnEntrar = document.getElementById('btn-entrar');
+const btnRecuperar = document.getElementById('btn-recuperar');
 const loadingSpinner = document.getElementById('loading-spinner');
-const messageDiv = document.querySelector('.error, .success');
+const divMessage = document.getElementById("message");
 
 formRecup.addEventListener("submit",  async (e) => {
 
@@ -41,11 +41,11 @@ function done(className, message) {
 
     loader(false);
 
-    messageDiv.className = className;
-    messageDiv.textContent = message;
+    divMessage.className = className;
+    divMessage.textContent = message;
 }
 function loader(start){
 
-    btnEntrar.disabled = start;
+    btnRecuperar.disabled = start;
     loadingSpinner.style.display = start ? 'inline-block' : 'none';
 }

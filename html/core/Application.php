@@ -38,6 +38,10 @@ class Application {
             foreach (glob("models/enums/*.php") as $filename) include_once $filename;
             foreach (glob("models/enums/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
 
+            #INCLUDE SERVICES
+            foreach (glob("services/*.php") as $filename) include_once $filename;
+            foreach (glob("services/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
+
             #INCLUDE REPO
             foreach (glob("repo/*.php") as $filename) include_once $filename;
             foreach (glob("repo/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
@@ -271,6 +275,9 @@ class Application {
         }
         catch (\Error $e) {
             $errorMessage = sys_messages(MSG_GERAL_ERR_A002, "{$e->getMessage()}\nArquivo: <b>{$e->getFile()} {$e->getLine()}");
+            if(DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH)
+                print_r($errorMessage);
+            else
             Application::isRequestJson()
                 ? response($errorMessage, 400)
                 : responseText($errorMessage, 400);

@@ -26,6 +26,6 @@ const MSG_REPO_ERR_A009 = [ "pt-BR" => "Para atualizar é necessário informar o
 const MSG_REPO_ERR_A010 = [ "pt-BR" => "Cláusula não pode ser vazia", "en-US" => "" ];
 
 function sys_messages($name, $details=null, $locale=null): string {
-    return $name[$locale?:(LOCALE?:LOCALE_PT_BR)].(DEBUG_LEVEL == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH && $details ? ": ".$details : "");
+    return $name[$locale?:(LOCALE?:LOCALE_PT_BR)].(DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH && $details ? ": ".$details : "");
 }
 
