@@ -25,6 +25,7 @@ services:
   nginx:
     container_name: scs-nginx
     image: nginx:latest
+    restart: unless-stopped
     depends_on:
       - db
     ports:
@@ -38,6 +39,7 @@ services:
       - ./logs/nginx:/var/log/nginx/
   php:
     container_name: scs-php
+    restart: unless-stopped
     build: ./php
     env_file: .env
     networks:
