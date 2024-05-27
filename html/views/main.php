@@ -80,6 +80,48 @@
     </div>
     <!-- /Content -->
 
+    <!-- Modal global -->
+    <!-- <section class="modal py-1" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="modalLabel">(Título)</h5>
+                     <button type="button" class="close p-3 bg-transparent border-0"" data-dismiss="modal" aria-label="Close">
+                     <i class="fa fa-times" aria-hidden="true"></i>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     <iframe src="/clientes/cadastrar" width="100%" height="400px" frameBorder="0" scrolling="no" ></iframe>
+                 </div>
+             </div>
+         </div>
+     </section>-->
+     <!-- /Modal global -->
+
+
+    <!-- Modal Global teste -->
+    <div id="globalModal" class="modal py-1" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalTitle" class="text-left display-6 ms-3 modal-title">Título do modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="modalBody" class="modal-body">
+                    <!-- O conteúdo do modal será carregado aqui -->
+                </div>
+                <div id="modalFooter" class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Global teste -->
+
+
+
 
     <!--  JQuery file     -->
     <script src="/public/js/jquery-3.6.1.min.js"></script>
@@ -116,7 +158,9 @@
     <script src="https://kit.fontawesome.com/eaf468bfde.js" crossorigin="anonymous"></script>
 
     <!--  GLOBAL Modal Script  -->
-    <script src="/public/modal/js/modal.js"></script>
+    <!--<script src="/public/modal/js/modal.js"></script>-->
+    <script src="/public/modal/js/modal-global.js"></script>
+
 
     <?php scripts();?>
 </body>

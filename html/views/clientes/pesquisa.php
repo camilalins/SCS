@@ -17,28 +17,29 @@
                 <br>
                 <div class="card">
 
-                    <form id="form-pesquisa">
-                        <div class="row p-3">
-                            <div class="col-12 col-md-5 p-2">
-                                <div class="form-group">
-                                    <input type="text" class="form-control ds-input" name="nome" id="nome" value="<?=$nome?>" placeholder="Nome" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                    <form id="form-pesquisa" >
+                        <?=csrf()?>
+                        <div class="row p-2">
+                                <div class="col-12 col-md-4 p-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control ds-input" name="nome" id="nome" value="<?=$nome?>" placeholder="Nome" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-3 p-2">
-                                <div class="form-group">
-                                    <input type="text" class="form-control ds-input" name="cnpj" id="cnpj" value="<?=$cnpj?>" placeholder="CNPJ" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                <div class="col-12 col-md-3 p-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control ds-input" name="cnpj" id="cnpj" value="<?=$cnpj?>" placeholder="CNPJ" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-3 p-2">
-                                <div class="form-group">
-                                    <input type="email" class="form-control ds-input" name="email" id="email" value="<?=$email?>" placeholder="Email" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                <div class="col-12 col-md-3 p-2">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control ds-input" name="email" id="email" value="<?=$email?>" placeholder="Email" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-1 p-2">
-                                <div>
-                                    <button class="btn my-2 my-sm-0"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                <div class="col-12 col-md-2 p-2 d-flex justify-content-end">
+                                    <div>
+                                        <button class="btn my-2 my-sm-0"><i class="fa fa-search" aria-hidden="true">&nbsp; </i></button>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -59,18 +60,11 @@
                             <div class="d-flex justify-content-end">
                                 <div class="" id="">
                                     <ul class="navbar-nav ml-auto d-flex flex-row align-items-sm-center" style="font-size: 20px;">
-                                        <li class="nav-item" style="padding: 0px;color: #06326d;">
-                                            <a class="nav-link" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-                                        </li>
                                         <li class="nav-item" style="padding: 0px 0px 0px 1px;color: #06326d;">
-
-                                            <button type="button" class="open-modal" data-target="cadastroClienteModal" style="padding-left: 10px;border:none; background: none;color:#06326d;">
-                                                <i class="fa fa-plus-square" aria-hidden="true" style="padding-right: 3px;"></i>Cadastrar
+                                            <button type="button" class="open-modal btn my-2 my-sm-0" data-target="modal" onclick="openModal('clientes/cadastrar', 'Cadastrar Cliente')">
+                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
                                             </button>
-
-
                                         </li>
-
                                     </ul>
 
                                 </div>
@@ -92,12 +86,12 @@
                             <tbody>
                             <?php foreach ($clientes as $c):?>
                                 <tr>
-                                    <td><?=$c->getId()?></td>
-                                    <td><?=$c->getNome()?></td>
-                                    <td><?=$c->getCnpj()?></td>
-                                    <td><?=$c->getResponsavel()?></td>
-                                    <td><?=$c->getTelefone()?></td>
-                                    <td><?=$c->getEmail()?></td>
+                                    <td class="text-sm-left p-3"><?=$c->getId()?></td>
+                                    <td class="text-sm-left p-3"><?=$c->getNome()?></td>
+                                    <td class="text-sm-left p-3"><?=$c->getCnpj()?></td>
+                                    <td class="text-sm-left p-3"><?=$c->getResponsavel()?></td>
+                                    <td class="text-sm-left p-3"><?=$c->getTelefone()?></td>
+                                    <td class="text-sm-left p-3"><?=$c->getEmail()?></td>
                                 </tr>
                             <?php endforeach;?>
                             </tbody>
@@ -118,54 +112,8 @@
     </div>
 </section>
 <!-- /Tabela  -->
-<!-- Modal de Cadastro de Cliente -->
-<section class="modal py-1" id="cadastroClienteModal" tabindex="-1" role="dialog" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="cadastroClienteModalLabel">Cadastro de Cliente</h5>
-                <button type="button" class="close p-3 bg-transparent border-0"" data-dismiss="modal" aria-label="Close">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="form-cadastro">
-                    <?=csrf()?>
-                    <div class="row">
-                        <div class="col-12 col-md-6 p-2">
-                            <label for="nomeCliente">Nome</label>
-                            <input type="text" class="form-control" id="nomeCliente" name="nome" required>
-                        </div>
-                        <div class="col-12 col-md-6 p-2">
-                            <label for="cnpjCliente">CNPJ</label>
-                            <input type="text" class="form-control" id="cnpjCliente" name="cnpj" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 p-2">
-                            <label for="responsavelCliente">Responsável</label>
-                            <input type="text" class="form-control" id="responsavelCliente" name="responsavel">
-                        </div>
-                        <div class="col-12 col-md-3 p-2">
-                            <label for="emailCliente">Email</label>
-                            <input type="email" class="form-control" id="emailCliente" name="email">
-                        </div>
-                        <div class="col-12 col-md-3 p-2">
-                            <label for="telefoneCliente">Telefone</label>
-                            <input type="text" class="form-control" id="telefoneCliente" name="telefone">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3 p-2 d-flex justify-content-end w-100">
-                        <button type="submit" class="btn my-2 my-sm-0">Salvar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- /Modal de Cadastro de Cliente -->
 <?php scripts([
     ["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ],
-    ["src" => "/public/clientes/js/cadastro.js", "id" => "script-cadastro", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ]
+    ["src" => "/public/modal/js/modal-global.js", "id" => "script-pesquisa", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ]
 ]);?>

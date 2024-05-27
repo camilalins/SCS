@@ -14,7 +14,7 @@ define("MAIL_SMTP_USER", getenv("MAIL_SMTP_USER"));
 define("MAIL_SMTP_PASSWORD", getenv("MAIL_SMTP_PASSWORD"));
 define("MAIL_SMTP_CRYPTO", getenv("MAIL_SMTP_CRYPTO"));
 define("MAIL_SMTP_PORT", getenv("MAIL_SMTP_PORT"));
-const MAIL_SMTP_ACTIVE = 0;
+const MAIL_SMTP_ACTIVE = 1;
 
 # SESSION
 define("SESSION_TIMEOUT", getenv("SESSION_TIMEOUT")); //in minutes
@@ -39,7 +39,7 @@ const LOCALE = LOCALE_PT_BR;
 
 # MAIN LAYOUT
 const MAIN_PAGE = "main";
-const MAIN_PAGE_EXCLUDES = [ "login/login.php", "login/recuperar-senha.php" ];
+const MAIN_PAGE_EXCLUDES = [ "login/login.php", "login/recuperar-senha.php", "clientes/cadastro.php" ];
 const MAIN_PAGE_TITLE = "SCS";
 
 # MOCKUP

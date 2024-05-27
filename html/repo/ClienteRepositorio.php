@@ -10,4 +10,6 @@ class ClienteRepositorio extends Repositorio {
         parent::__construct(Cliente::class);
     }
 
+
+
 }

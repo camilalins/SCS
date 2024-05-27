@@ -9,14 +9,18 @@ require_once "repo/ClienteRepositorio.php";
  */
 class CadastrarClienteController extends \core\controllers\BaseController {
 
+    /**
+     * @Get()
+     */
     function get(){
 
-        view("/clientes/cadastro.php");
+        view("clientes/cadastro.php");
     }
 
     function post(){
 
         try {
+            error_log("Formulário submetido");
 
             $nome = body("nome");
             $cnpj = body("cnpj");
@@ -37,11 +41,11 @@ class CadastrarClienteController extends \core\controllers\BaseController {
             $repo = new \repo\ClienteRepositorio();
             $cliente = $repo->criar($clienteDto);
 
-            view("cliente/cadastro.php", [ "mensagem" => "Solicitação cadastrada com sucesso!", "cliente" => $cliente ]);
+            view("cliente/pesquisa.php", [ "mensagem" => "Solicitação cadastrada com sucesso!", "cliente" => $cliente ]);
         }
         catch (\Exception $e) {
-
-            view("cliente/cadastro.php", [ "erro" => $e->getMessage() ]);
+            error_log($e->getMessage());
+            view("cliente/pesquisa.php", [ "erro" => $e->getMessage() ]);
         }
     }
 

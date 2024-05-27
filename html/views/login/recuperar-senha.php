@@ -59,7 +59,8 @@
         </div>
     </div>
 </div>
-
+</body>
+</html>
 <?php scripts([
         [
             "src" => "/public/login/js/recuperar-senha.js",
@@ -71,4 +72,3 @@
                 ])
         ]
 ])();?>
-</body>

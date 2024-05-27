@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class="row p-1">
-                            <div class="col-12 col-md-5 p-2">
+                            <div class="col-12 col-md-4 p-2">
                                 <div class="form-group">
                                     <input type="text" class="form-control ds-input" id="cliente" placeholder="Cliente" aria-label="Pesquisar por..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0">
                                 </div>
@@ -38,7 +38,7 @@
                                     <input type="date" class="form-control" id="data-inicio" placeholder="Data Solicitação" name="data-inicio">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-3 p-2">
+                            <div class="col-12 col-md-4 p-2">
                                 <div class="form-group">
                                     <select class="form-control ds-input custom-select" id="status" name="status">
                                         <option value="Escolha">Escolha</option>
@@ -48,7 +48,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-1 p-2">
+                            <div class="col-12 col-md-1 p-2 d-flex justify-content-end">
+
                                 <div>
                                     <button class="btn my-2 my-sm-0"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </div>
@@ -75,16 +76,13 @@
                             <div class="d-flex justify-content-end">
                                 <div class="" id="">
                                     <ul class="navbar-nav ml-auto d-flex flex-row align-items-sm-center" style="font-size: 20px;">
-                                        <li class="nav-item" style="padding: 0px;color: #06326d;">
+                                        <!--<li class="nav-item" style="padding: 0px;color: #06326d;">
                                             <a class="nav-link" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-                                        </li>
+                                        </li>-->
                                         <li class="nav-item" style="padding: 0px 0px 0px 1px;color: #06326d;">
-
-                                            <button type="button" class="open-modal" data-target="cadastroClienteModal" style="padding-left: 10px;border:none; background: none;color:#06326d;">
-                                                <i class="fa fa-plus-square" aria-hidden="true" style="padding-right: 3px;"></i>Cadastrar
+                                            <button type="button" class="open-modal btn my-2 my-sm-0" data-target="modal" onclick="openModalSolicitacoes()">
+                                                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
                                             </button>
-
-
                                         </li>
 
                                     </ul>
@@ -110,56 +108,56 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>183</td>
-                                <td>Mondelez</td>
-                                <td>11-7-2014</td>
-                                <td>Suporte Logístico 1</td>
-                                <td>Pedágio Seropédica</td>
-                                <td>Pedágio Magé</td>
-                                <td><span class="bg-green">Finalizada</span></td>
-                                <td>
+                                <td class="text-sm-left p-3">183</td>
+                                <td class="text-sm-left p-3">Mondelez</td>
+                                <td class="text-sm-left p-3">11-7-2014</td>
+                                <td class="text-sm-left p-3">Suporte Logístico 1</td>
+                                <td class="text-sm-left p-3">Pedágio Seropédica</td>
+                                <td class="text-sm-left p-3">Pedágio Magé</td>
+                                <td class="text-sm-left p-3"><span class="bg-green">Finalizada</span></td>
+                                <td class="text-sm-left p-3">
                                     <button class="action-view" type="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                     <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
                                     <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
                                 </td>
                             </tr>
                             <tr>
-                                <td>219</td>
-                                <td>Mondelez</td>
-                                <td>11-7-2014</td>
-                                <td>Suporte Logístico 2</td>
-                                <td>Pedágio Seropédica</td>
-                                <td>Pedágio Magé</td>
-                                <td><span class="bg-red">Cancelada</span></td>
-                                <td>
+                                <td class="text-sm-left p-3">219</td>
+                                <td class="text-sm-left p-3">Mondelez</td>
+                                <td class="text-sm-left p-3">11-7-2014</td>
+                                <td class="text-sm-left p-3">Suporte Logístico 2</td>
+                                <td class="text-sm-left p-3">Pedágio Seropédica</td>
+                                <td class="text-sm-left p-3">Pedágio Magé</td>
+                                <td class="text-sm-left p-3"><span class="bg-red">Cancelada</span></td>
+                                <td class="text-sm-left p-3">
                                     <button class="action-view" type="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                     <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
                                     <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
                                 </td>
                             </tr>
                             <tr>
-                                <td>657</td>
-                                <td>Mondelez</td>
-                                <td>19-5-2024</td>
-                                <td>Suporte Logístico 3</td>
-                                <td>Pedágio Seropédica</td>
-                                <td>Pedágio Magé</td>
-                                <td><span class="bg-yellow">Aguardando</span></td>
-                                <td>
+                                <td class="text-sm-left p-3">657</td>
+                                <td class="text-sm-left p-3">Mondelez</td>
+                                <td class="text-sm-left p-3">19-5-2024</td>
+                                <td class="text-sm-left p-3">Suporte Logístico 3</td>
+                                <td class="text-sm-left p-3">Pedágio Seropédica</td>
+                                <td class="text-sm-left p-3">Pedágio Magé</td>
+                                <td class="text-sm-left p-3"><span class="bg-yellow">Aguardando</span></td>
+                                <td class="text-sm-left p-3">
                                     <button class="action-view" type="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                     <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
                                     <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
                                 </td>
                             </tr>
                             <tr>
-                                <td>175</td>
-                                <td>Troca</td>
-                                <td>11-7-2024</td>
-                                <td>Escolta</td>
-                                <td>Pedágio Seropédica</td>
-                                <td>Pedágio Magé</td>
-                                <td><span class="bg-yellow">Aguardando</span></td>
-                                <td>
+                                <td class="text-sm-left p-3">175</td>
+                                <td class="text-sm-left p-3">Troca</td>
+                                <td class="text-sm-left p-3">11-7-2024</td>
+                                <td class="text-sm-left p-3">Escolta</td>
+                                <td class="text-sm-left p-3">Pedágio Seropédica</td>
+                                <td class="text-sm-left p-3">Pedágio Magé</td>
+                                <td class="text-sm-left p-3"><span class="bg-yellow">Aguardando</span></td>
+                                <td class="text-sm-left p-3">
                                     <button class="action-view" type="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                     <button class="action-edit" type="button"><i class="fa-regular fa-pen-to-square"></i></button>
                                     <button class="action-cancel" type="button"><i class="fa-solid fa-xmark"></i></button>
