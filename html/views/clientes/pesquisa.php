@@ -61,7 +61,7 @@
                                 <div class="" id="">
                                     <ul class="navbar-nav ml-auto d-flex flex-row align-items-sm-center" style="font-size: 20px;">
                                         <li class="nav-item" style="padding: 0px 0px 0px 1px;color: #06326d;">
-                                            <button type="button" class="open-modal btn my-2 my-sm-0" data-target="modal" onclick="openModal('clientes/cadastrar', 'Cadastrar Cliente')">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-title="Cadastro de clientes" data-bs-action="/clientes/form">
                                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                             </button>
                                         </li>
@@ -114,6 +114,5 @@
 <!-- /Tabela  -->
 
 <?php scripts([
-    ["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ],
-    ["src" => "/public/modal/js/modal-global.js", "id" => "script-pesquisa", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ]
+    ["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ]
 ]);?>

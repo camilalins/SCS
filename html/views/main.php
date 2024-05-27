@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SCS | Sistema de Controle de Solicitações ">
     <!-- fav icon -->
-    <link rel="icon" href="/public/img/icon.ico">
+    <link rel="icon" href="/favicon.ico">
 
     <!-- bootstarp css file -->
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
@@ -80,47 +80,26 @@
     </div>
     <!-- /Content -->
 
-    <!-- Modal global -->
-    <!-- <section class="modal py-1" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-             <div class="modal-content">
-                 <div class="modal-header">
-                     <h5 class="modal-title" id="modalLabel">(Título)</h5>
-                     <button type="button" class="close p-3 bg-transparent border-0"" data-dismiss="modal" aria-label="Close">
-                     <i class="fa fa-times" aria-hidden="true"></i>
-                     </button>
-                 </div>
-                 <div class="modal-body">
-                     <iframe src="/clientes/cadastrar" width="100%" height="400px" frameBorder="0" scrolling="no" ></iframe>
-                 </div>
-             </div>
-         </div>
-     </section>-->
-     <!-- /Modal global -->
-
-
-    <!-- Modal Global teste -->
-    <div id="globalModal" class="modal py-1" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <!-- Modal -->
+    <div id="modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 id="modalTitle" class="text-left display-6 ms-3 modal-title">Título do modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title">&nbsp;</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div id="modalBody" class="modal-body">
-                    <!-- O conteúdo do modal será carregado aqui -->
+                <div class="modal-body">
+                    <iframe src="/204" frameborder="0" scrolling="no" width="100%" height="400px"></iframe>
                 </div>
-                <div id="modalFooter" class="modal-footer">
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /Modal Global teste -->
 
-
+    <!-- /Modal -->
 
 
     <!--  JQuery file     -->
@@ -157,9 +136,8 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/eaf468bfde.js" crossorigin="anonymous"></script>
 
-    <!--  GLOBAL Modal Script  -->
-    <!--<script src="/public/modal/js/modal.js"></script>-->
-    <script src="/public/modal/js/modal-global.js"></script>
+    <!--  Modal Script  -->
+    <script src="/public/modal/js/modal.js"></script>
 
 
     <?php scripts();?>

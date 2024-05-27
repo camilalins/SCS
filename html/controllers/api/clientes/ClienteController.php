@@ -51,7 +51,7 @@ class ClienteController extends ApiAuthorizedController {
 
             response("Cliente cadastrado com sucesso");
         }
-        catch (\Exception $e) { print_r($e); die();
+        catch (\Exception $e) {
             response($e->getMessage(), 400);
         }
 

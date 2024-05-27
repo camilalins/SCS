@@ -5,7 +5,7 @@ var formPesquisa = document.getElementById("form-pesquisa");
 var scriptPesquisa = document.getElementById("script-pesquisa");
 var { uri } = b64JsonDecode( scriptPesquisa.getAttribute("encdata") );
 
-formPesquisa.addEventListener("submit", async (e) => { console.log(e.target);
+formPesquisa.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     try {

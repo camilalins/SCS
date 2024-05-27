@@ -2,5 +2,5 @@
 <?php /** @var TYPE_NAME $responseText */?>
 
 <div class="error-page">
-    <?=$statusCode?> - <?=$responseText?>
+    <?=$statusCode?><?=$responseText?" - ".$responseText:""?>
 </div>

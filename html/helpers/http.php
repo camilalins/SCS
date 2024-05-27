@@ -36,66 +36,35 @@ function redirect($url): void
 
 function response(mixed $json, int $statusCode=200): void {
 
-    switch ($json) {
+    $status = status($json);
+    if(!$status) {
 
-        case BAD_REQUEST_400:
-            $statusCode = 400;
-            $responseText = status($json);  break;
-
-        case UNAUTHORIZED_401:
-            $statusCode = 401;
-            $responseText = status($json);  break;
-
-        case NOT_FOUND_404:
-            $statusCode = 404;
-            $responseText = status($json);  break;
-
-        case METHOD_NOT_ALLOWED_405:
-            $statusCode = 405;
-            $responseText = status($json);  break;
-
-        default:
-            $responseText = gettype($json) == "string" ? json_encode([ "message" => $json ]) : json_encode($json);
-            break;
+        $status = gettype($json) == "string"
+            ? [ "statusCode" => $statusCode, "responseText" => json_encode([ "message" => $json ]) ]
+            : [ "statusCode" => $statusCode, "responseText" => json_encode($json) ];
     }
-    http_response_code($statusCode);
+
+    http_response_code($status["statusCode"]);
     header('Content-Type: application/json; charset=utf-8');
 
-    echo $responseText;
+    echo $status["responseText"];
     exit();
 }
 
 function responseText(mixed $text, int $statusCode=200): void {
 
-    switch ($text) {
-        case BAD_REQUEST_400:
-            $statusCode = 400;
-            $responseText = status($text);  break;
+    $status = status($text);
+    if(!$status) {
 
-        case UNAUTHORIZED_401:
-            $statusCode = 401;
-            $responseText = status($text);  break;
-
-        case NOT_FOUND_404:
-            $statusCode = 404;
-            $responseText = status($text);  break;
-
-        case METHOD_NOT_ALLOWED_405:
-            $statusCode = 405;
-            $responseText = status($text);  break;
-
-        default:
-            if (gettype($text) == "string") $responseText = nl2br($text);
-            else $responseText = $statusCode < 400 ? "OK" : "Undefined";
-            break;
+        $status = gettype($text) == "string"
+            ? [ "statusCode" => $statusCode, "responseText" => nl2br($text) ]
+            : [ "statusCode" => $statusCode, "responseText" => ((array)$text)["message"] ] + (array)$text;
     }
-    http_response_code($statusCode);
+
+    http_response_code($status["statusCode"]);
     header('Content-Type: text/html; charset=utf-8');
 
-    if(gettype($text) == "string")
-        view($statusCode < 400 ? "general.php" : "error.php", [ "statusCode" => $statusCode, "responseText" => $responseText ]);
-    else
-        view($statusCode < 400 ? "general.php" : "error.php", [ "statusCode" => $statusCode, "responseText" => $responseText ]+(array)$text);
+    view("error.php", $status);
     exit();
 }
 
@@ -110,6 +79,28 @@ function view($path, $data=null): void {
     else include "views/$path";
 }
 
+function viewError($text, $statusCode=400): void {
+
+    viewCustom("error.php", $text, $statusCode);
+}
+
+function viewCustom($page, $text, $statusCode=400): void {
+
+    $status = status($text);
+    if(!$status) {
+
+        $status = gettype($text) == "string"
+            ? [ "statusCode" => $statusCode, "responseText" => nl2br($text) ]
+            : [ "statusCode" => $statusCode, "responseText" => ((array)$text)["message"] ] + (array)$text;
+    }
+
+    http_response_code($status["statusCode"]);
+    header('Content-Type: text/html; charset=utf-8');
+
+    view($page, $status);
+    exit();
+}
+
 function body($name=null){
 
     //TODO: SANITIZAR ENTRADAS
@@ -122,7 +113,7 @@ function post($name=null){
 }
 
 function query($name=null){
-    return $name ? $_GET[$name] : (object)$_GET;
+    return $name ? ( $_GET[$name] ?: isset($_GET[$name]) ) : (object)$_GET;
 }
 
 function get($name=null){
@@ -137,19 +128,20 @@ function scripts($scripts=null) {
 
     $loadScripts = function(){
 
-        echo "<script src=\"/public/js/helper-functions.js\"></script>";
+        echo "<script src=\"/public/js/helper-functions.js\"></script>\n\t";
 
         foreach ($GLOBALS["scripts"] as $script)
             if (gettype($script) == "string") {
                 if (str_starts_with($script, "<script"))
-                    echo $script;
+                    echo "$script\n\t";
                 else
-                    echo "<script src=\"$script\"></script>";
+                    echo "<script src=\"$script\"></script>\n\t";
             }
             else if(gettype($script) == "array") {
                 $props = implode(" ", array_map(function ($k, $v) { return "$k=\"$v\""; }, array_keys($script), array_values($script)));
-                echo "<script $props></script>";
+                echo "<script $props></script>\n\t";
             }
+        echo "\r\n";
     };
 
     if($scripts) {

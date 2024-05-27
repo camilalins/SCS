@@ -192,7 +192,8 @@ class Application {
         $routeRegex = str_replace("/", "\/", $route);
         $actionUri = preg_replace("/^$routeRegex/", "", $uri);
 
-        $actionUri = $actionUri ?: "/".$actionUri;
+        //$actionUri = $actionUri ?: "/".$actionUri;
+        $actionUri = !str_starts_with($actionUri, "/") ? "/".$actionUri : $actionUri;
 
         $actions = Application::seekActions($controller);
         foreach ($actions as $action) {

@@ -2,19 +2,18 @@
 namespace controllers\clientes;
 
 use core\controllers\security\AuthorizedController;
-use PHPMailer\PHPMailer\Exception;
 use repo\ClienteRepositorio;
 use models\enums\cliente\Status;
 
 /**
  * @Route("/clientes")
  */
-class PesquisarClienteController extends AuthorizedController {
+class ClienteController extends AuthorizedController {
 
     /**
      * @Get()
      */
-    public function get() {
+    public function index() {
 
         view("clientes/pesquisa.php");
     }
@@ -22,13 +21,13 @@ class PesquisarClienteController extends AuthorizedController {
     /**
      * @Post()
      */
-    public function post() {
+    public function pesquisar() {
 
         try {
 
             $body = body();
 
-            if(!$body->nome && !$body->cnpj && !$body->email) throw new Exception();
+            if(!$body->nome && !$body->cnpj && !$body->email) throw new \Exception();
 
             $repo = new ClienteRepositorio();
             $clientes = $repo->obterPor([
@@ -38,9 +37,17 @@ class PesquisarClienteController extends AuthorizedController {
                 "status" => Status::Ativo
             ], 50);
         }
-        catch (\Exception $e) { $clientes = []; }
+        catch (\Exception) { $clientes = []; }
 
-        view("clientes/pesquisa.php", [ "clientes" => $clientes ] +(array)body());
+        view("clientes/pesquisa.php", [ "clientes" => $clientes ]);
+    }
+
+    /**
+     * @Get("/form")
+     */
+    public function form(){
+
+        view("clientes/cadastro.php", [ "modal" => query("modal") ]);
     }
 
 }

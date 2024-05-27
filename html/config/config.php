@@ -39,18 +39,18 @@ const LOCALE = LOCALE_PT_BR;
 
 # MAIN LAYOUT
 const MAIN_PAGE = "main";
-const MAIN_PAGE_EXCLUDES = [ "login/login.php", "login/recuperar-senha.php", "clientes/cadastro.php" ];
+const MAIN_PAGE_EXCLUDES = [ "login/login.php", "login/recuperar-senha.php", "general.php", "clientes/cadastro.php" ];
 const MAIN_PAGE_TITLE = "SCS";
 
 # MOCKUP
 const MOCKUP_MODE = 0;
-const MOCKUP_ROOT = "mockup/login/login.html";
+const MOCKUP_ROOT = "mockup/index.html";
 
 # DEBUG SETTINGS
 const DEBUG_MODE = 1;
 const DEBUG_LEVEL_LOW = "low";
 const DEBUG_LEVEL_HIGH = "high";
-const DEBUG_LEVEL = DEBUG_LEVEL_HIGH;
+const DEBUG_LEVEL = DEBUG_LEVEL_LOW;
 
 # DEBUG QUERY SETTINGS
 const DEBUG_QUERY = 1;
