@@ -1,7 +1,7 @@
 
 const formCadastro = document.getElementById("form-cadastro");
 const scriptCadastro = document.getElementById("script-cadastro");
-const { uri, err001 } = b64JsonDecode( scriptCadastro.getAttribute("encdata") );
+const { uri, errValid001, errEnt001 } = b64JsonDecode( scriptCadastro.getAttribute("encdata") );
 
 let animTimer;
 $(".alert .btn-close").on("click",() => fecharNotificacao());
@@ -16,7 +16,7 @@ const formCadastroSubmit = async (e) => {
         const formData = new FormData(formCadastro)
         const { nome, cnpj } = Object.fromEntries(formData);
 
-        if(!nome || !cnpj) throw Error(err001)
+        if(!nome || !cnpj) throw Error(errValid001)
 
         const res = await fetch(uri, {
             method: "POST",
@@ -29,7 +29,7 @@ const formCadastroSubmit = async (e) => {
         }
 
         const cliente = await res.json();
-        if(!cliente) throw Error("Não foi possível salvar")
+        if(!cliente) throw Error(errEnt001)
 
         fechar()
     }
@@ -57,3 +57,5 @@ function fecharNotificacao(){
     clearTimeout(animTimer);
     $(".alert").slideUp("fast");
 }
+
+$("[type=submit]").on("click", (e) => console.log(typeof e));

@@ -4,16 +4,16 @@ modal.addEventListener('shown.bs.modal', (e) => {
 
     const button = e.relatedTarget
     const title = button.getAttribute('data-bs-title')
-    const action = button.getAttribute('data-bs-action')
+    const route = button.getAttribute('data-bs-route')
 
-    if(!action || !title) return;
+    if(!route || !title) return;
 
     const modalTitle = modal.querySelector('.modal-title')
     const modalBodyIframe = modal.querySelector('.modal-body iframe')
     const modalSubmit = modal.querySelector('.modal-footer [type=submit]')
 
     modalTitle.textContent = title
-    modalBodyIframe.setAttribute("src", action)
+    modalBodyIframe.setAttribute("src", route)
     modalSubmit.addEventListener("click", (e) => {
 
         e.preventDefault();

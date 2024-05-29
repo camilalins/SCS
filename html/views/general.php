@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SCS - Sistema de Controle de Solicitações">
     <!-- fav icon -->
-    <link rel="icon" href="/public/img/icon.ico">
+    <link rel="icon" href="/favicon.ico">
 
     <!-- bootstarp css file -->
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">

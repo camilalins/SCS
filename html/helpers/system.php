@@ -23,7 +23,8 @@ const MSG_REPO_ERR_A006 = [ "pt-BR" => "DTO precisa conter um Id", "en-US" => ""
 const MSG_REPO_ERR_A007 = [ "pt-BR" => "DTO não pode ser vazio", "en-US" => "" ];
 const MSG_REPO_ERR_A008 = [ "pt-BR" => "Nenhuma entidade encontrada para ser removida", "en-US" => "" ];
 const MSG_REPO_ERR_A009 = [ "pt-BR" => "Para atualizar é necessário informar o atributo Id", "en-US" => "" ];
-const MSG_REPO_ERR_A010 = [ "pt-BR" => "Cláusula não pode ser vazia", "en-US" => "" ];
+const MSG_REPO_ERR_A010 = [ "pt-BR" => "Cláusula não pode ser vazia", "en-US" => "Clause cannot be empty" ];
+const MSG_ENT_ERR_A001 = [ "pt-BR" => "Não foi possível salvar", "en-US" => "Can't save" ];
 
 function sys_messages($name, $details=null, $locale=null): string {
     return $name[$locale?:(LOCALE?:LOCALE_PT_BR)].(DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH && $details ? ": ".$details : "");

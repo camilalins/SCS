@@ -206,7 +206,4 @@
 </section>
 <!-- /Modal de Cadastro de Cliente -->
 
-
-<?php scripts(["/public/modal/js/modal.js"]);?>
-
 </section>
