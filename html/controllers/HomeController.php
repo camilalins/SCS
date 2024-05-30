@@ -15,7 +15,7 @@ class HomeController extends AuthorizedController {
      */
     public function home() {
 
-        view("home.php", [ ]);
+        view("home.php");
     }
 
 }

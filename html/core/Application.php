@@ -52,18 +52,21 @@ class Application {
             foreach (glob("controllers/api/*") as $directory) foreach (glob("$directory/*.php") as $filename) include_once $filename;
 
             #SESSION
+            ini_set( 'session.cookie_httponly', 1 );
             session_start([ 'cookie_lifetime' => time() + (SESSION_TIMEOUT?:60*30), 'cookie_secure' => true, 'cookie_httponly' => true ]);
 
             $cookie = session_get_cookie_params();
             $sessid = session_id();
+            /*COMPAT SAFARI*/
+            setrawcookie('PHPSESSID', $sessid, time() + (SESSION_TIMEOUT?:60*30), $cookie["path"], $cookie["domain"], str_starts_with(BASE_URL, "https://"), true);
             setcookie(
                 'PHPSESSID', //name
                 $sessid, //value
                 [
                     "expires" => time() + (SESSION_TIMEOUT?:60*30), // lifetime
                     "path" => $cookie["path"],//path
-                    "domain" => DOMAIN,//domain
-                    "secure" => true, //secure
+                    "domain" => $cookie["domain"], //domain
+                    "secure" => str_starts_with(BASE_URL, "https://"), //secure
                     "httponly" => true,  //httpOnly
                     "samesite" => "lax"
                 ]
