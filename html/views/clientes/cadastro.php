@@ -32,11 +32,11 @@
 
         <form id="form-cadastro">
             <?=csrf()?>
-            <div class="alert alert-danger alert-dismissible m-2" role="alert" style="display: none">
+            <div class="alert alert-danger alert-dismissible fixed-top m-2 mt-0" role="alert" style="display: none">
                 <span>&nbsp;</span>
                 <button type="button" class="btn-close" aria-label="Close"></button>
             </div>
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-12 col-md-6 p-2">
                     <label for="nomeCliente">Nome</label>
                     <input type="text" class="form-control" id="nomeCliente" name="nome" required>

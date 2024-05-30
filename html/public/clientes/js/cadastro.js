@@ -47,8 +47,8 @@ function fechar(){
 function notificar(mensagem){
 
     $(".alert span").html(mensagem);
-    $(".alert").slideDown("fast", () => {
-        animTimer = setTimeout(() => $(".alert").slideUp("fast"), 3000)
+    $(".alert").fadeIn("fast", () => {
+        animTimer = setTimeout(() => $(".alert").fadeOut("fast"), 3000)
     })
 }
 
