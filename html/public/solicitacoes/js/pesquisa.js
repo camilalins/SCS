@@ -1,5 +1,5 @@
 
-var tbody = document.querySelector("#tb-clientes tbody");
+var tbody = document.querySelector("#tb-solicitacoes tbody");
 
 var formPesquisa = document.getElementById("form-pesquisa");
 var scriptPesquisa = document.getElementById("script-pesquisa");
@@ -12,11 +12,11 @@ formPesquisa.addEventListener("submit", async (e) => {
 
         const form = e.target;
         const formData = new FormData(form)
-        const { cliente, data, placa } = Object.fromEntries(formData);
+        const { data, cliente, placa } = Object.fromEntries(formData);
         const queryString = new URLSearchParams(formData).toString();
         const endpoint = `${uri}?${queryString}`
 
-        if(!cliente && !data && !placa) throw Error("Informe ao menos um filtro para pesquisar")
+        if(!data && !cliente && !placa) throw Error("Informe ao menos um filtro para pesquisar")
 
         const res = await fetch(endpoint)
 
@@ -53,8 +53,8 @@ function carregar(solicitacoes){
             tbody.innerHTML +=
                 `<tr>
                      <td>${e.id}</td>
-                     <td>${e.cliente}</td>
                      <td>${e.data}</td>
+                     <td>${e.cliente}</td>
                      <td>${e.placa}</td>
                 </tr>`;
         })

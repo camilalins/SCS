@@ -30,7 +30,7 @@ class Solicitacao extends Model {
     }
 
     /**
-     * @return Int
+     * @return int
      */
     public function getId(): int
     {
@@ -38,7 +38,7 @@ class Solicitacao extends Model {
     }
 
     /**
-     * @param Int $id
+     * @param int $id
      */
     public function setId(int $id): void
     {

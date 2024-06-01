@@ -38,7 +38,7 @@ const LOCALE = LOCALE_PT_BR;
 
 # MAIN LAYOUT
 const MAIN_PAGE = "main";
-const MAIN_PAGE_EXCLUDES = [ "login/login.php", "login/recuperar-senha.php", "general.php", "clientes/cadastro.php" ];
+const MAIN_PAGE_EXCLUDES = [ "login/login.php", "login/recuperar-senha.php", "general.php", "clientes/cadastro.php", "solicitacoes/cadastro.php"  ];
 const MAIN_PAGE_TITLE = "SCS";
 
 # MOCKUP
