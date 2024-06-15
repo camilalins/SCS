@@ -17,6 +17,10 @@ class CadastrarSolicitacaoController extends \core\controllers\BaseController {
         view("/solicitacoes/cadastro.php");
     }
 
+    /**
+     * @Get(getAllClientes)
+     */
+
     function post(){
 
         try {

@@ -13,7 +13,7 @@ class SolicitacaoController extends ApiAuthorizedController {
     /**
      * @Get()
      */
-    public function obterPorFiltro() {
+    public function obterPorFiltroSolicitacao() {
 
         try {
             $body = query();
@@ -23,8 +23,8 @@ class SolicitacaoController extends ApiAuthorizedController {
             $repo = new SolicitacaoRepositorio();
             $solicitacoes = $repo->obterPor([
                 "data" => like($body->data),
-                "cliente" => like($body->nome),
-                "placa" => like($body->email)
+                "cliente" => like($body->cliente),
+                "placa" => like($body->placa)
             ], 50);
 
             response($solicitacoes);

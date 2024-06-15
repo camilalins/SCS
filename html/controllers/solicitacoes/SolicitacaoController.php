@@ -21,7 +21,7 @@ class SolicitacaoController extends AuthorizedController {
     /**
      * @Post()
      */
-    public function pesquisar() {
+    public function pesquisarSolicitacao() {
 
         try {
 

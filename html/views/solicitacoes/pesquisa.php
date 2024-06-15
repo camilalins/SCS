@@ -76,8 +76,8 @@
                             <thead>
                             <tr>
                                 <th class="w-25 p-3" scope="col">ID</th>
-                                <th class="w-25 p-3" scope="col">Cliente</th>
                                 <th class="w-25 p-3" scope="col">Data</th>
+                                <th class="w-25 p-3" scope="col">Cliente</th>
                                 <th class="w-25 p-3" scope="col">Placa</th>
                             </tr>
                             </thead>
@@ -85,8 +85,8 @@
                             <?php foreach ($solicitacoes as $s):?>
                                 <tr>
                                     <td class="text-sm-left p-3"><?=$s->getId()?></td>
-                                    <td class="text-sm-left p-3"><?=$s->getCliente()?></td>
                                     <td class="text-sm-left p-3"><?=$s->getData()?></td>
+                                    <td class="text-sm-left p-3"><?=$s->getCliente()?></td>
                                     <td class="text-sm-left p-3"><?=$s->getPlaca()?></td>
                                 </tr>
                             <?php endforeach;?>

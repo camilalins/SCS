@@ -1,4 +1,5 @@
 <?php /** @var TYPE_NAME $modal */?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -15,6 +16,7 @@
 
     <!-- bootstrap icons -->
     <link rel="stylesheet" href="/public/css/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -28,7 +30,7 @@
 
 <body class="home-1 vsc-initialized" data-aos-easing="fade-up" data-aos-duration="500" data-aos-delay="0" cz-shortcut-listen="true">
 
-<div class="container-fluid p-0">
+    <div class="container-fluid p-0">
 
     <form id="form-cadastro">
         <?=csrf()?>
@@ -37,21 +39,18 @@
             <button type="button" class="btn-close" aria-label="Close"></button>
         </div>
         <div class="row mt-2">
-            <div class="col-12 col-md-6 p-2">
-                <label for="data">Data</label>
-                <input type="date" class="form-control" id="data" name="data" required>
-            </div>
-            <div class="col-12 col-md-6 p-2">
-                <label for="cliente">Cliente</label>
-                <input type="text" class="form-control" id="cliente" name="cliente" required>
-            </div>
+            <label for="cliente">Clientes</label>
+
+            <select class="form-select" id="cliente" name="cliente" onchange="carregarFormulario()" required>
+                <option value="">Selecione...</option>
+                <option value="mondelez">Mondelez</option>
+                <option value="troca">Troca</option>
+                <option value="mobile">Mobile</option>
+            </select>
+
+            <div id="formulario"></div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-6 p-2">
-                <label for="placa">Placa</label>
-                <input type="text" class="form-control" id="placa" name="placa">
-            </div>
-        </div>
+
         <?php if($modal):?>
             <div class="col-12 col-md-3 p-2 d-flex justify-content-end w-100">
                 <button type="submit" class="btn my-2 my-sm-0">Salvar</button>
@@ -61,8 +60,9 @@
 
 </div>
 
-<script src="/public/js/jquery-3.6.1.min.js"></script>
-<script src="/public/js/bootstrap.min.js"></script>
+    <script src="/public/js/jquery-3.6.1.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <script src="../../public/solicitacoes/js/formulario.js"></script>
 
 </body>
 </html>
