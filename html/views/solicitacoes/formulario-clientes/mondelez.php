@@ -188,8 +188,13 @@
                                 <option value="9">Agente 9</option>
                                 <option value="10">Agente 10</option>
                             </select>
-                            <button type="button" class="btn btn-primary" id="addAgente">Adicionar Agente</button>
+
+
                         </div>
+
+                        <!-- Container onde os novos campos de agente serão adicionados -->
+                        <div id="agentesContainer"></div>
+                        <button type="button" class="btn btn-primary" id="addAgente">Adicionar Agente</button>
 
 
 
@@ -221,7 +226,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="tempoEspera" class="form-label">Tempo de Espera</label>
-                                    <input type="time" class="form-control" id="tempoEspera" placeholder="Tempo de Espera">
+                                    <input type="text" class="form-control" id="tempoEspera" placeholder="Tempo de Espera" readonly>
                                 </div>
                             </div>
                         </div>
@@ -299,18 +304,19 @@
                                     <input type="time" class="form-control" id="tempoTotalAtendimento">
                                 </div>
                             </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <input type="text" class="form-control" id="status" readonly value="Aguardando">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="tab8-tab">
                         <!-- Conteúdo da AbA 8 -->8
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label for="status" class="form-label">Status</label>
-                                    <input type="text" class="form-control" id="status" readonly>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12   ">
                                 <div class="form-group">
                                     <label for="" class="form-label">Observações</label>
                                     <textarea class="form-control" id="observacoes" name="observacoes" rows="6"></textarea>
@@ -370,6 +376,115 @@
                 numeroOcorrenciaField.style.display = 'none';
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            var addAgenteButton = document.getElementById('addAgente');
+            var agentesContainer = document.getElementById('agentesContainer');
+            var agentesCounter = 1;
+
+            addAgenteButton.addEventListener('click', function() {
+                if (agentesCounter < 3) {
+                    agentesCounter++;
+
+                    var selectHtml = `
+                <div class="mb-3">
+                    <label for="agentes${agentesCounter}" class="form-label">Agente ${agentesCounter}</label>
+                    <select class="form-select" id="agentes${agentesCounter}">
+                        <option value="">Selecione...</option>
+                        <option value="1">Agente 1</option>
+                        <option value="2">Agente 2</option>
+                        <option value="3">Agente 3</option>
+                        <option value="4">Agente 4</option>
+                        <option value="5">Agente 5</option>
+                        <option value="6">Agente 6</option>
+                        <option value="7">Agente 7</option>
+                        <option value="8">Agente 8</option>
+                        <option value="9">Agente 9</option>
+                        <option value="10">Agente 10</option>
+                    </select>
+                </div>`;
+
+                    // Append the new agent select to the container
+                    agentesContainer.insertAdjacentHTML('beforeend', selectHtml);
+                } else {
+                    alert('Você já adicionou o número máximo de agentes permitidos.');
+                }
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var chegadaAgenteInput = document.getElementById('chegadaAgente');
+            var inicioAtendimentoInput = document.getElementById('inicioAtendimento');
+            var tempoEsperaInput = document.getElementById('tempoEspera');
+
+            // Função para calcular o tempo de espera
+            function calcularTempoEspera() {
+                var chegadaAgente = chegadaAgenteInput.value;
+                var inicioAtendimento = inicioAtendimentoInput.value;
+
+                // Verifica se ambos os campos têm valores
+                if (chegadaAgente && inicioAtendimento) {
+                    // Cria objetos de data para calcular a diferença
+                    var chegadaAgenteDate = new Date('2000-01-01T' + chegadaAgente + ':00'); // Concatena uma data fictícia para formatar corretamente
+                    var inicioAtendimentoDate = new Date('2000-01-01T' + inicioAtendimento + ':00');
+
+                    // Calcula a diferença em milissegundos
+                    var diffMs = inicioAtendimentoDate - chegadaAgenteDate;
+
+                    // Converte a diferença em horas e minutos
+                    var diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+                    var diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+                    // Formata o tempo de espera como hh:mm
+                    var tempoEsperaFormatted = ('0' + diffHours).slice(-2) + ':' + ('0' + diffMinutes).slice(-2);
+
+                    // Atualiza o valor do campo Tempo de Espera
+                    tempoEsperaInput.value = tempoEsperaFormatted;
+                }
+            }
+
+            // Adiciona eventos de change para calcular o tempo de espera quando os campos mudarem
+            chegadaAgenteInput.addEventListener('change', calcularTempoEspera);
+            inicioAtendimentoInput.addEventListener('change', calcularTempoEspera);
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var dataSolicitacao = document.getElementById('dataSolicitacao');
+            var horaInicioAtendimento = document.getElementById('inicioAtendimento');
+            var dataTerminoSolicitacao = document.getElementById('dataTerminoSolicitacao');
+            var horaTerminoAtendimento = document.getElementById('horaTerminoAtendimento');
+            var tempoTotalAtendimento = document.getElementById('tempoTotalAtendimento');
+
+            function calcularTempoTotalAtendimento() {
+                var dataInicio = dataSolicitacao.value;
+                var horaInicio = horaInicioAtendimento.value;
+                var dataTermino = dataTerminoSolicitacao.value;
+                var horaTermino = horaTerminoAtendimento.value;
+
+                if (dataInicio && horaInicio && dataTermino && horaTermino) {
+                    // Cria objetos de data para o início e término do atendimento
+                    var inicioAtendimento = new Date(dataInicio + 'T' + horaInicio + ':00');
+                    var terminoAtendimento = new Date(dataTermino + 'T' + horaTermino + ':00');
+
+                    // Calcula a diferença em milissegundos
+                    var diffMs = terminoAtendimento - inicioAtendimento;
+
+                    // Calcula horas e minutos
+                    var diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+                    var diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+                    // Formata o tempo total de atendimento como hh:mm
+                    var tempoTotalFormatado = ('0' + diffHours).slice(-2) + ':' + ('0' + diffMinutes).slice(-2);
+
+                    // Atualiza o campo tempoTotalAtendimento
+                    tempoTotalAtendimento.value = tempoTotalFormatado;
+                }
+            }
+
+            // Adiciona event listeners para os campos necessários
+            dataSolicitacao.addEventListener('change', calcularTempoTotalAtendimento);
+            horaInicioAtendimento.addEventListener('change', calcularTempoTotalAtendimento);
+            dataTerminoSolicitacao.addEventListener('change', calcularTempoTotalAtendimento);
+            horaTerminoAtendimento.addEventListener('change', calcularTempoTotalAtendimento);
+        });
+
     </script>
 
 
