@@ -172,8 +172,8 @@ $locais = $db->getLocaisMondelez();
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="dataSolicitacao" class="form-label">Data da Solicitação</label>
-                            <input type="date" class="form-control" id="dataSolicitacao">
+                            <label for="dataInicioAtendimento" class="form-label">Data Início Atendimento</label>
+                            <input type="date" class="form-control" id="dataInicioAtendimento">
                         </div>
                     </div>
                 </div>
@@ -467,9 +467,11 @@ $locais = $db->getLocaisMondelez();
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="chegadaAgente" class="form-label">Chegada do Agente</label>
-                            <input type="time" class="form-control" id="chegadaAgente" placeholder="Chegada do Agente">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="chegadaAgente" class="form-label">Chegada do Agente</label>
+                                <input type="time" class="form-control" id="chegadaAgente">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -477,17 +479,18 @@ $locais = $db->getLocaisMondelez();
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="inicioAtendimento" class="form-label">Início Atendimento</label>
-                            <input type="time" class="form-control" id="inicioAtendimento" placeholder="Início Atendimento">
+                            <input type="time" class="form-control" id="inicioAtendimento">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="tempoEspera" class="form-label">Tempo de Espera</label>
-                            <input type="text" class="form-control" id="tempoEspera" placeholder="Tempo de Espera" readonly>
+                            <input type="text" class="form-control" id="tempoEspera" readonly>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
                 <!-- Conteúdo da AbA 6 -->
                 <br>
@@ -547,32 +550,86 @@ $locais = $db->getLocaisMondelez();
                 <br>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="dataTerminoSolicitacao" class="form-label">Data Término Solicitação</label>
                             <input type="date" class="form-control" id="dataTerminoSolicitacao">
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="horaTerminoAtendimento" class="form-label">Hora Término Atendimento</label>
                             <input type="time" class="form-control" id="horaTerminoAtendimento">
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="tempoTotalAtendimento" class="form-label">Tempo Total de Atendimento</label>
-                            <input type="time" class="form-control" id="tempoTotalAtendimento">
+                            <input type="text" class="form-control" id="tempoTotalAtendimento" readonly>
                         </div>
                     </div>
+
+
                     <div class="col-sm-6">
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="status" class="form-label">Status</label>
                             <input type="text" class="form-control" id="status" readonly value="Aguardando">
-
                         </div>
                     </div>
                 </div>
             </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var dataTerminoInput = document.getElementById('dataTerminoSolicitacao');
+                    var horaTerminoInput = document.getElementById('horaTerminoAtendimento');
+                    var statusInput = document.getElementById('status');
+
+                    // Função para verificar e atualizar o status
+                    function verificarEAtualizarStatus() {
+                        var dataTermino = dataTerminoInput.value;
+                        var horaTermino = horaTerminoInput.value;
+
+                        if (dataTermino && horaTermino) {
+                            statusInput.value = 'Finalizado';
+                        } else {
+                            statusInput.value = 'Aguardando';
+                        }
+                    }
+
+                    // Adiciona eventos para monitorar o pressionamento de teclas nos campos de data e hora
+                    dataTerminoInput.addEventListener('input', verificarEAtualizarStatus);
+                    horaTerminoInput.addEventListener('input', verificarEAtualizarStatus);
+                });
+            </script>
+            <script>
+                document.getElementById('chegadaAgente').addEventListener('change', calculateWaitTime);
+                document.getElementById('inicioAtendimento').addEventListener('change', calculateWaitTime);
+
+                function calculateWaitTime() {
+                    const chegadaAgente = document.getElementById('chegadaAgente').value;
+                    const inicioAtendimento = document.getElementById('inicioAtendimento').value;
+
+                    if (chegadaAgente && inicioAtendimento) {
+                        const chegadaAgenteDate = new Date(`1970-01-01T${chegadaAgente}:00Z`);
+                        const inicioAtendimentoDate = new Date(`1970-01-01T${inicioAtendimento}:00Z`);
+
+                        const diffMs = inicioAtendimentoDate - chegadaAgenteDate;
+                        const diffMins = diffMs / 60000;
+
+                        const hours = Math.floor(diffMins / 60);
+                        const minutes = diffMins % 60;
+
+                        const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+                        document.getElementById('tempoEspera').value = formattedTime;
+                    }
+                }
+            </script>
+
+
+
+
+
+
+
             <div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="tab8-tab">
                 <!-- Conteúdo da AbA 8 -->
                 <br>
@@ -593,25 +650,7 @@ $locais = $db->getLocaisMondelez();
 
 <!-- Script para designar o status -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var dataTermino = document.getElementById('dataTerminoSolicitacao');
-        var horaTermino = document.getElementById('horaTerminoAtendimento');
-        var statusField = document.getElementById('status');
 
-        function checkStatus() {
-            var dataTerminoValue = dataTermino.value;
-            var horaTerminoValue = horaTermino.value;
-
-            if (dataTerminoValue && horaTerminoValue) {
-                statusField.value = 'Finalizado';
-            } else {
-                statusField.value = 'Aguardando';
-            }
-        }
-
-        dataTermino.addEventListener('change', checkStatus);
-        horaTermino.addEventListener('change', checkStatus);
-    });
     <!-- Script para classificar o sinistro e ocorrência -->
     function toggleSinistroField() {
         var sinistroSim = document.getElementById('sinistroSim').checked;
@@ -638,85 +677,8 @@ $locais = $db->getLocaisMondelez();
         }
     }
 
-
-
-    <!-- Script para determinar o tempo de espera -->
-    document.addEventListener('DOMContentLoaded', function() {
-        var chegadaAgenteInput = document.getElementById('chegadaAgente');
-        var inicioAtendimentoInput = document.getElementById('inicioAtendimento');
-        var tempoEsperaInput = document.getElementById('tempoEspera');
-
-        // Função para calcular o tempo de espera
-        function calcularTempoEspera() {
-            var chegadaAgente = chegadaAgenteInput.value;
-            var inicioAtendimento = inicioAtendimentoInput.value;
-
-            // Verifica se ambos os campos têm valores
-            if (chegadaAgente && inicioAtendimento) {
-                // Cria objetos de data para calcular a diferença
-                var chegadaAgenteDate = new Date('2000-01-01T' + chegadaAgente + ':00'); // Concatena uma data fictícia para formatar corretamente
-                var inicioAtendimentoDate = new Date('2000-01-01T' + inicioAtendimento + ':00');
-
-                // Calcula a diferença em milissegundos
-                var diffMs = inicioAtendimentoDate - chegadaAgenteDate;
-
-                // Converte a diferença em horas e minutos
-                var diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-                var diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-
-                // Formata o tempo de espera como hh:mm
-                var tempoEsperaFormatted = ('0' + diffHours).slice(-2) + ':' + ('0' + diffMinutes).slice(-2);
-
-                // Atualiza o valor do campo Tempo de Espera
-                tempoEsperaInput.value = tempoEsperaFormatted;
-            }
-        }
-
-        // Adiciona eventos de change para calcular o tempo de espera quando os campos mudarem
-        chegadaAgenteInput.addEventListener('change', calcularTempoEspera);
-        inicioAtendimentoInput.addEventListener('change', calcularTempoEspera);
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-        var dataSolicitacao = document.getElementById('dataSolicitacao');
-        var horaInicioAtendimento = document.getElementById('inicioAtendimento');
-        var dataTerminoSolicitacao = document.getElementById('dataTerminoSolicitacao');
-        var horaTerminoAtendimento = document.getElementById('horaTerminoAtendimento');
-        var tempoTotalAtendimento = document.getElementById('tempoTotalAtendimento');
-
-        function calcularTempoTotalAtendimento() {
-            var dataInicio = dataSolicitacao.value;
-            var horaInicio = horaInicioAtendimento.value;
-            var dataTermino = dataTerminoSolicitacao.value;
-            var horaTermino = horaTerminoAtendimento.value;
-
-            if (dataInicio && horaInicio && dataTermino && horaTermino) {
-                // Cria objetos de data para o início e término do atendimento
-                var inicioAtendimento = new Date(dataInicio + 'T' + horaInicio + ':00');
-                var terminoAtendimento = new Date(dataTermino + 'T' + horaTermino + ':00');
-
-                // Calcula a diferença em milissegundos
-                var diffMs = terminoAtendimento - inicioAtendimento;
-
-                // Calcula horas e minutos
-                var diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-                var diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-
-                // Formata o tempo total de atendimento como hh:mm
-                var tempoTotalFormatado = ('0' + diffHours).slice(-2) + ':' + ('0' + diffMinutes).slice(-2);
-
-                // Atualiza o campo tempoTotalAtendimento
-                tempoTotalAtendimento.value = tempoTotalFormatado;
-            }
-        }
-
-        // Adiciona event listeners para os campos necessários
-        dataSolicitacao.addEventListener('change', calcularTempoTotalAtendimento);
-        horaInicioAtendimento.addEventListener('change', calcularTempoTotalAtendimento);
-        dataTerminoSolicitacao.addEventListener('change', calcularTempoTotalAtendimento);
-        horaTerminoAtendimento.addEventListener('change', calcularTempoTotalAtendimento);
-    });
-
 </script>
+
 <!--script para local origem-->
 <script>
     function mostrarLocalSelecionado() {
