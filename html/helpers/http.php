@@ -71,20 +71,38 @@ function responseText(mixed $text, int $statusCode=200): void {
 function view($path, $data=null): void {
 
     extract($data ?: []);
+    $views = "views";
+    $mainPageFolderExcludes = array_filter(array_map(function ($e) use($views) {
+        if(!str_contains($e, "*")) return null;
+        $excludes = [];
+        foreach (glob("$views/$e") as $filename) $excludes[] = $filename;
+            foreach (glob("$views/$e") as $directory) foreach (glob("$directory/*.php") as $filename) $excludes[] = $filename;
+        return $excludes?:null;
+    }, MAIN_PAGE_EXCLUDES), function ($e) { return isset($e); });
+    $mainPageFilesExcludes = array_filter(array_map(function ($e) use($views) {
+        if(str_contains($e, "*")) return null;
+        return "$views/$e";
+    }, MAIN_PAGE_EXCLUDES), function ($e) { return isset($e); });
+    $mainPageExcludes = array_merge($mainPageFilesExcludes, ...$mainPageFolderExcludes);
 
-    if(MAIN_PAGE && !in_array($path, MAIN_PAGE_EXCLUDES)) {
-        $page = $GLOBALS["page"] = "views/$path";
-        include "views/".MAIN_PAGE.".php";
+    if(MAIN_PAGE && !in_array("$views/$path", $mainPageExcludes)) {
+        $page = $GLOBALS["page"] = "$views/$path";
+        include "$views/".MAIN_PAGE.".php";
     }
-    else include "views/$path";
+    else include "$views/$path";
 }
 
-function viewError($text, $statusCode=400): void {
+function viewError($text=BAD_REQUEST_400, $statusCode=400): void {
 
     viewCustom("error.php", $text, $statusCode);
 }
 
-function viewCustom($page, $text, $statusCode=400): void {
+function viewGeneral($text=BAD_REQUEST_400, $statusCode=400): void {
+
+    viewCustom("general.php", $text, $statusCode);
+}
+
+function viewCustom($page, $text=BAD_REQUEST_400, $statusCode=400): void {
 
     $status = status($text);
     if(!$status) {

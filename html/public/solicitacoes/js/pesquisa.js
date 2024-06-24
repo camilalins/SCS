@@ -51,8 +51,8 @@ function carregar(solicitacoes){
         solicitacoes.forEach((e) => {
 
             tbody.innerHTML +=
-                `<tr>
-                     <td>${e.id}</td>
+                `<tr key="${e.id}">
+                     <td><a href="#"><i class="fa fa-ellipsis-v"></i></a></td>
                      <td>${e.data}</td>
                      <td>${e.cliente}</td>
                      <td>${e.placa}</td>

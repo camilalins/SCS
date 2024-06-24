@@ -52,7 +52,7 @@ function carregar(clientes){
 
             tbody.innerHTML +=
                 `<tr key="${e.id}">
-                     <td><!--<a href="#"><i class="fa fa-ellipsis-v"></i></a>--></td>
+                     <td><a href="/solicitacoes/form/${e.id}"><i class="fa fa-ellipsis-v"></i></a></td>
                      <td>${e.nome}</td>
                      <td>${e.cnpj}</td>
                      <td>${e.responsavel | ""}</td>

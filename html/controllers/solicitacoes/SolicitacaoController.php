@@ -2,7 +2,10 @@
 namespace controllers\solicitacoes;
 
 use core\controllers\security\AuthorizedController;
-use repo\SolicitacaoRepositorio;
+use core\repo\Repositorio;
+use models\ClienteForm;
+use PHPMailer\PHPMailer\Exception;
+use repo\ClienteRepositorio;
 
 /**
  * @Route("/solicitacoes")
@@ -17,36 +20,36 @@ class SolicitacaoController extends AuthorizedController {
         view("solicitacoes/pesquisa.php");
     }
 
-
     /**
-     * @Post()
+     * @Get("/selecionar")
      */
-    public function pesquisarSolicitacao() {
+    public function selecionarClientes(){
 
-        try {
-
-            $body = body();
-
-            if(!$body->data && !$body->cliente && !$body->placa) throw new \Exception();
-
-            $repo = new SolicitacaoRepositorio();
-            $clientes = $repo->obterPor([
-                "data" => like($body->data),
-                "cliente" => like($body->cliente),
-                "placa" => like($body->placa)
-            ], 50);
-        }
-        catch (\Exception) { $solicitacoes = []; }
-
-        view("solicitacoes/pesquisa.php", [ "solicitacoes" => $solicitacoes ]);
+        view("solicitacoes/pesquisa-cliente.php");
     }
 
     /**
-     * @Get("/form")
+     * @Get("/form/{id}")
      */
-    public function form(){
+    public function formCliente(){
 
-        view("solicitacoes/cadastro.php", [ "modal" => query("modal") ]);
+        try {
+
+            $id = path("id");
+
+            if(!$id) throw new \Exception(sys_messages(MSG_VALID_ERR_A001));
+
+            $repoForm = new Repositorio(ClienteForm::class);
+            $form = $repoForm->obterPrimeiro([ "clienteId" => $id ]);
+
+            $repoCliente = new ClienteRepositorio();
+            $cliente = $repoCliente->obterPorId($id);
+
+            $formUrl = $form ? "forms/{$form->getNome()}" : "cadastro.php";
+
+            view("solicitacoes/$formUrl", [ "cliente" => $cliente ]);
+        }
+        catch (\Exception) { viewGeneral(); }
     }
 
 }

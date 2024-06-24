@@ -1,4 +1,3 @@
-<?php /** @var TYPE_NAME $modal */?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -60,7 +59,7 @@
                     <input type="text" class="form-control" id="telefoneCliente" name="telefone">
                 </div>
             </div>
-            <?php if($modal):?>
+            <?php if(query("modal")):?>
             <div class="col-12 col-md-3 p-2 d-flex justify-content-end w-100">
                 <button type="submit" class="btn my-2 my-sm-0">Salvar</button>
             </div>

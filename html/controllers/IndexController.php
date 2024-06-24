@@ -21,7 +21,7 @@ class IndexController extends BaseController {
      */
     public function indisponivel(){
 
-        viewCustom("general.php", NO_CONTENT_204);
+        viewGeneral(NO_CONTENT_204);
     }
 
 }

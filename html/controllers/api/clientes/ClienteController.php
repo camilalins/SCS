@@ -27,7 +27,7 @@ class ClienteController extends ApiAuthorizedController {
                 "cnpj" => $body->cnpj,
                 "email" => like($body->email),
                 "status" => Status::Ativo
-            ], 50);
+            ], queryPagination());
 
             response($clientes);
         }
@@ -49,7 +49,7 @@ class ClienteController extends ApiAuthorizedController {
             $repo = new ClienteRepositorio();
             $repo->criar($cliente);
 
-            response("Cliente cadastrado com sucesso");
+            response($cliente);
         }
         catch (\Exception $e) {
             response($e->getMessage(), 400);

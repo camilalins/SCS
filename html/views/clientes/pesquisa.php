@@ -75,7 +75,7 @@
                         <table id="tb-clientes" class="table table-hover text-nowrap">
                             <thead>
                             <tr>
-                                <th class="w-25 p-3" scope="col">ID</th>
+                                <th class="w-10 p-3" scope="col"></th>
                                 <th class="w-25 p-3" scope="col">Cliente</th>
                                 <th class="w-25 p-3" scope="col">CNPJ</th>
                                 <th class="w-25 p-3" scope="col">Responsável</th>
@@ -85,8 +85,8 @@
                             </thead>
                             <tbody>
                             <?php foreach ($clientes as $c):?>
-                                <tr>
-                                    <td class="text-sm-left p-3"><?=$c->getId()?></td>
+                                <tr key="<?=$c->getId()?>">
+                                    <td class="text-sm-left p-3"><a href="#"><i class="fa fa-ellipsis-v"></i></a></td>
                                     <td class="text-sm-left p-3"><?=$c->getNome()?></td>
                                     <td class="text-sm-left p-3"><?=$c->getCnpj()?></td>
                                     <td class="text-sm-left p-3"><?=$c->getResponsavel()?></td>
@@ -114,5 +114,12 @@
 <!-- /Tabela  -->
 
 <?php scripts([
-    ["src" => "/public/clientes/js/pesquisa.js", "id" => "script-pesquisa", "encdata" => b64JsonEncode([ "uri" => "/api/clientes" ]) ]
+    [
+        "src" => "/public/clientes/js/pesquisa.js",
+        "id" => "script-pesquisa",
+        "encdata" => b64JsonEncode([
+            "uri" => "/api/clientes",
+            "err001" => sys_messages(MSG_VALID_ERR_A001)
+        ])
+    ]
 ]);?>

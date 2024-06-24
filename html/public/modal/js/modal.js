@@ -25,3 +25,7 @@ modal.addEventListener('shown.bs.modal', (e) => {
         if (modalBodyForm) modalBodyWindow.dispatchEvent(new CustomEvent("modalSubmit", { detail : modal })) //modalBodyForm.submit();
     })
 })
+
+modal.addEventListener('hidden.bs.modal', () => {
+
+})

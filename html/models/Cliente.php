@@ -3,9 +3,7 @@
 namespace models;
 
 use core\Model;
-use JetBrains\PhpStorm\Internal\TentativeType;
 use models\enums\cliente\Status;
-use stdClass;
 
 /**
  * @Entity("cliente")

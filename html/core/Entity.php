@@ -45,5 +45,46 @@ class Entity {
         }
         return $metadata;
     }
+
+    public static function mapField($class){
+
+        $classInfo = new \ReflectionClass($class);
+        $classProps = $classInfo->getProperties(\ReflectionProperty::IS_PRIVATE | \ReflectionProperty::IS_PROTECTED);
+        $classAttrs = array_filter(array_map(function ($propInfo) {
+            $propComments = array_filter(array_map(function ($part) { return trim($part," *"); }, explode("\n", $propInfo->getDocComment() )), function ($part) { return $part != "/"; });
+            $propColumn = current(array_filter($propComments, function ($part) { return str_contains(strtoupper($part), "@COLUMN"); }));
+            preg_match_all('/\(([^\)]*)\)/', $propColumn, $propColumnMatches);
+            $propColumnParams = array_map('trim', explode(',', str_replace("\"", "", current($propColumnMatches[1]))));
+            $propColumnParam = current($propColumnParams);
+
+            return $propColumnParam ? $propInfo->getName() : null;
+        }, $classProps), function ($part){ return $part != null; });
+        return current($classAttrs);
+    }
+    /*
+    public static function mapColumn($class, $name){
+
+        $classInfo = new \ReflectionClass($class);
+        $propInfo = $classInfo->getProperty($name);
+        $propComments = array_filter(array_map(function ($part) { return trim($part," *"); }, explode("\n", $propInfo->getDocComment())), function ($part) { return $part != "/"; });
+        $propColumn = current(array_filter($propComments, function ($part) { return str_contains(strtoupper($part), "@COLUMN"); }));
+        preg_match_all('/\(([^\)]*)\)/', $propColumn, $propColumnMatches);
+        $propColumnParams = array_map('trim', explode(',', str_replace("\"", "", current($propColumnMatches[1]))));
+        return current($propColumnParams);
+    }
+    */
+    public static function mapColumn($class, $name){
+
+        try {
+            $classInfo = new \ReflectionClass($class);
+            $propInfo = $classInfo->getProperty($name);
+            $propComments = array_filter(array_map(function ($part) { return trim($part," *"); }, explode("\n", $propInfo->getDocComment())), function ($part) { return $part != "/"; });
+            $propColumn = current(array_filter($propComments, function ($part) { return str_contains(strtoupper($part), "@COLUMN"); }));
+            preg_match_all('/\(([^\)]*)\)/', $propColumn, $propColumnMatches);
+            $propColumnParams = array_map('trim', explode(',', str_replace("\"", "", current($propColumnMatches[1]))));
+            return current($propColumnParams);
+        }
+        catch (\Exception) { return null; }
+    }
 }
 

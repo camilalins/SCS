@@ -71,9 +71,9 @@ class Repositorio {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($entidade = $result->fetch_object())
+        if ($entidade = $result->fetch_object()) {
             return $this->meta->class->qualifiedName::deserialize($entidade);
-
+        }
         return null;
     }
 
@@ -94,6 +94,8 @@ class Repositorio {
 
         $where = array_map(function ($k, $v) {
 
+            if($c = Entity::mapColumn($this->meta->class->qualifiedName, $k)) $k = $c;
+
             $o = NONE_IF_EMPTY;
             if(gettype($v) == "array") {
                 $o = count($v) > 1 ? $v[1] : "";
@@ -101,7 +103,12 @@ class Repositorio {
             }
             if(gettype($v) == "object" && (new ReflectionClass($v))->isEnum()) $v = $v->value;
 
-            if(str_starts_with(strtoupper($v), "LIKE")) {
+            if($v && str_starts_with(strtoupper($v), "IN")) {
+                $value = trim(substr($v, 3));
+                return "$k IN $value";
+            }
+
+            if($v && str_starts_with(strtoupper($v), "LIKE")) {
                 $value = trim(substr($v, 4));
                 $valueNoWildcard = str_replace("%", "", $value);
                 if($o == NONE_IF_EMPTY && !$valueNoWildcard) return null;
@@ -121,8 +128,8 @@ class Repositorio {
 
         $sql = "SELECT * FROM {$this->meta->table->qualifiedName}";
         if($where) $sql.= " WHERE $where";
-        if($limite) $sql.= " LIMIT $limite";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_SELECT || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
+        if($limite) $sql.= gettype($limite) == "array" ? " LIMIT {$limite[0]},{$limite[1]}" : " LIMIT $limite";
+        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
 
         $stmt = $this->mysqli->prepare($sql);
         $stmt->execute();
@@ -133,6 +140,16 @@ class Repositorio {
             $results[] = $this->meta->class->qualifiedName::deserialize($entidade);
 
         return $results;
+    }
+
+    /**
+     * Buscar com filtro dinâmico
+     * @return Model|null
+     * @throws Exception
+     */
+    public function obterPrimeiro($dto=[]):?Model {
+        $primeiro = $this->obterPor($dto, 1);
+        return $primeiro ? current($primeiro) : null;
     }
 
     /**
@@ -154,7 +171,7 @@ class Repositorio {
         $valores = array_values($dto);
         $valores = array_map(function ($v) { return gettype($v) == "object" && (new ReflectionClass($v))->isEnum() ? $v->value : $v; }, $valores);
 
-        $joinCampos = implode(", ", $campos);
+        $joinCampos = implode(", ", array_map(function ($k) { if($c = Entity::mapColumn($this->meta->class->qualifiedName, $k)) $k = $c; return $k; }, $campos));
         $joinParams = implode(", ", array_map(function () { return "?"; }, $valores));
         $joinBinds = implode("", array_map(function () { return "s"; }, $valores));
 
@@ -172,7 +189,6 @@ class Repositorio {
         $this->mysqli->close();
 
         return null;
-
     }
 
     /**
@@ -198,7 +214,7 @@ class Repositorio {
         $valores = array_map(function ($v) { return gettype($v) == "object" && (new ReflectionClass($v))->isEnum() ? $v->value : $v; }, $valores);
 
         $valoresEId = array_merge($valores,[$id]);
-        $joinSets = implode(", ", array_map(function ($k, $v){ return "$k = ?"; }, $campos, $valores));
+        $joinSets = implode(", ", array_map(function ($k, $v){ if($c = Entity::mapColumn($this->meta->class->qualifiedName, $k)) $k = $c; return "$k = ?"; }, $campos, $valores));
         $joinBinds = implode("", array_map(function () { return "s"; }, $valoresEId));
 
         $sql = "UPDATE {$this->meta->table->qualifiedName} SET $joinSets WHERE id = ?";
@@ -273,6 +289,9 @@ class Repositorio {
         $valores = array_map(function ($v) { return gettype($v) == "object" && (new ReflectionClass($v))->isEnum() ? $v->value : $v; }, $valores);
 
         $where = array_map(function ($k, $v) {
+
+            if($c = Entity::mapColumn($this->meta->class->qualifiedName, $k)) $k = $c;
+
             if(str_starts_with(strtoupper($v), "LIKE")) {
                 return "$k LIKE ?";
             }

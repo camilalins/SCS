@@ -20,8 +20,11 @@ abstract class Model implements JsonSerializable {
         $objJson = gettype($object) == "string" ? json_encode($object) : json_decode(json_encode($object));
         $classInfo = new ReflectionClass($instance);
         $publicProps = $classInfo->getProperties();
+
         foreach ($publicProps as $prop) {
             $propName = $prop->name;
+            if($c = Entity::mapColumn($instance, $propName)) $propName = $c;
+
             $class = $prop->getType()->getName();
             if(!$prop->getType()->isBuiltin() && (new ReflectionClass($class))->isEnum()){
                 $caseName = null;
@@ -34,6 +37,10 @@ abstract class Model implements JsonSerializable {
                     $value = constant("$class::$caseName");
                     $prop->setValue($instance, $value);
                 }
+            }
+            else if (in_array($prop->getType()->getName(), ["int", "long", "float", "double"])) {
+
+                $prop->setValue($instance, $objJson->$propName?:0);
             }
             else $prop->setValue($instance, $objJson->$propName?:null);
         }

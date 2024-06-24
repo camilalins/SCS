@@ -6,8 +6,8 @@ const { uri, errValid001, errEnt001 } = b64JsonDecode( scriptCadastro.getAttribu
 let animTimer;
 $(".alert .btn-close").on("click",() => fecharNotificacao());
 
-window.addEventListener("modalSubmit", (e) => formCadastroSubmit(e));
-formCadastro.addEventListener("submit", (e) => formCadastroSubmit(e));
+window.addEventListener("modalSubmit", (e) => formCadastroSubmit(e), { once: true });
+formCadastro.addEventListener("submit", (e) => formCadastroSubmit(e), { once: true });
 
 const formCadastroSubmit = async (e) => {
 

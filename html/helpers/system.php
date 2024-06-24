@@ -25,6 +25,10 @@ const MSG_REPO_ERR_A008 = [ "pt-BR" => "Nenhuma entidade encontrada para ser rem
 const MSG_REPO_ERR_A009 = [ "pt-BR" => "Para atualizar é necessário informar o atributo Id", "en-US" => "" ];
 const MSG_REPO_ERR_A010 = [ "pt-BR" => "Cláusula não pode ser vazia", "en-US" => "Clause cannot be empty" ];
 const MSG_ENT_ERR_A001 = [ "pt-BR" => "Não foi possível salvar", "en-US" => "Can't save" ];
+const MSG_ENT_ERR_A002 = [ "pt-BR" => "Nenhum registro encontrado", "en-US" => "No data found" ];
+const MSG_CLI_ERR_A001 = [ "pt-BR" => "Informe ao menos um filtro para pesquisar", "en-US" => "Inform at least one filter for search" ];
+
+const ERR_SOL_ERR_001 = [ "pt-BR" => "Não há página personalizada para este cliente", "en-US" => "There's no custom page for this customer" ];
 
 function sys_messages($name, $details=null, $locale=null): string {
     return $name[$locale?:(LOCALE?:LOCALE_PT_BR)].(DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH && $details ? ": ".$details : "");

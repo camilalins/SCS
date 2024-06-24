@@ -13,19 +13,20 @@ class Solicitacao extends Model {
     /** * @Id */
     private Int $id;
     private String $data;
-    private String $cliente;
+    /** * @Column("cliente_id") */
+    private int $clienteId;
     private String $placa;
 
     /**
+     * @param Int $clienteId
      * @param String $data
-     * @param String $cliente
      * @param String $placa
      */
-    public function __construct(string $data="", string $cliente="", string $placa="")
+    public function __construct(int $clienteId=0, string $data="", string $placa="")
     {
         $this->id = 0;
+        $this->clienteId = $clienteId;
         $this->data = $data;
-        $this->cliente = $cliente;
         $this->placa = $placa;
     }
 
@@ -48,6 +49,22 @@ class Solicitacao extends Model {
     /**
      * @return string|null
      */
+    public function getClienteId(): int
+    {
+        return $this->clienteId;
+    }
+
+    /**
+     * @param string|null $cliente
+     */
+    public function setClienteId(int $clienteId): void
+    {
+        $this->clienteId = $clienteId;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getData(): ?string
     {
         return $this->data;
@@ -59,22 +76,6 @@ class Solicitacao extends Model {
     public function setData(?string $data): void
     {
         $this->data = $data;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCliente(): ?string
-    {
-        return $this->cliente;
-    }
-
-    /**
-     * @param string|null $cliente
-     */
-    public function setCliente(?string $cliente): void
-    {
-        $this->cliente = $cliente;
     }
 
     /**

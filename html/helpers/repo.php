@@ -21,3 +21,9 @@ function like($value, $wilcard=SQL_LIKE_START_END): string {
         case SQL_LIKE_END: return "like $value%";
     }
 }
+
+function in($values): string {
+
+    $sValues = "'". implode("', '", $values) . "'";
+    return "in ($sValues)";
+}

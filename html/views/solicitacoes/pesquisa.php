@@ -1,4 +1,4 @@
-<?php /** @var TYPE_NAME $clientes */?>
+<?php /** @var TYPE_NAME $solicitacoes */?>
 <?php /** @var TYPE_NAME $nome */?>
 <?php /** @var TYPE_NAME $data */?>
 <?php /** @var TYPE_NAME $placa */?>
@@ -61,7 +61,7 @@
                                 <div class="" id="">
                                     <ul class="navbar-nav ml-auto d-flex flex-row align-items-sm-center" style="font-size: 20px;">
                                         <li class="nav-item" style="padding: 0px 0px 0px 1px;color: #06326d;">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-title="Cadastro de clientes" data-bs-route="/solicitacoes/form">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal" data-bs-title="Cadastro de solicitações" data-bs-route="/solicitacoes/selecionar">
                                                 <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
                                             </button>
                                         </li>
@@ -75,7 +75,7 @@
                         <table id="tb-solicitacoes" class="table table-hover text-nowrap">
                             <thead>
                             <tr>
-                                <th class="w-25 p-3" scope="col">ID</th>
+                                <th class="w-10 p-3" scope="col"></th>
                                 <th class="w-25 p-3" scope="col">Data</th>
                                 <th class="w-25 p-3" scope="col">Cliente</th>
                                 <th class="w-25 p-3" scope="col">Placa</th>
@@ -84,9 +84,9 @@
                             <tbody>
                             <?php foreach ($solicitacoes as $s):?>
                                 <tr>
-                                    <td class="text-sm-left p-3"><?=$s->getId()?></td>
+                                    <td class="text-sm-left p-3"><a><i class="fa fa-hand"></i></a></td>
                                     <td class="text-sm-left p-3"><?=$s->getData()?></td>
-                                    <td class="text-sm-left p-3"><?=$s->getCliente()?></td>
+                                    <td class="text-sm-left p-3"><?=$s->getClienteId()?></td>
                                     <td class="text-sm-left p-3"><?=$s->getPlaca()?></td>
                                 </tr>
                             <?php endforeach;?>
@@ -110,7 +110,12 @@
 <!-- /Tabela  -->
 
 <?php scripts([
-    ["src" => "/public/solicitacoes/js/pesquisa.js", "id" => "script-pesquisa", "encdata" => b64JsonEncode([ "uri" => "/api/solicitacoes" ]) ]
+    [
+        "src" => "/public/solicitacoes/js/pesquisa.js",
+        "id" => "script-pesquisa",
+        "encdata" => b64JsonEncode([
+            "uri" => "/api/solicitacoes"
+        ]) ]
 ]);?>
 
 
