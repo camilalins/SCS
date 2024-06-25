@@ -2,10 +2,8 @@
 
 namespace core;
 
-use models\enums\cliente\Status;
 use ReflectionClass;
 use ReflectionEnum;
-use ReflectionProperty;
 use ReflectionException;
 use JsonSerializable;
 
@@ -16,34 +14,64 @@ abstract class Model implements JsonSerializable {
      */
     static function deserialize(mixed $object): ?Model {
 
-        $instance = new static();
-        $objJson = gettype($object) == "string" ? json_encode($object) : json_decode(json_encode($object));
-        $classInfo = new ReflectionClass($instance);
-        $publicProps = $classInfo->getProperties();
+        try {
 
-        foreach ($publicProps as $prop) {
-            $propName = $prop->name;
-            if($c = Entity::mapColumn($instance, $propName)) $propName = $c;
+            $instance = new static();
+            $objJson = gettype($object) == "string" ? json_encode($object) : json_decode(json_encode($object));
 
-            $class = $prop->getType()->getName();
-            if(!$prop->getType()->isBuiltin() && (new ReflectionClass($class))->isEnum()){
+            $meta = Entity::metadata($instance);
+
+            $instance = self::setValue($meta, $instance, $objJson);
+
+            foreach ($meta->relationships as $name => $relationship) {
+
+                $relationshipInstance = new $relationship->meta->class->qualifiedName();
+                $relationshipInstance = self::setValue($relationship->meta, $relationshipInstance, $objJson);
+
+                $propInfo = new \ReflectionProperty($instance, $name);
+                $propInfo->setValue($instance, $relationshipInstance ?: null);
+            }
+
+            return $instance;
+        }
+        catch (\Exception) { return null; }
+    }
+
+    private static function setValue($meta, $instance, $objJson){
+
+        $hasJoinedFields = array_reduce(array_keys((array)$objJson), function ($carry, $item) { return $carry || str_contains($item, "."); }, false);
+
+        foreach ($meta->props as $prop) {
+
+            $propInfo = new \ReflectionProperty($instance, $prop->name);
+            $propName = $hasJoinedFields ? "{$meta->table->name}.{$prop->name}" : $propInfo->name;
+
+            if ($c = Entity::mapColumn($instance, $propInfo->name)) $propName = $hasJoinedFields ? "{$meta->table->name}.{$c}" : $c;
+            $class = $propInfo->getType()->getName();
+
+            if (!$propInfo->getType()->isBuiltin() && (new ReflectionClass($class))->isEnum()) {
                 $caseName = null;
                 $enum = new ReflectionEnum($class);
-                foreach ( $enum->getCases() as $case )
+                foreach ($enum->getCases() as $case)
                     if ($objJson->$propName == $case->getValue()->value)
                         $caseName = $case->getName();
 
-                if($caseName) {
+                if ($caseName) {
                     $value = constant("$class::$caseName");
-                    $prop->setValue($instance, $value);
+                    $propInfo->setValue($instance, $value);
                 }
             }
-            else if (in_array($prop->getType()->getName(), ["int", "long", "float", "double"])) {
+            else if (in_array($propInfo->getType()->getName(), ["int", "long", "float", "double"])) {
 
-                $prop->setValue($instance, $objJson->$propName?:0);
+                $propInfo->setValue($instance, $objJson->{$propName} ?: 0);
             }
-            else $prop->setValue($instance, $objJson->$propName?:null);
+            else {
+
+                $propInfo->setValue($instance, $objJson->{$propName} ?: null);
+            }
+
         }
+
         return $instance;
     }
 

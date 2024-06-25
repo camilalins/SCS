@@ -3,7 +3,6 @@ namespace controllers\api\solicitacoes;
 
 use core\controllers\security\ApiAuthorizedController;
 use models\Solicitacao;
-use repo\ClienteRepositorio;
 use repo\SolicitacaoRepositorio;
 
 /**
@@ -21,13 +20,12 @@ class SolicitacaoController extends ApiAuthorizedController {
 
             if(!$body->data && !$body->cliente && !$body->placa) throw new \Exception();
 
-            $repoCliente = new ClienteRepositorio();
             $repo = new SolicitacaoRepositorio();
 
             $solicitacoes = $repo->obterPor([
-                "data" => like($body->data),
-                "clienteId" => in( $repoCliente->obterIdsPorNome($body->cliente) ),
-                "placa" => like($body->placa)
+                "data" => like( $body->data ),
+                "cliente.nome" => like( $body->cliente ),
+                "placa" => like( $body->placa )
             ], queryPagination());
 
             response($solicitacoes);
@@ -50,6 +48,8 @@ class SolicitacaoController extends ApiAuthorizedController {
             $solicitacao = new Solicitacao($body->clienteId, $body->data, $body->placa);
             $repo = new SolicitacaoRepositorio();
             $solicitacao = $repo->criar($solicitacao);
+//            $dto = ["clienteId" => $body->clienteId, "data" => $body->data, "placa" => $body->placa];
+//            $solicitacao = $repo->criar($dto);
 
             response($solicitacao);
         }

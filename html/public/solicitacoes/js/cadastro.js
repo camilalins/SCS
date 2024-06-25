@@ -14,9 +14,9 @@ const formCadastroSubmit = async (e) => {
     try {
 
         const formData = new FormData(formCadastro)
-        const { data, cliente, placa } = Object.fromEntries(formData);
+        const { clienteId, data, placa } = Object.fromEntries(formData); console.log(Object.fromEntries(formData))
 
-        if(!data || !cliente || !placa) throw Error(errValid001)
+        if(!clienteId || !data || !placa) throw Error(errValid001)
 
         const res = await fetch(uri, {
             method: "POST",

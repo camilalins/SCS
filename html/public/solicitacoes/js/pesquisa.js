@@ -53,8 +53,9 @@ function carregar(solicitacoes){
             tbody.innerHTML +=
                 `<tr key="${e.id}">
                      <td><a href="#"><i class="fa fa-ellipsis-v"></i></a></td>
-                     <td>${e.data}</td>
-                     <td>${e.cliente}</td>
+                     <td>${e.cliente.nome}</td>
+                     <td>${e.cliente.cnpj}</td>
+                     <td>${e.data.toLocaleDateString()}</td>
                      <td>${e.placa}</td>
                 </tr>`;
         })

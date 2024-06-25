@@ -146,7 +146,7 @@ function scripts($scripts=null) {
 
     $loadScripts = function(){
 
-        echo "<script src=\"/public/js/helper-functions.js\"></script>\n\t";
+        echo "<script id=\"script-helper-functions\" src=\"/public/js/helper-functions.js\" encdata=\"".b64JsonEncode([ "locale" => LOCALE, "tz" => TZ ])."\"></script>\n\t";
 
         foreach ($GLOBALS["scripts"] as $script)
             if (gettype($script) == "string") {

@@ -3,7 +3,6 @@
 namespace models;
 
 use core\Model;
-use stdClass;
 
 /**
  * @Entity
@@ -12,9 +11,11 @@ class Solicitacao extends Model {
 
     /** * @Id */
     private Int $id;
-    private String $data;
     /** * @Column("cliente_id") */
     private int $clienteId;
+    /** * @ManyToOne("cliente_id") */
+    private ?Cliente $cliente;
+    private String $data;
     private String $placa;
 
     /**
@@ -26,6 +27,7 @@ class Solicitacao extends Model {
     {
         $this->id = 0;
         $this->clienteId = $clienteId;
+        $this->cliente = null;
         $this->data = $data;
         $this->placa = $placa;
     }
@@ -60,6 +62,22 @@ class Solicitacao extends Model {
     public function setClienteId(int $clienteId): void
     {
         $this->clienteId = $clienteId;
+    }
+
+    /**
+     * @return Cliente
+     */
+    public function getCliente(): Cliente
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * @param Cliente $cliente
+     */
+    public function setCliente(Cliente $cliente): void
+    {
+        $this->cliente = $cliente;
     }
 
     /**

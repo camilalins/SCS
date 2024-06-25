@@ -40,17 +40,7 @@ class Repositorio {
      */
     public function obterTodos():array {
 
-        $sql = "SELECT * from {$this->meta->table->qualifiedName}";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_SELECT || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
-
-        $result = $this->mysqli->query($sql);
-
-        $entidades = [];
-        while ($entidade = $result->fetch_object()) $entidades[] = $this->meta->class->qualifiedName::deserialize($entidade);
-
-        $this->mysqli->close();
-
-        return $entidades;
+        return $this->obterPor([]);
     }
 
     /**
@@ -61,20 +51,7 @@ class Repositorio {
      */
     public function obterPorId($id): ?Model {
 
-        $id = $this->mysqli->real_escape_string($id);
-
-        $sql = "SELECT * FROM {$this->meta->table->qualifiedName} WHERE id = ?";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_SELECT || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
-
-        $stmt = $this->mysqli->prepare($sql);
-        $stmt->bind_param("d", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($entidade = $result->fetch_object()) {
-            return $this->meta->class->qualifiedName::deserialize($entidade);
-        }
-        return null;
+        return $this->obterPrimeiro([ "id" => $this->mysqli->real_escape_string($id) ]);
     }
 
     /**
@@ -92,7 +69,16 @@ class Repositorio {
         $campos = $dtotype == "object" ? array_keys(get_object_vars($dto)) : array_keys($dto);
         $valores = $dtotype == "object" ? array_values(get_object_vars($dto)) : array_values($dto);
 
-        $where = array_map(function ($k, $v) {
+        $columns = " * ";
+        if($joins = Entity::mapRelationship($this->meta->class->qualifiedName))
+            $columns = Entity::parseJoinColumns($this->meta);
+
+        $isJoined = isset($joins);
+        $mainTable = $this->meta->table->name;
+
+        $where = array_map(function ($k, $v) use($isJoined, $mainTable) {
+
+            $t = $isJoined && !str_contains($k, ".") ? $mainTable."." : "";
 
             if($c = Entity::mapColumn($this->meta->class->qualifiedName, $k)) $k = $c;
 
@@ -103,43 +89,56 @@ class Repositorio {
             }
             if(gettype($v) == "object" && (new ReflectionClass($v))->isEnum()) $v = $v->value;
 
+            # IN
             if($v && str_starts_with(strtoupper($v), "IN")) {
                 $value = trim(substr($v, 3));
-                return "$k IN $value";
+                return "{$t}$k IN $value";
             }
 
+            # LIKE
             if($v && str_starts_with(strtoupper($v), "LIKE")) {
                 $value = trim(substr($v, 4));
                 $valueNoWildcard = str_replace("%", "", $value);
                 if($o == NONE_IF_EMPTY && !$valueNoWildcard) return null;
-                if($o == NULL_IF_EMPTY && !$valueNoWildcard) return "$k IS NULL";
-                if($o == BLANK_IF_EMPTY && !$valueNoWildcard) return "$k = ''";
+                if($o == NULL_IF_EMPTY && !$valueNoWildcard) return "{$t}$k IS NULL";
+                if($o == BLANK_IF_EMPTY && !$valueNoWildcard) return "{$t}$k = ''";
 
-                return "$k LIKE '$value'";
+                return "{$t}$k LIKE '$value'";
             }
-
+            # EQUALS (=)
             if($o == NONE_IF_EMPTY && !$v) return null;
-            if($o == NULL_IF_EMPTY && !$v) return "$k IS NULL";
-            if($o == BLANK_IF_EMPTY && !$v) return "$k = ''";
-            return "$k = '$v'";
+            if($o == NULL_IF_EMPTY && !$v) return "{$t}$k IS NULL";
+            if($o == BLANK_IF_EMPTY && !$v) return "{$t}$k = ''";
+            return "{$t}$k = '$v'";
 
         },  $campos, $valores);
         $where = implode(" AND ", array_diff($where, [null]));
 
-        $sql = "SELECT * FROM {$this->meta->table->qualifiedName}";
-        if($where) $sql.= " WHERE $where";
-        if($limite) $sql.= gettype($limite) == "array" ? " LIMIT {$limite[0]},{$limite[1]}" : " LIMIT $limite";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql);
+        $from = "\nFROM {$this->meta->table->qualifiedName}";
 
-        $stmt = $this->mysqli->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $sql = "SELECT $columns $from";
 
-        $results = [];
-        while($entidade = $result->fetch_object())
-            $results[] = $this->meta->class->qualifiedName::deserialize($entidade);
+        if($joins) $sql.= "\n$joins";
+        if($where) $sql.= "\nWHERE $where";
+        if($limite) $sql.= gettype($limite) == "array" ? "\nLIMIT {$limite[0]},{$limite[1]}" : "\nLIMIT $limite";
 
-        return $results;
+        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, str_replace(PHP_EOL, " ", $sql));
+
+        try {
+            $stmt = $this->mysqli->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $results = [];
+            while ($entidade = $result->fetch_object())
+                $results[] = $this->meta->class->qualifiedName::deserialize($entidade);
+
+            return $results;
+        }
+        catch (\Exception $e) {
+            if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $e->getMessage());
+            return [];
+        }
     }
 
     /**
@@ -148,6 +147,7 @@ class Repositorio {
      * @throws Exception
      */
     public function obterPrimeiro($dto=[]):?Model {
+
         $primeiro = $this->obterPor($dto, 1);
         return $primeiro ? current($primeiro) : null;
     }
@@ -161,22 +161,22 @@ class Repositorio {
 
         if (!$dto) throw new Exception(sys_messages(MSG_REPO_ERR_A007));
 
+        $meta = Entity::metadata($dto);
         $dtotype = gettype($dto);
         if($dtotype != "object" && $dtotype != "array") throw new Exception(sys_messages(MSG_REPO_ERR_A004));
         if($dtotype == "object") $dto = json_decode(json_encode($dto), true);
 
-        if($dto["id"])  unset($dto["id"]);
+        if($dto["id"]) unset($dto["id"]);
 
-        $campos = array_keys($dto);
-        $valores = array_values($dto);
-        $valores = array_map(function ($v) { return gettype($v) == "object" && (new ReflectionClass($v))->isEnum() ? $v->value : $v; }, $valores);
+        $campos = $meta ? Entity::parseColumnsKeys($meta) : array_keys($dto);
+        $valores = $meta ? Entity::parseColumnsValues($meta, $dto) : array_map(function ($v) { return gettype($v) == "object" && (new ReflectionClass($v))->isEnum() ? $v->value : $v; }, array_values($dto));
 
         $joinCampos = implode(", ", array_map(function ($k) { if($c = Entity::mapColumn($this->meta->class->qualifiedName, $k)) $k = $c; return $k; }, $campos));
         $joinParams = implode(", ", array_map(function () { return "?"; }, $valores));
         $joinBinds = implode("", array_map(function () { return "s"; }, $valores));
 
         $sql = "INSERT INTO {$this->meta->table->qualifiedName} ($joinCampos) VALUES ($joinParams)";
-        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql." ".json_encode($valores));
+        if(DEBUG_MODE == 1 && DEBUG_QUERY == 1 && (DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_UPDATE || DEBUG_QUERY_LEVEL == DEBUG_QUERY_LEVEL_ALL)) syslog(LOG_ALERT, $sql." [$joinBinds]");
 
         $stmt = $this->mysqli->prepare($sql);
         $stmt->bind_param($joinBinds, ...$valores);

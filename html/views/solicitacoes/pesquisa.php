@@ -76,20 +76,14 @@
                             <thead>
                             <tr>
                                 <th class="w-10 p-3" scope="col"></th>
-                                <th class="w-25 p-3" scope="col">Data</th>
                                 <th class="w-25 p-3" scope="col">Cliente</th>
+                                <th class="w-25 p-3" scope="col">CNPJ</th>
+                                <th class="w-25 p-3" scope="col">Data</th>
                                 <th class="w-25 p-3" scope="col">Placa</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($solicitacoes as $s):?>
-                                <tr>
-                                    <td class="text-sm-left p-3"><a><i class="fa fa-hand"></i></a></td>
-                                    <td class="text-sm-left p-3"><?=$s->getData()?></td>
-                                    <td class="text-sm-left p-3"><?=$s->getClienteId()?></td>
-                                    <td class="text-sm-left p-3"><?=$s->getPlaca()?></td>
-                                </tr>
-                            <?php endforeach;?>
+                            <!-- FETCH DATA -->
                             </tbody>
                         </table>
                     </div>
