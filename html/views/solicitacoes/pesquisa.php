@@ -80,6 +80,7 @@
                                 <th class="w-25 p-3" scope="col">CNPJ</th>
                                 <th class="w-25 p-3" scope="col">Data</th>
                                 <th class="w-25 p-3" scope="col">Placa</th>
+                                <th class="w-25 p-3" scope="col">Status</th>
                             </tr>
                             </thead>
                             <tbody>

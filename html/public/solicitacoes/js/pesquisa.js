@@ -37,7 +37,7 @@ function notificar(mensagem){
     clear();
     tbody.innerHTML +=
         `<tr>
-             <td colspan="6" style="text-align: center; color: darkred;">${mensagem}</td>
+             <td colspan="7" style="text-align: center; color: darkred;">${mensagem}</td>
         </tr>`;
 }
 
@@ -57,6 +57,7 @@ function carregar(solicitacoes){
                      <td>${e.cliente.cnpj}</td>
                      <td>${e.data.toLocaleDateString()}</td>
                      <td>${e.placa}</td>
+                     <td>${e.status}</td>
                 </tr>`;
         })
     }

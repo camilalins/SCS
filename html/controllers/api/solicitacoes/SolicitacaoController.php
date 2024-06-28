@@ -43,12 +43,12 @@ class SolicitacaoController extends ApiAuthorizedController {
 
             $body = body();
 
-            if(!$body->data || !$body->clienteId || !$body->placa) throw new \Exception(sys_messages(MSG_VALID_ERR_A001));
+            if(!$body->data || !$body->clienteId || !$body->placa || !$body->operacao || !$body->status) throw new \Exception(sys_messages(MSG_VALID_ERR_A001));
 
-            $solicitacao = new Solicitacao($body->clienteId, $body->data, $body->placa);
+            $solicitacao = new Solicitacao($body->clienteId, $body->data, $body->placa, $body->operacao, $body->status);
             $repo = new SolicitacaoRepositorio();
             $solicitacao = $repo->criar($solicitacao);
-//            $dto = ["clienteId" => $body->clienteId, "data" => $body->data, "placa" => $body->placa];
+//            $dto = ["clienteId" => $body->clienteId, "data" => $body->data, "placa" => $body->placa, "operadocao" => $body->operacao, "status" => $body->status];
 //            $solicitacao = $repo->criar($dto);
 
             response($solicitacao);
