@@ -65,7 +65,7 @@
 
                         <input type="hidden" id="clienteId" name="clienteId" value="<?=$cliente->getId()?>">
 
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-md-2 p-2">
                                 <label for="data">Data</label>
                                 <input type="date" class="form-control" id="data" name="data" required>
@@ -73,6 +73,107 @@
                             <div class="col-md-2 p-2">
                                 <label for="placa">Placa</label>
                                 <input type="text" class="form-control" id="placa" name="placa">
+                            </div>
+                        </div>-->
+
+
+
+                        <div class="row">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">Dados Solicitação</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">Transportadora</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab" aria-controls="tab3" aria-selected="false">ABA 3</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button" role="tab" aria-controls="tab4" aria-selected="false">Operacional</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5" type="button" role="tab" aria-controls="tab5" aria-selected="false">ABA 5</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab6-tab" data-bs-toggle="tab" data-bs-target="#tab6" type="button" role="tab" aria-controls="tab6" aria-selected="false">Status</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                                    <div class="row">
+                                        <div class="col-md-6 p-2">
+                                            <div class="form-group">
+                                                <label for="data" class="form-label">Data</label>
+                                                <input type="date" class="form-control" id="data" name="data" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 p-2">
+                                            <div class="form-group">
+                                                <label for="horasolicitacao" class="form-label">Hora Solicitação</label>
+                                                <input type="time" class="form-control" id="horasolicitacao" name="horasolicitacao">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 p-2">
+                                            <div class="form-group">
+                                                <label for="chegadaagente" class="form-label">Chegada do Agente</label>
+                                                <input type="time" class="form-control" id="chegadaagente" name="chegadaagente">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 p-2">
+                                            <div class="form-group">
+                                                <label for="inicioatendimento" class="form-label">Início Atendimento</label>
+                                                <input type="time" class="form-control" id="inicioatendimento" name="inicioatendimento">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 p-2">
+                                            <div class="form-group">
+                                                <label for="espera" class="form-label">Tempo de Espera</label>
+                                                <input type="text" class="form-control" id="espera" name="espera">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                                    <div class="row">
+                                        <div class="col-md-3 p-2">
+                                            <label for="placa">Placa</label>
+                                            <input type="text" class="form-control" id="placa" name="placa">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                                    Conteúdo da ABA 3
+                                </div>
+                                <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                                    <div class="row">
+                                        <div class="col-md-3 p-2">
+                                            <label for="operacao" class="form-label">Tipo de Operação</label>
+                                            <select class="form-select" id="operacao" name="operacao">
+                                                <option value="">Selecione...</option>
+                                                <option value="Escolta">Escolta</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+                                    Conteúdo da ABA 5
+                                </div>
+                                <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
+                                    <div class="row">
+                                        <div class="col-md-3 p-2">
+                                            <label for="placa" class="form-label">Status</label>
+                                            <select class="form-select" id="status" name="status">
+                                                <option value="">Selecione...</option>
+                                                <option value="Aguardando">Aguardando</option>
+                                                <option value="Finalizado">Finalizado</option>
+                                                <option value="Cancelado">Cancelado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
