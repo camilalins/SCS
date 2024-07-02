@@ -31,6 +31,6 @@ const MSG_CLI_ERR_A001 = [ "pt-BR" => "Informe ao menos um filtro para pesquisar
 const ERR_SOL_ERR_001 = [ "pt-BR" => "Não há página personalizada para este cliente", "en-US" => "There's no custom page for this customer" ];
 
 function sys_messages($name, $details=null, $locale=null): string {
-    return $name[$locale?:(LOCALE)].(DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH && $details ? ": ".$details : "");
+    return $name[$locale?:(LOCALE?:LOCALE_PT_BR)].(DEBUG_MODE == 1 && DEBUG_LEVEL == DEBUG_LEVEL_HIGH && $details ? ": ".$details : "");
 }
 

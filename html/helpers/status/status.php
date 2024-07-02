@@ -10,7 +10,7 @@ const METHOD_NOT_ALLOWED_405 = [ "pt-BR" => "Método não permitido", "en-US" =>
 const TEMPORARILY_UNAVAILABLE_503 = [ "pt-BR" => "Temporariamente indisponível", "en-US" => "Temporarily unavailable" ];
 
 function statusText($const, $locale=null): string {
-    return $const[$locale?:(LOCALE)];
+    return $const[$locale?:(LOCALE?:LOCALE_PT_BR)];
 }
 
 function status($const){
