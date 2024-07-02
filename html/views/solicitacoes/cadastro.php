@@ -66,30 +66,13 @@
                         <input type="hidden" id="clienteId" name="clienteId" value="<?=$cliente->getId()?>">
 
                         <div class="row">
-                            <div class="col-md-3 p-2">
+                            <div class="col-md-2 p-2">
                                 <label for="data">Data</label>
                                 <input type="date" class="form-control" id="data" name="data" required>
                             </div>
-                            <div class="col-md-3 p-2">
+                            <div class="col-md-2 p-2">
                                 <label for="placa">Placa</label>
                                 <input type="text" class="form-control" id="placa" name="placa">
-                            </div>
-                            <div class="col-md-3 p-2">
-                                <label for="tipoOperacao" class="form-label">Tipo de Operação</label>
-                                <select class="form-select" id="operacao" name="operacao">
-                                    <option value="">Selecione...</option>
-                                    <option value="Escolta">Escolta</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 p-2">
-                                <label for="placa" class="form-label">Status</label>
-                                <select class="form-select" id="status" name="status">
-                                    <option value="">Selecione...</option>
-                                    <option value="Aguardando">Aguardando</option>
-                                    <option value="Finalizado">Finalizado</option>
-                                    <option value="Cancelado">Cancelado</option>
-                                </select>
-
                             </div>
                         </div>
 
