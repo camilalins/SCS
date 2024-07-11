@@ -17,19 +17,22 @@ class Solicitacao extends Model {
     private ?Cliente $cliente;
     private String $data;
     private String $placa;
+    private String $status;
 
     /**
      * @param Int $clienteId
      * @param String $data
      * @param String $placa
+     * @param String $status
      */
-    public function __construct(int $clienteId=0, string $data="", string $placa="")
+    public function __construct(int $clienteId=0, string $data="", string $placa="", string $status="")
     {
         $this->id = 0;
         $this->clienteId = $clienteId;
         $this->cliente = null;
         $this->data = $data;
         $this->placa = $placa;
+        $this->status = $status;
     }
 
     /**
@@ -110,6 +113,22 @@ class Solicitacao extends Model {
     public function setPlaca(?string $placa): void
     {
         $this->placa = $placa;
+    }
+
+    /**
+     * @return Status
+     */
+    public function getStatus(): Status
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param Status $status
+     */
+    public function setStatus(Status $status): void
+    {
+        $this->status = $status;
     }
 
     public function jsonSerialize(): mixed {

@@ -164,7 +164,7 @@
                                 <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
                                     <div class="row">
                                         <div class="col-md-3 p-2">
-                                            <label for="placa" class="form-label">Status</label>
+                                            <label for="status" class="form-label">Status</label>
                                             <select class="form-select" id="status" name="status">
                                                 <option value="">Selecione...</option>
                                                 <option value="Aguardando">Aguardando</option>
